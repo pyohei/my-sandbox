@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>table sorter</title>
+  </head>
+  <body>
+    <script src="tableSort.js"></script>
+    <table border=1 id="num">
+      <tbody>
+        <tr>
+          <th>num</th>
+        </tr>
+        <tr>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+        </tr>
+      </tbody>
+    </table>
+    <form name="addRow" action="">
+      <input type="text" name="addValue">
+    </form>
+    <button onclick="createRow('num')">add</button><br>
+    <button onclick="sortNum()">sort</button>
+  </body>
+</html>
