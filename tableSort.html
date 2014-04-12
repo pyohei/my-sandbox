@@ -4,23 +4,26 @@
   </head>
   <body>
     <script src="tableSort.js"></script>
-    <table border=1 id="num">
+    <table border=1 id="sorts">
       <tbody>
         <tr>
-          <th>num</th>
+          <th><a href="#" onclick="sortNum(0)">num</a></th>
+          <th><a href="#" onclick="sortNum(1)">str</a></th>
         </tr>
         <tr>
-          <td>1</td>
+          <td>4</td>
+          <td>a</td>
         </tr>
         <tr>
-          <td>2</td>
+          <td>3</td>
+          <td>b</td>
         </tr>
       </tbody>
     </table>
     <form name="addRow" action="">
       <input type="text" name="addValue">
     </form>
-    <button onclick="createRow('num')">add</button><br>
+    <button onclick="createRow('sorts')">add</button><br>
     <button onclick="sortNum()">sort</button>
   </body>
 </html>
