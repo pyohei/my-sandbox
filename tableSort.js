@@ -11,13 +11,18 @@ function createRow(id){
 
   var buttonElement = document.createElement("button");
   buttonElement.type = "button";
-  buttonElement.onClick = "modify()";
+  alert(newId.nodeValue);
+  var c = "modify(" + newId.nodeValue + ")";
+  // buttonElement.onclick = new Function("alert('ok');");
+  buttonElement.onclick = new Function(c);
   buttonElement.appendChild(document.createTextNode("modify"));
 
 
   var buttonElement2 = document.createElement("button");
   buttonElement2.type = "button";
-  buttonElement2.onClick = "delete()";
+  // var d = "deleteRow(" + newId.nodeValue + ")";
+  var d = "deleteRow(this)";
+  buttonElement2.onclick = new Function(d);
   buttonElement2.appendChild(document.createTextNode("delete"));
 
   tdElement.appendChild(newId);
@@ -121,16 +126,25 @@ function arrange(orders){
 function deleteAll(){
   var bodys = document.getElementById("sorts");
   var trList = bodys.getElementsByTagName("tr");
-  for (var i = 0; i < trList.length; i ++){
+  for (var i = 0; i <= trList.length; i ++){
     bodys.deleteRow(1);
   }
 }
 
-function delete(id){
-  // idの列の番号とって削除
+function deleteRow(row){
+  var n = row.parentNode.parentNode;
+  n.parentNode.deleteRow(n.sectionRowIndex);
 }
 
-function modify(id){
-  // まだ未定実装。。
+function modify(row){
+  var n = row.parentNode.parentNode;
+  // alert(n.cells[0].innerText);
+  // alert(n.firstChild.innerText);
+  // return;
+  // n.parentNode.deleteRow(n.sectionRowIndex);
+  id = window.prompt("new id is...?");
+  name = window.prompt("new name is...?");
+  n.cells[0].innerText = id;
+  n.cells[1].innerText = name;
 }
 /* http://d.hatena.ne.jp/sandai/20100823/p1#016 */
