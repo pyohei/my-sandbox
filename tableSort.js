@@ -3,13 +3,31 @@ function createRow(id){
   var trElement = document.createElement("tr");
   var tdElement = document.createElement("td");
   var tdElement2 = document.createElement("td");
-  var contentNode = document.createTextNode(document.addRow.addValue.value);
+  var tdElement3 = document.createElement("td");
+  var tdElement4 = document.createElement("td");
+  var newId = document.createTextNode(document.addRow.newId.value);
+  var newName = document.createTextNode(document.addRow.newName.value);
   // alert(contentNode);
 
-  tdElement.appendChild(contentNode);
-  tdElement2.appendChild(document.createTextNode("t"));
+  var buttonElement = document.createElement("button");
+  buttonElement.type = "button";
+  buttonElement.onClick = "modify()";
+  buttonElement.appendChild(document.createTextNode("modify"));
+
+
+  var buttonElement2 = document.createElement("button");
+  buttonElement2.type = "button";
+  buttonElement2.onClick = "delete()";
+  buttonElement2.appendChild(document.createTextNode("delete"));
+
+  tdElement.appendChild(newId);
+  tdElement2.appendChild(newName);
+  tdElement3.appendChild(buttonElement);
+  tdElement3.appendChild(buttonElement2);
+  // tdElement3.appendChild(document.createTextNode("t"));
   trElement.appendChild(tdElement);
   trElement.appendChild(tdElement2);
+  trElement.appendChild(tdElement3);
   tbodyElement.appendChild(trElement);
 }
 
@@ -98,5 +116,21 @@ function arrange(orders){
   for (var i = 0; i < orders.length; i++){
     trList[i+1].parentNode.replaceChild(clones[i], trList[i+1]);
   }
+}
+
+function deleteAll(){
+  var bodys = document.getElementById("sorts");
+  var trList = bodys.getElementsByTagName("tr");
+  for (var i = 0; i < trList.length; i ++){
+    bodys.deleteRow(1);
+  }
+}
+
+function delete(id){
+  // idの列の番号とって削除
+}
+
+function modify(id){
+  // まだ未定実装。。
 }
 /* http://d.hatena.ne.jp/sandai/20100823/p1#016 */
