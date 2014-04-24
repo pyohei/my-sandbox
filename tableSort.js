@@ -1,75 +1,67 @@
-function createRow(id){
-  var tbodyElement = document.getElementById(id).getElementsByTagName("tbody")[0];
+// 入力値から列を追加する
+function createRow(tableName){
+  // 入力idとnameの取得
+  var newId = document.createTextNode(document.addRow.newId.value);
+  var newName = document.createTextNode(document.addRow.newName.value);
+
+  // テーブル要素の作成
+  var tbodyElement = document.getElementById(tableName).getElementsByTagName("tbody")[0];
   var trElement = document.createElement("tr");
   var tdElement = document.createElement("td");
   var tdElement2 = document.createElement("td");
   var tdElement3 = document.createElement("td");
   var tdElement4 = document.createElement("td");
-  var newId = document.createTextNode(document.addRow.newId.value);
-  var newName = document.createTextNode(document.addRow.newName.value);
-  // alert(contentNode);
 
-  var buttonElement = document.createElement("button");
-  buttonElement.type = "button";
-  alert(newId.nodeValue);
-  var c = "modify(" + newId.nodeValue + ")";
-  // buttonElement.onclick = new Function("alert('ok');");
-  buttonElement.onclick = new Function(c);
-  buttonElement.appendChild(document.createTextNode("modify"));
+  // ボタン要素作成関数
+  function generateButton(buttonName){
+    var buttonElement = document.createElement("button");
+    buttonElement.type = "button";
+    var javascriptName = buttonName + "(this)";
+    buttonElement.onclick = new Function(javascriptName);
+    buttonElement.appendChild(document.createTextNode(buttonName));
+    return buttonElement
+  }
 
+  // ボタン要素の追加
+  var modifyButton = generateButton("modify");
+  var deleteButton = generateButton("delete");
 
-  var buttonElement2 = document.createElement("button");
-  buttonElement2.type = "button";
-  // var d = "deleteRow(" + newId.nodeValue + ")";
-  var d = "deleteRow(this)";
-  buttonElement2.onclick = new Function(d);
-  buttonElement2.appendChild(document.createTextNode("delete"));
-
+  // 子ノード作成(ここ微妙。。)
   tdElement.appendChild(newId);
   tdElement2.appendChild(newName);
-  tdElement3.appendChild(buttonElement);
-  tdElement3.appendChild(buttonElement2);
-  // tdElement3.appendChild(document.createTextNode("t"));
+  tdElement3.appendChild(modifyButton);
+  tdElement3.appendChild(deleteButton);
   trElement.appendChild(tdElement);
   trElement.appendChild(tdElement2);
   trElement.appendChild(tdElement3);
   tbodyElement.appendChild(trElement);
 }
 
+// テーブルをソートする
 function sortNum(rowNum){
   var numList = getNums(rowNum);
   var numList = collumnSort(numList);
-  // alert(numList);
-  // var numLists = document.getElementById("num");
-  // var numList = numLists.getElementsByTagName("tr");
-  // alert(numList.item(2).cells.item(0).firstChild.nodeValue);
-  //var childList = numLists.childNodes;
-  // alert(childList[1].innerHTML);
   arrange(numList);
 }
 
+// 列の値を取得する
 function getNums(row){
   var bodys = document.getElementById("sorts");
   var trList = bodys.getElementsByTagName("tr");
   var sortIndex = [];
   for (var i in trList) {
-    // alert(i);
     if (i == 0){
       continue;
     }
     if (isNaN(i)){
       break;
     }
-    // alert(trList[i].cells[row].firstChild.nodeValue);
     sortIndex.push(trList[i].cells[row].firstChild.nodeValue);
   }
   return sortIndex;
-  // for (var trBody in trList) {
-  //   alert(trBody.item(0));
-  // }
-//  alert(numList.item(2).cells.item(0).firstChild.nodeValue);
 }
 
+// 列のソートをする
 function collumnSort(rows){
   var sortList = [];
   var num = 1;
@@ -78,11 +70,8 @@ function collumnSort(rows){
     o["order"] = num;
     o["comp"] = rows[r];
     sortList.push(o);
-    // alert(o["order"]);
-    // alert(o["comp"]);
     num = num + 1;
   }
-  // var orgCollumn = rows;
   var results = sortList.sort(function (a, b) {
     var o, p;
     if (typeof a === 'object' && typeof b === 'object' && a && b) {
@@ -95,11 +84,6 @@ function collumnSort(rows){
         return o < p ? -1 : 1;
       }
       return typeof o < typeof p ? -1 : 1;
-    // } else {
-    //   throw {
-    //     alert("error");
-    //     return;
-    //   };
     }
   });
   var exchangeList = [];
@@ -109,10 +93,10 @@ function collumnSort(rows){
   return exchangeList;
 }
 
+// テーブルの列を入れ替える
 function arrange(orders){
   var bodys = document.getElementById("sorts");
   var trList = bodys.getElementsByTagName("tr");
-  // alert(trList[1]);
   var header = trList[0].cloneNode(true);
   var clones = [];
   for (var i = 0; i < orders.length; i++) {
@@ -123,6 +107,7 @@ function arrange(orders){
   }
 }
 
+// テーブル列の全削除
 function deleteAll(){
   var bodys = document.getElementById("sorts");
   var trList = bodys.getElementsByTagName("tr");
@@ -131,20 +116,22 @@ function deleteAll(){
   }
 }
 
+// 列の削除
 function deleteRow(row){
   var n = row.parentNode.parentNode;
   n.parentNode.deleteRow(n.sectionRowIndex);
 }
 
+// 列の修正
 function modify(row){
   var n = row.parentNode.parentNode;
-  // alert(n.cells[0].innerText);
-  // alert(n.firstChild.innerText);
-  // return;
-  // n.parentNode.deleteRow(n.sectionRowIndex);
   id = window.prompt("new id is...?");
   name = window.prompt("new name is...?");
   n.cells[0].innerText = id;
   n.cells[1].innerText = name;
 }
-/* http://d.hatena.ne.jp/sandai/20100823/p1#016 */
+
+// 足りない機能（すいません。。）
+// ・idが数値ソートできていない。
+// ・idに数値以外が入れられる。
+// ・idに重複がないように機能させる。
