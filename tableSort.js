@@ -1,8 +1,17 @@
 // 入力値から列を追加する
 function createRow(tableName){
+  // 入力値の取得
+  var newId = document.addRow.newId.value;
+  var newName = document.addRow.newName.value;
+
+  // 入力値のチェック
+  if (isInvalidInput(newId, newName)){
+    alert("入力値に不正な値があります");
+    return;
+  }
   // 入力idとnameの取得
-  var newId = document.createTextNode(document.addRow.newId.value);
-  var newName = document.createTextNode(document.addRow.newName.value);
+  var idNode = document.createTextNode(newId);
+  var nameNode = document.createTextNode(newName);
 
   // テーブル要素の作成
   var tbodyElement = document.getElementById(tableName).getElementsByTagName("tbody")[0];
@@ -14,9 +23,10 @@ function createRow(tableName){
 
   // ボタン要素作成関数
   function generateButton(buttonName){
+
     var buttonElement = document.createElement("button");
     buttonElement.type = "button";
-    var javascriptName = buttonName + "(this)";
+    var javascriptName = buttonName + "Row(this)";
     buttonElement.onclick = new Function(javascriptName);
     buttonElement.appendChild(document.createTextNode(buttonName));
     return buttonElement
@@ -27,8 +37,8 @@ function createRow(tableName){
   var deleteButton = generateButton("delete");
 
   // 子ノード作成(ここ微妙。。)
-  tdElement.appendChild(newId);
-  tdElement2.appendChild(newName);
+  tdElement.appendChild(idNode);
+  tdElement2.appendChild(nameNode);
   tdElement3.appendChild(modifyButton);
   tdElement3.appendChild(deleteButton);
   trElement.appendChild(tdElement);
@@ -37,10 +47,40 @@ function createRow(tableName){
   tbodyElement.appendChild(trElement);
 }
 
+// 入力値チェック
+function isInvalidInput(id, name){
+  if (!id.match(/\S/g) || !name.match(/\S/g)){
+    return true;    // この正規表現あんまり分かっていない。
+  }
+  idList = getNums(0);
+  nameList = getNums(1);
+  if (isContain(id, idList)){
+    return true;
+  }
+  if (isContain(name, nameList)){
+    return true;
+  }
+  if (!isFinite(id)){
+    return true;
+  }
+  alert("ok!!")
+  return false;
+}
+
+// 対象がリストに含まれるかどうかの確認
+function isContain(target, compares){
+  for (var i = 0; i < compares.length; i++){
+    if(compares[i] === target){
+      return true;
+    }
+  }
+  return false;
+}
+
 // テーブルをソートする
 function sortNum(rowNum){
   var numList = getNums(rowNum);
-  var numList = collumnSort(numList);
+  var numList = collumnSort(rowNum, numList);
   arrange(numList);
 }
 
@@ -53,7 +93,7 @@ function getNums(row){
     if (i == 0){
       continue;
     }
-    if (isNaN(i)){
+    if (isNaN(i)){    // 修正したいなー
       break;
     }
     sortIndex.push(trList[i].cells[row].firstChild.nodeValue);
@@ -62,7 +102,7 @@ function getNums(row){
 }
 
 // 列のソートをする
-function collumnSort(rows){
+function collumnSort(rowNum, rows){
   var sortList = [];
   var num = 1;
   for (var r = 0; r < rows.length; r++) {
@@ -72,20 +112,31 @@ function collumnSort(rows){
     sortList.push(o);
     num = num + 1;
   }
-  var results = sortList.sort(function (a, b) {
-    var o, p;
-    if (typeof a === 'object' && typeof b === 'object' && a && b) {
+  if (rowNum === 0){
+    alert("aa");
+    var results = sortList.sort(function (a, b){
       o = a['comp'];
       p = b['comp'];
-      if (o === p) {
-        return 0;
+      return a['comp'] - b['comp'];
+    });
+  }
+  if (rowNum == 1){
+    alert("bb");
+    var results = sortList.sort(function (a, b) {
+      var o, p;
+      if (typeof a === 'object' && typeof b === 'object' && a && b) {
+        o = a['comp'];
+        p = b['comp'];
+        if (o === p) {
+          return 0;
+        }
+        if (typeof o === typeof p) {
+          return o < p ? -1 : 1;
+        }
+        return typeof o < typeof p ? -1 : 1;
       }
-      if (typeof o === typeof p) {
-        return o < p ? -1 : 1;
-      }
-      return typeof o < typeof p ? -1 : 1;
-    }
-  });
+    });
+  }
   var exchangeList = [];
   for (var n = 0; n < results.length; n++){
     exchangeList.push(results[n]["order"]);
@@ -123,15 +174,15 @@ function deleteRow(row){
 }
 
 // 列の修正
-function modify(row){
+function modifyRow(row){
   var n = row.parentNode.parentNode;
   id = window.prompt("new id is...?");
   name = window.prompt("new name is...?");
+  // 入力値のチェック
+  if (isInvalidInput(id, name)){
+    alert("入力値に不正な値があります");
+    return;
+  }
   n.cells[0].innerText = id;
   n.cells[1].innerText = name;
 }
-
-// 足りない機能（すいません。。）
-// ・idが数値ソートできていない。
-// ・idに数値以外が入れられる。
-// ・idに重複がないように機能させる。
