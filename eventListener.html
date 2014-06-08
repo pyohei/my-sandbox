@@ -10,10 +10,20 @@
     <form action="#" method="post" name="formCheck">
     <input type="text" name="textName" id="textId" value="テスト"> 
     <select name="selectName">
-        <option value="a">a</option>
-        <option value="b">b</option>
-        <option value="c">c</option>
+        <option value="A" selected>a</option>
+        <option value="B" >b</option>
+        <option value="C" >c</option>
     </select>
+    <div id="responseA" style="display: block">
+        <p>I'm A!</p>
+    </div>
+    <div id="responseB" style="display: none">
+        <p>I'm B!</p>
+    </div>
+    <div id="responseC" style="display: none">
+        <p>I'm C!</p>
+    </div>
+
     <input type="button" value="push!" id="eventButton">
     <a href="http://google.com">google</a>
     <input type="button" value="テスト" onclick="knowName()">
