@@ -25,16 +25,37 @@ var Pjax = function () {
             }
         },
 
-        open: function () {
-            pjax_obj.request.open("POST", "/json");
+        // set path and method (default method is "POST")
+        open: function (path, method) {
+            if (!path) {
+                return;
+            }
+            if (method === "GET") {
+                var m = "GET";
+            } else {
+                var m = "POST";
+            }
+            alert(m);
+            alert(path);
+            pjax_obj.request.open(m, path);
         },
 
+        // set header if need.
+        set_header: function (header) {
+            pjax_obj.request.setRequestHeader(
+                "Content-Type", header);
+        },
+        
+        //send request
         send: function () {
             pjax_obj.request.send("");
         }
     };
 }
 
+Pjax.prototype.alerter = function () {
+    alert("a");
+}
 
 // test mode 
 var pjax_test = function () {
@@ -45,7 +66,7 @@ var pjax_test = function () {
 
     var pjax = Pjax();
     pjax.set(ins);
-    pjax.open();
+    pjax.open("./json", "POST");
     pjax.send();
 
 }
