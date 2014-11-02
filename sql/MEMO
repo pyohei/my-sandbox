@@ -1,0 +1,17 @@
+This is memo for database.
+
+*contest_list
+    contest_type
+        0(default)  ISU
+        1           Student(local)
+    *if type gain, new table need to make.
+
+    judge_type
+        0(default)  OBO
+        1           CoP
+    *if type gain, new table need to make.
+
+If new columns need, you shoud alter table and
+process create query.
+
+

@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+}
+
+#p_header {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  background-color: #111111;
+  border-top: 5px #ffb366 solid;
+  text-align: center;
+  color: #ffffff;
+  padding: 20px 0px 0px 0px;
+}
+
+#p_title {
+  position: absolute;
+  left:0;
+  width: 65%;
+  font-size: 1.5em;
+  color: #ffffff;
+}
+
+
+
+#p_header_menue {
+  position: absolute;
+  right: 0;
+  width: 35%;
+}
+
+.p_header_icon {
+  width: 30%;
+}
