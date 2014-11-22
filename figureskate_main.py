@@ -50,6 +50,7 @@ from score.score import Score
 from contest.entry import Entry as cEnt
 from contest import handler as cHandler
 from contest.judging import Judging
+from contest.register.register import Register as cRegister
 from player.entry import Entry as pEnt
 from judge.entry import Entry as jEnt
 from lib.util import session
@@ -155,6 +156,22 @@ def judge_test():
         tpl_func_file="./cms/tpl/judge/judge",
         main_contents=game)
 
+@route("/contest/register")
+@route("/contest/register", method="post")
+def contest_register():
+    requests = parse_request(request.forms)
+    print requests
+    if not requests:
+        return template("./cms/tpl/base",
+            tpl_func_file="./cms/tpl/contest/register",
+            main_contents=None)
+    r = cRegister(requests)
+    r.register()
+    return template("./cms/tpl/base",
+        tpl_func_file="./cms/tpl/contest/register",
+        main_contents=None)
+
+
 @route("/logout")
 def logout():
     del_cookie()
@@ -196,8 +213,7 @@ def result():
 # ----------- FUNCTION ------------ #
 
 def __input_score(judging):
-    """ input score into database
-    """
+    """ input score into database """
     judge_type = conf.JUDGING_TYPE[judging.judge_type]
     sc = Score(judge_type)
     result = sc.calc(judging.scores)
@@ -254,22 +270,9 @@ def format_score(judge_no, request):
     score["skating_no"] = 2
     score["judge_user"] = judge_no
     return score["score"]
-    """
-        self.score = {
-                "score": {"technical_merit": 5.5,
-                          "presentation": 2.8
-                          },
-                "contest_no": 1,
-                "player_no": 1,
-                "skating_no": 1,
-                "judge_user": 1
-                }
-    """
-
 
 def has_valid_cookie():
     cookie = get_cookie()
-    print cookie
     if not cookie:
         return False
     s = session.init()

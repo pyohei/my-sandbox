@@ -53,8 +53,6 @@ class Judging(object):
             self._judge_type,
             score)
         self._scores.append(handler.get_instance())
-        print "a"
-        print self._scores
 
     def __load(self, contest_no):
         detail = Detail()

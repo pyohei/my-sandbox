@@ -30,40 +30,27 @@ class MySqlConnection:
 #            charset = charset)
 #        self.conn = connect(host,db,user,passwd)
         self.cur = self.conn.cursor(cursors.DictCursor)
+        self.cur.execute("SET NAMES utf8")
 
 
     def insertRecord(self,sql):
-        self.cur.execute("SET NAMES utf8")
         self.cur.execute(sql)
         self.conn.commit()
 
 
     def fetchRecords(self,sql):
-        self.cur.execute("SET NAMES utf8")
         self.cur.execute(sql)
         return self.cur.fetchall()
 
 
     def updateRecords(self,sql):
-        self.cur.execute("SET NAMES utf8")
         self.cur.execute(sql)
         self.conn.commit()
 
 
     def deleteRecords(self,sql):
-        self.cur.execute("SET NAMES utf8")
         self.execute(sql)
         self.conn.commit()
 
 if __name__ == '__main__':
-    mysql = MySqlConnection(
-            "xxxx",
-            "yyyy",
-            "zzzz",
-            "aaaa",
-            "utf8")
-    sql = "SELECT * FROM user_list"
-    record = mysql.fetchRecords(sql)
-    print record
-
-
+    pass

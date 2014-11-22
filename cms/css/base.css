@@ -1,5 +1,9 @@
 body {
   margin: 0;
+  font-family:'Lucida Grande',
+              'Hiragino Kaku Gothic ProN',
+               Meiryo,
+               sans-serif;
 }
 
 #p_header {
