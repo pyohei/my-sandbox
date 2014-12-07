@@ -1,34 +1,32 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
-    <title>Pyohei's Site</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>FigureSkatingJudginh</title>
 <!--
 <style type="text/css" src="/css/base.css"></style>
 -->
-<link href="/css/base.css" rel="stylesheet" type="text/css">
-  <head>
+    <link href="/css/base.css" rel="stylesheet" type="text/css">
+  </head>
 <body>
-<div id="p_header">
-  <div id="p_title">
-    FigureSkatingJudge(仮)
+<div id="wrapper">
+  <div id="header">
+    <h1>FigureSkatingJudge</h1>
   </div>
-  <div id="p_header_menue">
-    <span class-"p_header_icon">
-      HOME
-    </span>
-    <span class-"p_header_icon">
-      JUDGING
-    </span>
-    <span class-"p_header_icon">
-      LOGOUT
-    </span>
+  <div id="nav">
+    <ul>
+      <li><a class="active" href="#">HOME</a></li>
+      <li><a href="#">ABOUT</a></li>
+      <li><a href="#">CONTACT</a></li>
+    </ul>
+  </div>
+  <div id="container">
+    % # import main contents.
+    % include('%s' % (tpl_func_file), contents=main_contents)
+  </div>
+  <div id="footer">
+    <p>&copy; Pyohei. All right reserved.</p>
   </div>
 </div>
-
-
-% # import main contents.
-% include('%s' % (tpl_func_file), contents=main_contents)
-
-  <a href="/logout">ログアウト</a>
 </body>
 </html>
