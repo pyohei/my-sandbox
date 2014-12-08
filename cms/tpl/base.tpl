@@ -3,10 +3,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>FigureSkatingJudginh</title>
-<!--
-<style type="text/css" src="/css/base.css"></style>
--->
     <link href="/css/base.css" rel="stylesheet" type="text/css">
+    % for css_file in css_files:
+    <link href="{{css_file}}" rel="stylesheet" type="text/css">
+    % end
   </head>
 <body>
 <div id="wrapper">

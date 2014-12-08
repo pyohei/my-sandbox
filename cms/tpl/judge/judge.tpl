@@ -1,8 +1,8 @@
-    <iframe width="420"
-      height="315"
-      src='{{main_contents["url"]}}'
-      frameborder="0" allowfullscreen>
-    </iframe>
+<div id="movie_frame">
+  <iframe id="movie_iframe" width="640" height="400" src='{{main_contents["url"]}}'
+      frameborder="0" >
+  </iframe>
+</div>
 % if main_contents["is_end"]:
 <form action="/judge/result" method="post">
 % end

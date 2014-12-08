@@ -148,6 +148,7 @@ input.button-primary:active {
   width: 100%;
 }
 
+/*
 .menue_box {
   float: left;
   width: 200px;
@@ -157,11 +158,13 @@ input.button-primary:active {
   padding-top: 70px;
   padding-bottom: 70px;
 }
+*/
 
 #footer {
   overflow: hidden; /* return float settin */
 }
 
+/*
 #menue_selecter {
   margin: 0 auto;
   overflow: hidden;
@@ -170,12 +173,10 @@ input.button-primary:active {
   margin-left: 30px;
 }
 
-/*
 #menue_selecter div a:hover {
   background: #000000;
   text-decoration: none;
 }
-*/
 
 .menue_box:hover{
   background-color: #0080FF;
@@ -184,4 +185,60 @@ input.button-primary:active {
 .menue_string {
   padding-top: 70px;
   padding-bottom: 70px;
+}
+*/
+
+#menue_selecter a {
+  color: #000;
+  text-decoration: none;
+}
+
+#menue_selecter ul {
+  margin: 0;
+  padding: 0;
+}
+
+#menue_selecter ul {
+  overflow: hidden;
+}
+
+#menue_selecter li {
+  width: 33%;
+  float: left;
+  text-align: center;
+  list-style: none;
+}
+
+#menue_selecter li a {
+  display: block;
+  margin: 0 auto 10px;
+  width: 80%;
+  height: 44px;
+  line-height: 44px;
+  background: #D8D8D8;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+  color: #957255;
+}
+
+#menue_selecter li a:active{
+  background: #585858;
+}
+
+
+#movie_frame {
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+}
+
+#movie_iframe {
+  overflow:hidden;
 }
