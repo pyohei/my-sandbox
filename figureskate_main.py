@@ -62,14 +62,10 @@ from lib.util import session
 
 @route("/js/<filepath:path>")
 def import_javascript(filepath):
-    print filepath
-    print "aaa"*10
     return static_file(filepath, root="./cms/js")
 
 @route("/css/<filepath:path>")
 def import_css(filepath):
-    print filepath
-    print "aaa"*10
     return static_file(filepath, root="./cms/css")
 
 @route("/login")
@@ -109,7 +105,8 @@ def menu():
 def select_contest():
     return template("./cms/tpl/base.tpl",
         tpl_func_file="./cms/tpl/contest/select.tpl",
-        main_contents=None)
+        main_contents=None,
+        css_files=["/css/contest/selector.css"])
 
 @route("/judge/test")
 @route("/judge/test", method="post")
@@ -154,7 +151,8 @@ def judge_test():
             "is_end": judging.is_end()}
     return template("./cms/tpl/base",
         tpl_func_file="./cms/tpl/judge/judge",
-        main_contents=game)
+        main_contents=game,
+        css_files=[])
 
 @route("/contest/register")
 @route("/contest/register", method="post")
@@ -286,7 +284,8 @@ def __return_login_form():
 def __return_main():
     return template("./cms/tpl/base",
         tpl_func_file="./cms/tpl/menue",
-        main_contents=None)
+        main_contents=None,
+        css_files=[])
 
 if __name__ == "__main__":
     run(host='localhost', port=8080, debug=True)
