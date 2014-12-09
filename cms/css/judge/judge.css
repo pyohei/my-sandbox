@@ -1,0 +1,31 @@
+/* ---- judge contest css ---- */
+
+#score_boards {
+  overflow: hidden;
+  margin-left: 50px;
+}
+
+.score_board {
+  width: 100px;
+  height: 130px;
+  float: left;
+  margin: 0 auto;
+
+}
+
+.score_board a {
+  display: block;
+  float: left;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #CCC;
+  text-align: center;
+}
+
+.score_board ul,
+.score_board ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
