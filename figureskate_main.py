@@ -140,7 +140,8 @@ def judge_test():
             __input_score(judging)
             return template("./cms/tpl/base",
                 tpl_func_file="./cms/tpl/judge/result",
-                main_contents=None)
+                main_contents=None,
+                css_files=["/css/judge/judge.css"])
         judging.next()
         c_handler.save()
     if "contest_no" in requests:
@@ -152,22 +153,23 @@ def judge_test():
     return template("./cms/tpl/base",
         tpl_func_file="./cms/tpl/judge/judge",
         main_contents=game,
-        css_files=[])
+        css_files=["/css/judge/judge.css"])
 
 @route("/contest/register")
 @route("/contest/register", method="post")
 def contest_register():
     requests = parse_request(request.forms)
-    print requests
     if not requests:
         return template("./cms/tpl/base",
             tpl_func_file="./cms/tpl/contest/register",
-            main_contents=None)
+            main_contents=None,
+            css_files=[])
     r = cRegister(requests)
     r.register()
     return template("./cms/tpl/base",
         tpl_func_file="./cms/tpl/contest/register",
-        main_contents=None)
+        main_contents=None,
+        css_files=[])
 
 
 @route("/logout")
@@ -183,14 +185,16 @@ def management_main():
         return login_menue()
     return template("./cms/tpl/base.tpl",
         tpl_func_file="./cms/tpl/management/main.tpl",
-        main_contents=None)
+        main_contents=None,
+        css_files=[])
 
 @route("/management/entry/<func>")
 def test2(func):
     return template("./cms/tpl/base.tpl",
         tpl_func_file="./cms/tpl/management/%s_register/register.tpl" % (
             func),
-        main_contents=None)
+        main_contents=None,
+        css_files=[])
 
 @route("/management/result", method="post")
 def result():
@@ -206,7 +210,8 @@ def result():
     return template("./cms/tpl/base.tpl",
         tpl_func_file="./cms/tpl/management/player_register/%s.tpl" % (
             tpl_func_file),
-        main_contents=None)
+        main_contents=None,
+        css_files=[])
 
 # ----------- FUNCTION ------------ #
 
@@ -279,7 +284,8 @@ def has_valid_cookie():
 def __return_login_form():
     return template("./cms/tpl/base",
         tpl_func_file="./cms/tpl/login",
-        main_contents=None)
+        main_contents=None,
+        css_files=[])
 
 def __return_main():
     return template("./cms/tpl/base",
