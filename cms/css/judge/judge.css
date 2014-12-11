@@ -13,13 +13,17 @@
 
 }
 
-.score_board a {
-  display: block;
+.score_board span {
+  text-decoration: none;
+  display: inline-block;
   float: left;
   width: 30px;
   height: 30px;
-  border: 1px solid #CCC;
+  border: 1px solid #000;
   text-align: center;
+  font-size: 1.5em;
+  background-color: #419ED6;
+  cursor: pointer;
 }
 
 .score_board ul,
@@ -27,5 +31,9 @@
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.score_board span:active {
+  background-color: #2E2EFE;
 }
 

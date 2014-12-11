@@ -1,21 +1,7 @@
 
-<script language="javascript">
-<!--
-
-var insert_score = function(type, score) {
-  element = document.getElementById("technicalmerit");
-  var cur_score = element.innerHTML;
-  alert(cur_score);
-  if (cur_score == "" ) {
-    alert("first");
-  }
-}
-
--->
-</script>
-
+<script type="text/javascript" src="/js/judge/judge.js"></script>
 <div id="movie_frame">
-  <iframe id="movie_iframe" width="640" height="400" src='{{main_contents["url"]}}'
+  <iframe id="movie_iframe" width="480" height="320" src='{{main_contents["url"]}}'
       frameborder="0" >
   </iframe>
 </div>
@@ -28,18 +14,18 @@ var insert_score = function(type, score) {
 <div id="score_boards">
   <div class="score_board">
     <ul>
-      <li><a href="#" onclick-"insert_score(1, 7)">7</a></li>
-      <li><a href="#" >8</a></li>
-      <li><a href="#" >9</a></li>
-      <li><a href="#" >4</a></li>
-      <li><a href="#" >5</a></li>
-      <li><a href="#" >6</a></li>
-      <li><a href="#" >1</a></li>
-      <li><a href="#" >2</a></li>
-      <li><a href="#" >3</a></li>
-      <li><a href="#" >0</a></li>
-      <li><a href="#" ></a></li>
-      <li><a href="#" >C</a></li>
+      <li><span onclick="insert_score(1, 7)">7</span></li>
+      <li><span onclick="alert('a')">8</span></li>
+      <li><span >9</span></li>
+      <li><span >4</span></li>
+      <li><span >5</span></li>
+      <li><span >6</span></li>
+      <li><span >1</span></li>
+      <li><span >2</span></li>
+      <li><span >3</span></li>
+      <li><span >0</span></li>
+      <li><span ></span></li>
+      <li><span >C</span></li>
     </ul>
   </div>
   <div class="score_board">
@@ -59,7 +45,7 @@ var insert_score = function(type, score) {
     </ul>
   </div>
 </div>
-<input type="button" onclick="insert_score(1,7)" value="test">>
+<input type="button" onclick="insert_score(1,7)" value="test">
 <div id="technicalmerit"></div>
 
   <!-- これは仮の処置 -->
