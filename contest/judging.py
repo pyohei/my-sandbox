@@ -61,7 +61,7 @@ class Judging(object):
 
     def __set_detail(self, recs):
         for rec in recs:
-            self._players.append(rec["player_no"])
+            self._players.append(rec["movie_no"])
         self._judge_type = rec["judge_type"]
         self._entry_time = rec["contest_date"]
         shuffle(self._players)

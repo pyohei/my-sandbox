@@ -50,6 +50,7 @@ from score.score import Score
 from contest.entry import Entry as cEnt
 from contest import handler as cHandler
 from contest.judging import Judging
+from contest.select.selector import Selector as cSelector
 from contest.register.register import Register as cRegister
 from player.entry import Entry as pEnt
 from judge.entry import Entry as jEnt
@@ -103,9 +104,11 @@ def menu():
 
 @route("/judge/select")
 def select_contest():
+    selector = cSelector()
+    contests = selector.select()
     return template("./cms/tpl/base.tpl",
         tpl_func_file="./cms/tpl/contest/select.tpl",
-        main_contents=None,
+        main_contents={"contests": contests},
         css_files=["/css/contest/selector.css"])
 
 @route("/judge/test")

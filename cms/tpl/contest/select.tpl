@@ -5,7 +5,14 @@
 <input type="hidden" name="contest_no" value="">
   <div id="menue_selecter">
     <ul>
-      <li><a href="#" onclick="select_contest(1)">テスト大会</a></li>
+      % for contest in main_contents["contests"]:
+        <li>
+          <a href="#"
+             onclick="select_contest({{contest['contest_no']}})">
+             {{contest["contest_name"]}}
+          </a>
+        </li>
+      % end
     </ul>
   </div>
 </form>

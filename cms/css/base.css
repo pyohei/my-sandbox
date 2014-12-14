@@ -229,16 +229,4 @@ input.button-primary:active {
 }
 
 
-#movie_frame {
-  width: 100%;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #CCC;
-  border-radius: 5px;
-}
 
-#movie_iframe {
-  overflow:hidden;
-}

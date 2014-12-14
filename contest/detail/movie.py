@@ -38,4 +38,5 @@ class Movie(object):
                 player_no
                 )
             )
+        print sql
         return self.conn.fetchRecords(sql)[0]["url"]

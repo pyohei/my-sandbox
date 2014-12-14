@@ -16,3 +16,7 @@ var insert_score = function(type, score) {
     }
 }
 
+
+var next = function () {
+    var check =
+

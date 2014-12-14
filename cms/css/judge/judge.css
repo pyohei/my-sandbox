@@ -1,7 +1,8 @@
 /* ---- judge contest css ---- */
 
+/*
 #score_boards {
-  overflow: hidden;
+  float: left;
   margin-left: 50px;
 }
 
@@ -36,4 +37,70 @@
 .score_board span:active {
   background-color: #2E2EFE;
 }
+*/
 
+#judge_frame {
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+}
+
+#movie_frame {
+  width: 500px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#movie_iframe {
+  float: left;
+}
+
+.score select {
+  position:relative;
+  overflow:hidden;
+  display:inline-block;
+  min-width:50px;
+  line-height: 2;
+  font-size: 1rem;
+  background-image:-webkit-linear-gradient(top, #ffffff 0%, #dfe0d9 100%);
+  background-image:linear-gradient(top, #ffffff 0%, #dfe0d9 100%);
+  border:1px solid #c0c0c0;
+  color:#333;
+  text-align: center;
+  border: 0;
+  outline: none;
+}
+
+.score p {
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.score input {
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 4em; /* input box size rate */
+  padding: 0.375em 0.5em;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 100%;
+  cursor: pointer;
+}
+
+.score input:focus {
+  background-color: #FFF8F0;
+}
+
+.score input:active {
+  border: none;
+  background-color: #9A9A9A;
+}
+
+.score .point {
+  text-align: center;
+}
