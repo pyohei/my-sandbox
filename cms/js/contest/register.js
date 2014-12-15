@@ -22,31 +22,31 @@ var movie_form = {
             __add_title: function(count, _id) {
                 var title = "動画番号" + count;
                 var h = this.__create_h_tag(title, "3");
-                document.getElementById(_id).appendChild(h);
+                document.getElementById(_id).insertBefore(h,document.getElementById(_id).firstChild);
             },
             __add_link: function(count, _id) {
                 var p = this.__create_p_tag("動画リンク");
                 var input = this.__create_input_tag("movie_link");
                 p.appendChild(input);
-                document.getElementById(_id).appendChild(p);
+                document.getElementById(_id).insertBefore(p,document.getElementById(_id).firstChild);
             },
             __add_start_time: function(count, _id) {
                 var p = this.__create_p_tag("開始秒");
                 var input = this.__create_input_tag("start_time");
                 p.appendChild(input);
-                document.getElementById(_id).appendChild(p);
+                document.getElementById(_id).insertBefore(p,document.getElementById(_id).firstChild);
             },
             __add_end_time: function(count, _id) {
                 var p = this.__create_p_tag("終了秒");
                 var input = this.__create_input_tag("end_time");
                 p.appendChild(input);
-                document.getElementById(_id).appendChild(p);
+                document.getElementById(_id).insertBefore(p,document.getElementById(_id).firstChild);
             },
             __add_player: function(count, _id) {
                 var p = this.__create_p_tag("滑走者");
                 var input = this.__create_input_tag("player");
                 p.appendChild(input);
-                document.getElementById(_id).appendChild(p);
+                document.getElementById(_id).insertBefore(p,document.getElementById(_id).firstChild);
             },
             __create_p_tag: function(text_value) {
                 var p_node = document.createElement("p");

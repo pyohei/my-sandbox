@@ -229,4 +229,25 @@ input.button-primary:active {
 }
 
 
+/* contest registration */
+#contest_header {
+  margin-left: 30px;
+  width: 700px;
+  text-align:center;
+  overflow: hidden;
+  background-color: #F2F2F2;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
 
+#contest_header ul {
+  list-style: none;
+  overflow: hidden;
+}
+
+#contest_header ul li {
+  width: 300px;
+  list-style: none;
+  float:left;
+}
