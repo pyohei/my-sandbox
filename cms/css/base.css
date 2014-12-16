@@ -230,7 +230,8 @@ input.button-primary:active {
 
 
 /* contest registration */
-#contest_header {
+#contest_header,
+#contest_detail {
   margin-left: 30px;
   width: 700px;
   text-align:center;
@@ -239,6 +240,20 @@ input.button-primary:active {
   border: 1px solid #CCC;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+}
+
+#contest_header table {
+  width: 650px;
+}
+
+#contest_header th {
+  width: 25%;
+  text-align:right;
+}
+
+#contest_header td {
+  width: 25%;
+  text-align: left;
 }
 
 #contest_header ul {
@@ -250,4 +265,67 @@ input.button-primary:active {
   width: 300px;
   list-style: none;
   float:left;
+}
+
+#contest_header select {
+  width: 8em; /* input box size rate */
+  padding: 0.375em 0.5em;
+  border: 1px solid #CCC;
+  border-top-width: 2px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 100%;
+}
+
+/*
+input:focus {
+  background-color: #FFF8F0;
+}
+
+a.register-button,
+input.button-primary {
+  padding: 0.1em 1.5em;
+  border: none;
+  border-bottom: 3px solid #165373;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 100%;
+  background-color: #1E6F9A;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+*/
+
+.must {
+  position: relative;
+  top: -0.25em;
+  left: 0;
+  margin-left: 0.25em;
+  line-height: 1;
+  padding: 0.25em 0.375em;
+  border-radius: 2px;
+  color: #FFF;
+  font-weight: normal;
+  font-size: 62.5%;
+  background-color: #C00;
+}
+
+.option {
+  position: relative;
+  top: -0.25em;
+  left: 0;
+  margin-left: 0.25em;
+  line-height: 1;
+  padding: 0.25em 0.375em;
+  border-radius: 2px;
+  color: #FFF;
+  font-weight: normal;
+  font-size: 62.5%;
+  background-color: #0000CD;
+}
+
+#contest_detail #title {
+  text-align: left;
+  margin: 0.5em 0.5em 0.5em 0.5em;
+  padding: 0;
 }

@@ -76,10 +76,10 @@ var movie_form = {
         // main process
         var count = number.__count();
         number.__add(count);
-        links.__add_title(count, "input");
-        links.__add_link(count, "input");
-        links.__add_start_time(count, "input");
-        links.__add_end_time(count, "input");
         links.__add_player(count, "input");
+        links.__add_end_time(count, "input");
+        links.__add_start_time(count, "input");
+        links.__add_link(count, "input");
+        links.__add_title(count, "input");
     }
 };

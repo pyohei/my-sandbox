@@ -5,27 +5,65 @@
   <input type="hidden" id="link_num" value="1">
   <h2>大会登録</h2>
   <div id="contest_header">
-    <ul>
-      <li>大会名<input type="text" name="contest_name"></li>
-      <li>大会日時(空なら当日)<input type="text" name="contest_date"></li>
-      <li>大会種別<input type="text" name="contest_type"></li>
-      <li>採点方法<input type="text" name="judge_type"></li>
-      <li>画像<input type="text" name="contest_image"></li>
-    </ul>
+    <table>
+      <tr>
+        <th>
+          大会名<span class="must">必須</span>
+        </th>
+        <td><input type="text" name="contest_name"></td>
+        <th>
+          大会日時<span class="must">必須</span>
+        </th>
+        <td><input type="text" name="contest_date"></td>
+      </tr>
+      <tr>
+        <th>
+          大会種別<span class="must">必須</span>
+        </th>
+        <td>
+          <select name="contest_type">
+            <option value="1">選手権</option>
+            <option value="2">学生</option>
+          </select>
+        <th>
+          採点方法<span class="must">必須</span>
+        </th>
+        <td>
+          <select name="judge_type">
+            <option value="1">OBO</option>
+            <option value="2">CoP</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>画像<span class="option">任意</option></th>
+        <td><input type="text" name="contest_image"></td>
+      </tr>
+    </table>
   </div>
 
-  <h2>動画登録</h2>
-  <p><input type="button" onclick="add_link_form()" value="追加"></p>
-    <div id="input">
-      <h3>動画番1</h3>
-      <ul>
-        <li>動画リンク
-          <input type="text" id="1" name="movie_link1">
-        </li>
-        <li>開始秒<input type="text" name="start_time1"></li>
-        <li>終了秒<input type="text" name="end_time1"></li>
-        <li>滑走者<input type="text" name="player1"></li>
-      </ul>
+  <h2>動画登録
+    <input type="button" onclick="add_link_form()" value="追加">
+  </h2>
+  <div id="input"></div>
+    <div id="contest_detail">
+      <h3 id="title">動画1</h3>
+      <table>
+        <tr>
+          <th>動画リンク<span class="must">必須</span></th>
+          <td><input type="text" id="1" name="movie_link1"></td>
+        </tr>
+        <tr>
+          <th>開始秒<span class="option">任意</option></th>
+          <td><input type="text" name="start_time1"></td>
+          <th>終了秒<span class="option">任意</option></th>
+          <td><input type="text" name="end_time1"></td>
+        </tr>
+        <tr>
+          <th>滑走者<span class="must">必須</span></th>
+          <td><input type="text" name="player1"></td>
+        </tr>
+      </table>
     </div>
 
   <input type="submit" value="登録確認">
