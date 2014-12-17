@@ -242,29 +242,21 @@ input.button-primary:active {
   border-radius: 5px;
 }
 
-#contest_header table {
+#contest_header table,
+#contest_detail table {
   width: 650px;
 }
 
-#contest_header th {
+#contest_header th,
+#contest_detail th {
   width: 25%;
   text-align:right;
 }
 
-#contest_header td {
+#contest_header td,
+#contest_detail td {
   width: 25%;
   text-align: left;
-}
-
-#contest_header ul {
-  list-style: none;
-  overflow: hidden;
-}
-
-#contest_header ul li {
-  width: 300px;
-  list-style: none;
-  float:left;
 }
 
 #contest_header select {
@@ -328,4 +320,8 @@ input.button-primary {
   text-align: left;
   margin: 0.5em 0.5em 0.5em 0.5em;
   padding: 0;
+}
+
+#contest_detail .movie_link {
+  width: 450px;
 }

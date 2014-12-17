@@ -51,7 +51,9 @@
       <table>
         <tr>
           <th>動画リンク<span class="must">必須</span></th>
-          <td><input type="text" id="1" name="movie_link1"></td>
+          <td colspan="3">
+            <input type="text" id="1" class="movie_link"
+                   name="movie_link1"></td>
         </tr>
         <tr>
           <th>開始秒<span class="option">任意</option></th>
