@@ -36,7 +36,7 @@
         </td>
       </tr>
       <tr>
-        <th>画像<span class="option">任意</option></th>
+        <th>画像<span class="option">任意</span></th>
         <td><input type="text" name="contest_image"></td>
       </tr>
     </table>
@@ -44,6 +44,7 @@
 
   <h2>動画登録
     <input type="button" onclick="add_link_form()" value="追加">
+    <input type="submit" value="登録確認">
   </h2>
   <div id="input"></div>
     <div id="contest_detail">
@@ -52,13 +53,13 @@
         <tr>
           <th>動画リンク<span class="must">必須</span></th>
           <td colspan="3">
-            <input type="text" id="1" class="movie_link"
+            <input type="text" class="movie_link"
                    name="movie_link1"></td>
         </tr>
         <tr>
-          <th>開始秒<span class="option">任意</option></th>
+          <th>開始秒<span class="option">任意</span></th>
           <td><input type="text" name="start_time1"></td>
-          <th>終了秒<span class="option">任意</option></th>
+          <th>終了秒<span class="option">任意</span></th>
           <td><input type="text" name="end_time1"></td>
         </tr>
         <tr>
@@ -68,7 +69,6 @@
       </table>
     </div>
 
-  <input type="submit" value="登録確認">
 </form>
 <h3>動画の登録に関して</h3>
 <ul>

@@ -42,28 +42,31 @@ var movie_form = {
                     "    <th>動画リンク" +
                     "      <span class='must'>必須</span></th>" +
                     "    <td colspan='3'>" +
-                    "      <input type='text' id='" + count + "' " +
+                    "      <input type='text' " +
                     "         class='movie_link'" +
-                    "         name='movie_link" + count + "1'></td>" +
+                    "         name='movie_link" + count + "'></td>" +
                     "  </tr>" +
                     "  <tr>" +
                     "    <th>開始秒" +
-                    "      <span class='option'>任意</option></th>" +
+                    "      <span class='option'>任意</span></th>" +
                     "    <td>" +
                     "      <input type='text' " +
                     "             name='start_time" + count + "'>" +
                     "    </td>" +
                     "    <th>終了秒" +
-                    "      <span class='option'>任意</option></th>" +
+                    "      <span class='option'>任意</span></th>" +
                     "    <td>" +
                     "      <input type='text' " +
                     "             name='end_time" + count + "'>"+
                     "    </td>" +
                     "  </tr>" +
                     "  <tr>" +
-                    "    <th>滑走者<span class='must'>必須</span></th>" +
+                    "    <th>滑走者 " +
+                    "      <span class='must'>必須</span>" +
+                    "    </th>" +
                     "    <td>" +
-                    "      <input type='text' name='player" + count + "'>"+
+                    "      <input type='text' " +
+                    "             name='player" + count + "'>"+
                     "    </td>" +
                     "  </tr>" +
                     "</table>"
