@@ -24,6 +24,10 @@ CONTEST_DETAIL = [
     "end_time",
     "player"
     ]
+CONTEST_DETAIL_OPTION = [
+    "start_time",
+    "end_time"
+    ]
 
 MAX_PLAYER = 20
 LIMIT_PLAYER = 3
@@ -53,12 +57,17 @@ class Register(object):
 
     def __distribute_ditail(self):
         for n in range(1, MAX_PLAYER):
+            is_option = 0
             container = {}
             for detail in CONTEST_DETAIL:
+                if detail in CONTEST_DETAIL_OPTION:
+                    is_option = 1
                 detail += str(n)
                 if detail not in self.form:
                     break
                 container[detail] = self.form[detail]
+                if is_option and not container[detail]:
+                    container[detail] = 0
             if not container:
                 break
             self.details.append(container)
