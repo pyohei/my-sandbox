@@ -5,7 +5,6 @@ var insert_score = function(type, score) {
     element = document.getElementById("technicalmerit");
     var cur_score = element.innerHTML;
     alert(cur_score);
-    if
     if (cur_score == "" ) {
         alert("first");
         cur_score = score + ".";
@@ -18,5 +17,7 @@ var insert_score = function(type, score) {
 
 
 var next = function () {
-    var check =
+    alert("a");
+    document.forms[0].submit();
+}
 

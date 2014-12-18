@@ -12,6 +12,8 @@
   % end
   % if not main_contents["is_end"]:
   <form action="/judge/test" method="post">
+  <input type="hidden" name="player_no" value="1">
+  <input type="hidden" name="contest_no" value="1">
   % end
   <!--
   <div id="score_boards">
@@ -101,8 +103,7 @@
             <option value="7">7</option>
             <option value="8">8</option>
             <option value="9">9</option>
-          </div>
-        </select>
+          </select>
       </div>
     <input type="button" value="Next" onclick="next()">
   </form>
