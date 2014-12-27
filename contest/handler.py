@@ -37,8 +37,9 @@ class Handler(object):
         file_path = conf.JUDGING_FILE_DIR + "/" + file_name
         return os.path.exists(file_path)
 
-    def create_judging_file(self, judge_no, contest):
-        print contest
+    def create_judging_file(self, judge_no, contest, is_del=True):
+        if is_del:
+            self.delete_save_file(judge_no)
         file_name = "%s.pickle" % judge_no
         file_path = conf.JUDGING_FILE_DIR + "/" + file_name
         with open("%s" % file_path, "w") as f:
@@ -68,14 +69,14 @@ class Handler(object):
     def delete_save_file(self, judge_no):
         file_name = "%s.pickle" % judge_no
         file_path = conf.JUDGING_FILE_DIR + "/" + file_name
-        os.remove(file_path)
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
     def get_score(self, judge_no):
         file_name = "%s.pickle" % judge_no
         file_path = conf.JUDGING_FILE_DIR + "/" + file_name
         with open(file_path, "r") as f:
             self.ins = pickle.load(f)
-        print self.ins.scores
         return self.ins.scores
 
     def get_judging(self):

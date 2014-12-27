@@ -44,8 +44,6 @@ from bottle import response
 from bottle import static_file
 from datetime import datetime
 from datetime import timedelta
-
-import config as conf
 from score.score import Score
 from contest.entry import Entry as cEnt
 from contest import handler as cHandler
@@ -55,12 +53,9 @@ from contest.register.register import Register as cRegister
 from player.entry import Entry as pEnt
 from judge.entry import Entry as jEnt
 from lib.util import session
+import config as conf
 
-
-###                                                             ###
-### Root functions -------------------------------------------- ###
-###                                                             ###
-
+# Import script file
 @route("/js/<filepath:path>")
 def import_javascript(filepath):
     return static_file(filepath, root="./cms/js")
@@ -69,6 +64,7 @@ def import_javascript(filepath):
 def import_css(filepath):
     return static_file(filepath, root="./cms/css")
 
+# Interpretation URL
 @route("/login")
 def login():
     """ Display login form"""
@@ -111,8 +107,8 @@ def select_contest():
         main_contents={"contests": contests},
         css_files=["/css/contest/selector.css"])
 
-@route("/judge/test")
-@route("/judge/test", method="post")
+@route("/judge/judging")
+@route("/judge/judging", method="post")
 @route("/judge/result", method="post")
 def judge_test():
     """ Juging method.
@@ -132,12 +128,16 @@ def judge_test():
     if not judge_no:
         raise ValueError, "Not register user!! Call manager."
     requests = parse_request(request.forms)
+    print "request:",requests
+    print "judge no:", judge_no
     c_handler = cHandler.init()
+    # Display more than second
     if requests and "contest_no" not in requests:
         score = format_score(judge_no, requests)
         c_handler.load(judge_no)
         c_handler.insert_score(judge_no, score)
         judging = c_handler.get_judging()
+        print "is_end",judging.is_end()
         if judging.is_end():
             c_handler.delete_save_file(judge_no)
             __input_score(judging)
@@ -147,6 +147,7 @@ def judge_test():
                 css_files=["/css/judge/judge.css"])
         judging.next()
         c_handler.save()
+    # First Display
     if "contest_no" in requests:
         judging= Judging(judge_no, int(requests["contest_no"]))
         c_handler.create_judging_file(judge_no, judging)
@@ -173,7 +174,6 @@ def contest_register():
         tpl_func_file="./cms/tpl/contest/register",
         main_contents=None,
         css_files=[])
-
 
 @route("/logout")
 def logout():
@@ -216,8 +216,7 @@ def result():
         main_contents=None,
         css_files=[])
 
-# ----------- FUNCTION ------------ #
-
+# Functions
 def __input_score(judging):
     """ input score into database """
     judge_type = conf.JUDGING_TYPE[judging.judge_type]

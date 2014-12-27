@@ -1,7 +1,7 @@
 <script type="text/javascript" src="/js/contest/select.js"></script>
 
 <h2>大会選択</h2>
-<form method="post" name="main" action="/judge/test">
+<form method="post" name="main" action="/judge/judging">
 <input type="hidden" name="contest_no" value="">
   <div id="menue_selecter">
     <ul>
