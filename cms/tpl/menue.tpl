@@ -9,7 +9,7 @@
       <a href="/contest/register">大会登録</a>
     </li>
     <li>
-      <a href="/judge/view">登録情報</a>
+      <a href="/judge/editing">登録情報</a>
     </li>
   </ul>
 </div>

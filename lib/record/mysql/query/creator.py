@@ -67,7 +67,9 @@ class Creator:
             self.where.append(sql)
 
     def set_sets(self, sets):
-        self.sets = sets
+        if isinstance(sets, tuple):
+            sets = [sets]
+        self.sets += sets
 
     def set_insert_values(self, values, header=True):
         if not header:
@@ -128,7 +130,7 @@ class Creator:
     def update(self):
         sql ="update %s " % (self.main_table)
         sql += "set %s " % (", ".join(
-            [k[0] + " = " + k[1] for k in self.sets]))
+            [k[0] + " = " + self.__check_str(k[1]) for k in self.sets]))
         if self.where:
             sql += "where "
             sql += "%s " % (" and ".join(self.where))
@@ -170,5 +172,3 @@ class Creator:
         f = open(self.log_file_path, "a")
         f.write("%s,%s,%s\n" % (now_time, sql, str(time)))
         f.close()
-
-

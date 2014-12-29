@@ -52,6 +52,8 @@ from contest.select.selector import Selector as cSelector
 from contest.register.register import Register as cRegister
 from player.entry import Entry as pEnt
 from judge.entry import Entry as jEnt
+from judge.editing.editing import Editing as j_Editing
+from judge.editing.update import Update as j_Update
 from lib.util import session
 import config as conf
 
@@ -174,6 +176,34 @@ def contest_register():
         tpl_func_file="./cms/tpl/contest/register",
         main_contents=None,
         css_files=[])
+
+@route("/judge/editing")
+def edit_judge():
+    """ Editing judge profile"""
+    if not has_valid_cookie:
+        return __return_login_form()
+    s = session.init()
+    cookie = get_cookie()
+    judge_no = s.select_judge_no(cookie[0][1])
+    editing = j_Editing(judge_no)
+    profiles = editing.load_profile()
+    return template("./cms/tpl/base.tpl",
+        tpl_func_file="./cms/tpl/judge/editing.tpl",
+        main_contents={"profiles": profiles},
+        css_files=["/css/contest/selector.css"])
+
+@route("/judge/update", method="post")
+def update_judge():
+    """ Update judge profile"""
+    if not has_valid_cookie:
+        return __return_login_form()
+    s = session.init()
+    cookie = get_cookie()
+    judge_no = s.select_judge_no(cookie[0][1])
+    requests = parse_request(request.forms)
+    j_update = j_Update(judge_no)
+    j_update.update(requests)
+    return __return_main()
 
 @route("/logout")
 def logout():
