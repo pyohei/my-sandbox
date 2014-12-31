@@ -42,7 +42,6 @@ class Registration(object):
             self.__append_score(skating_no, score)
 
     def __append_score(self, skating_no, score):
-        print dir(score)
         sql = (
             "insert into obo_score( "
             "    contest_no, "
@@ -68,5 +67,4 @@ class Registration(object):
                 score.presentation
                 )
             )
-        print sql
         self.conn.insertRecord(sql)

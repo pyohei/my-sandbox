@@ -50,6 +50,7 @@ from contest import handler as cHandler
 from contest.judging import Judging
 from contest.select.selector import Selector as cSelector
 from contest.register.register import Register as cRegister
+from contest.result.handler import Handler as r_handler
 from player.entry import Entry as pEnt
 from judge.entry import Entry as jEnt
 from judge.editing.editing import Editing as j_Editing
@@ -204,6 +205,22 @@ def update_judge():
     j_update = j_Update(judge_no)
     j_update.update(requests)
     return __return_main()
+
+@route("/contest/result", method="get")
+@route("/contest/result", method="post")
+def show_contest_result():
+    if not has_valid_cookie:
+        return __return_login_form()
+    s = session.init()
+    cookie = get_cookie()
+    judge_no = s.select_judge_no(cookie[0][1])
+    requests = parse_request(request.forms)
+    handler = r_handler(judge_no)
+    result = handler.arrange(requests)
+    return template("./cms/tpl/base.tpl",
+        tpl_func_file="./cms/tpl/contest/result.tpl",
+        main_contents=result,
+        css_files=["/css/conteset/result.css"])
 
 @route("/logout")
 def logout():
