@@ -214,9 +214,30 @@ def show_contest_result():
     s = session.init()
     cookie = get_cookie()
     judge_no = s.select_judge_no(cookie[0][1])
+    """
     requests = parse_request(request.forms)
     handler = r_handler(judge_no)
     result = handler.arrange(requests)
+    """
+    result = {
+        "contest_name": "テスト大会",
+        "rank": [
+            {'judge_num': 14,
+            'player_no': 1L,
+            'presentation': 1.5,
+            'technical_merit': 1.4,
+            'total': 1.4,
+            'player_name': 'ぴよぴよ'
+            },
+            {'judge_num': 13,
+            'player_no': 2L,
+            'presentation': 1.3,
+            'technical_merit': 1.2,
+            'total': 1.3,
+            'player_name': 'ほげほげ'
+            }
+        ]
+    }
     return template("./cms/tpl/base.tpl",
         tpl_func_file="./cms/tpl/contest/result.tpl",
         main_contents=result,
