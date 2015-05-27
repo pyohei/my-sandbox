@@ -1,0 +1,28 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
+""" Configuration
+
+
+"""
+from settingsmaster import *
+
+[JUDGING]
+JUDGING_TYPE = {
+        1: "OBO",
+        2: "CoP"
+        }
+
+
+CONNECTIONS = LOCAL_MYSQL_CONNECTION_MASTER
+CONNECTIONS["DB"] = "figurejudge"
+CONNECTION = LOCAL_MYSQL_CONNECTION_MASTER
+CONNECTION["DB"] = "figurejudge"
+
+COOKIE_EXPIRES_DAYS = 7
+
+JUDGING_FILE_DIR = ""
+
+RECORD_CACHE = ""
+
+LOG_FILE = ""
