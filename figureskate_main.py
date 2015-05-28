@@ -34,14 +34,21 @@ All programu pass this module.
 
 """
 
-from bottle import route
-from bottle import run
-from bottle import template
+import sys
+import os
+CWD = os.getcwd()
+if not os.path.exists(CWD+"/wsgi/bottle/__init__.py"):
+    f = open(CWD+"/wsgi/bottle/__init__.py", "wb")
+    f.close()
+
+from wsgi.bottle.bottle import route
+from wsgi.bottle.bottle import run
+from wsgi.bottle.bottle import template
 #from bottle import get
 #from bottle import post
-from bottle import request
-from bottle import response
-from bottle import static_file
+from wsgi.bottle.bottle import request
+from wsgi.bottle.bottle import response
+from wsgi.bottle.bottle import static_file
 from datetime import datetime
 from datetime import timedelta
 from score.score import Score

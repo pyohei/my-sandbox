@@ -1,6 +1,12 @@
 # Change working directory so relative paths (and template lookup) work again
 import sys, os
 
+# CREATE bottle import setting
+CWD = os.getcwd()
+if not os.path.exists(CWD+"/wsgi/bottle/__init__.py"):
+    f = open(CWD+"/wsgi/bottle/__init__.py", "wb")
+    f.close()
+
 dirpath = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(dirpath)
 os.chdir(dirpath)
