@@ -1,0 +1,3 @@
+[submodule "wsgi/bottle"]
+	path = wsgi/bottle
+	url = git://github.com/bottlepy/bottle.git
