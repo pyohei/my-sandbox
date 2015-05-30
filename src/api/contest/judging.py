@@ -22,9 +22,9 @@ Next, I adapt instance.
 
 from datetime import datetime
 from random import shuffle
-from contest.detail.movie import Movie
-from contest.detail.detail import Detail
-from contest.score.handler import Handler as ScoreHandler
+from api.contest.detail.movie import Movie
+from api.contest.detail.detail import Detail
+from api.contest.score.handler import Handler as ScoreHandler
 
 class Judging(object):
 

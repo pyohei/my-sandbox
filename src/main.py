@@ -37,9 +37,10 @@ import sys
 import os
 def init():
     CWD = os.getcwd()
-    if os.path.exists(CWD+"/wsgi/bottle/__init__.py"):
+    sys.path.append(CWD)
+    if os.path.exists(CWD+"/wsgi/bottle/bottle/__init__.py"):
         return
-    f = open(CWD+"/wsgi/bottle/__init__.py", "wb")
+    f = open(CWD+"/wsgi/bottle/bottle/__init__.py", "wb")
     f.close()
 init()
 
@@ -71,11 +72,11 @@ from config import config as conf
 # Import script file
 @route("/js/<filepath:path>")
 def import_javascript(filepath):
-    return static_file(filepath, root="./cms/js")
+    return static_file(filepath, root="./public/js")
 
 @route("/css/<filepath:path>")
 def import_css(filepath):
-    return static_file(filepath, root="./cms/css")
+    return static_file(filepath, root="./public/css")
 
 # Interpretation URL
 @route("/login")
@@ -115,8 +116,8 @@ def menu():
 def select_contest():
     selector = cSelector()
     contests = selector.select()
-    return template("./cms/tpl/base.tpl",
-        tpl_func_file="./cms/tpl/contest/select.tpl",
+    return template("./template/root/base.tpl",
+        tpl_func_file="./template/root/contest/select.tpl",
         main_contents={"contests": contests},
         css_files=["/css/contest/selector.css"])
 
@@ -154,8 +155,8 @@ def judge_test():
         if judging.is_end():
             c_handler.delete_save_file(judge_no)
             __input_score(judging)
-            return template("./cms/tpl/base",
-                tpl_func_file="./cms/tpl/judge/result",
+            return template("./template/root/base",
+                tpl_func_file="./template/root/judge/result",
                 main_contents=None,
                 css_files=["/css/judge/judge.css"])
         judging.next()
@@ -167,8 +168,8 @@ def judge_test():
     player_no = judging.player_no
     game = {"url": judging.movie_url,
             "is_end": judging.is_end()}
-    return template("./cms/tpl/base",
-        tpl_func_file="./cms/tpl/judge/judge",
+    return template("./template/root/base",
+        tpl_func_file="./template/root/judge/judge",
         main_contents=game,
         css_files=["/css/judge/judge.css"])
 
@@ -177,14 +178,14 @@ def judge_test():
 def contest_register():
     requests = parse_request(request.forms)
     if not requests:
-        return template("./cms/tpl/base",
-            tpl_func_file="./cms/tpl/contest/register",
+        return template("./template/root/base",
+            tpl_func_file="./template/root/contest/register",
             main_contents=None,
             css_files=[])
     r = cRegister(requests)
     r.register()
-    return template("./cms/tpl/base",
-        tpl_func_file="./cms/tpl/contest/register",
+    return template("./template/root/base",
+        tpl_func_file="./template/root/contest/register",
         main_contents=None,
         css_files=[])
 
@@ -198,8 +199,8 @@ def edit_judge():
     judge_no = s.select_judge_no(cookie[0][1])
     editing = j_Editing(judge_no)
     profiles = editing.load_profile()
-    return template("./cms/tpl/base.tpl",
-        tpl_func_file="./cms/tpl/judge/editing.tpl",
+    return template("./template/root/base.tpl",
+        tpl_func_file="./template/root/judge/editing.tpl",
         main_contents={"profiles": profiles},
         css_files=["/css/contest/selector.css"])
 
@@ -248,8 +249,8 @@ def show_contest_result():
             }
         ]
     }
-    return template("./cms/tpl/base.tpl",
-        tpl_func_file="./cms/tpl/contest/result.tpl",
+    return template("./template/root/base.tpl",
+        tpl_func_file="./template/root/contest/result.tpl",
         main_contents=result,
         css_files=["/css/conteset/result.css"])
 
@@ -264,15 +265,15 @@ def logout():
 def management_main():
     if not has_valid_cookie():
         return login_menue()
-    return template("./cms/tpl/base.tpl",
-        tpl_func_file="./cms/tpl/management/main.tpl",
+    return template("./template/root/base.tpl",
+        tpl_func_file="./template/root/management/main.tpl",
         main_contents=None,
         css_files=[])
 
 @route("/management/entry/<func>")
 def test2(func):
-    return template("./cms/tpl/base.tpl",
-        tpl_func_file="./cms/tpl/management/%s_register/register.tpl" % (
+    return template("./template/root/base.tpl",
+        tpl_func_file="./template/root/management/%s_register/register.tpl" % (
             func),
         main_contents=None,
         css_files=[])
@@ -288,8 +289,8 @@ def result():
     if func == "player":
         entry_player(my_requests)
     tpl_func_file = "response_ok"
-    return template("./cms/tpl/base.tpl",
-        tpl_func_file="./cms/tpl/management/player_register/%s.tpl" % (
+    return template("./template/root/base.tpl",
+        tpl_func_file="./template/root/management/player_register/%s.tpl" % (
             tpl_func_file),
         main_contents=None,
         css_files=[])
@@ -362,14 +363,14 @@ def has_valid_cookie():
     return s.has(cookie[0][1])
 
 def __return_login_form():
-    return template("./cms/tpl/base",
-        tpl_func_file="./cms/tpl/login",
+    return template("./template/root/base",
+        tpl_func_file="./template/root/login",
         main_contents=None,
         css_files=[])
 
 def __return_main():
-    return template("./cms/tpl/base",
-        tpl_func_file="./cms/tpl/menue",
+    return template("./template/root/base",
+        tpl_func_file="./template/root/menue",
         main_contents=None,
         css_files=[])
 
