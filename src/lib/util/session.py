@@ -9,7 +9,7 @@ This module give about session.
 import random
 import password
 import MySQLdb
-import config as conf
+from config import config as conf
 from datetime import datetime
 from datetime import timedelta
 from lib.db.dbConnector import MySqlConnection
