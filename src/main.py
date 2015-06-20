@@ -37,12 +37,18 @@ import sys
 import os
 def init():
     CWD = os.getcwd()
+    print CWD
     sys.path.append(CWD)
-    if os.path.exists(CWD+"/wsgi/bottle/bottle/__init__.py"):
+    if os.path.exists(CWD+"/bottle/__init__.py"):
         return
-    f = open(CWD+"/wsgi/bottle/bottle/__init__.py", "wb")
+    f = open(CWD+"/bottle/__init__.py", "wb")
+    #if os.path.exists(CWD+"/wsgi/bottle/bottle/__init__.py"):
+    #    return
+    #f = open(CWD+"/wsgi/bottle/bottle/__init__.py", "wb")
     f.close()
 init()
+
+print sys.path
 
 from datetime import datetime
 from datetime import timedelta
