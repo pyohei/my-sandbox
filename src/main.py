@@ -35,6 +35,7 @@ All programu pass this module.
 """
 import sys
 import os
+"""
 def init():
     CWD = os.getcwd()
     print CWD
@@ -47,18 +48,24 @@ def init():
     #f = open(CWD+"/wsgi/bottle/bottle/__init__.py", "wb")
     f.close()
 init()
+"""
+def init():
+    dirpath = os.path.dirname(os.path.abspath(__file__))
+    print dirpath
+    os.chdir(dirpath)
+init()
 
 from datetime import datetime
 from datetime import timedelta
 
-from wsgi.bottle.bottle.bottle import route
-from wsgi.bottle.bottle.bottle import run
-from wsgi.bottle.bottle.bottle import template
+from bottle import route
+from bottle import run
+from bottle import template
 #from bottle import get
 #from bottle import post
-from wsgi.bottle.bottle.bottle import request
-from wsgi.bottle.bottle.bottle import response
-from wsgi.bottle.bottle.bottle import static_file
+from bottle import request
+from bottle import response
+from bottle import static_file
 from api.score.score import Score
 from api.contest.entry import Entry as cEnt
 from api.contest import handler as cHandler
