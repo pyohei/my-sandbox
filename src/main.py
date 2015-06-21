@@ -35,26 +35,37 @@ All programu pass this module.
 """
 import sys
 import os
+"""
 def init():
     CWD = os.getcwd()
+    print CWD
     sys.path.append(CWD)
-    if os.path.exists(CWD+"/wsgi/bottle/bottle/__init__.py"):
+    if os.path.exists(CWD+"/bottle/__init__.py"):
         return
-    f = open(CWD+"/wsgi/bottle/bottle/__init__.py", "wb")
+    f = open(CWD+"/bottle/__init__.py", "wb")
+    #if os.path.exists(CWD+"/wsgi/bottle/bottle/__init__.py"):
+    #    return
+    #f = open(CWD+"/wsgi/bottle/bottle/__init__.py", "wb")
     f.close()
+init()
+"""
+def init():
+    dirpath = os.path.dirname(os.path.abspath(__file__))
+    print dirpath
+    os.chdir(dirpath)
 init()
 
 from datetime import datetime
 from datetime import timedelta
 
-from wsgi.bottle.bottle.bottle import route
-from wsgi.bottle.bottle.bottle import run
-from wsgi.bottle.bottle.bottle import template
+from bottle import route
+from bottle import run
+from bottle import template
 #from bottle import get
 #from bottle import post
-from wsgi.bottle.bottle.bottle import request
-from wsgi.bottle.bottle.bottle import response
-from wsgi.bottle.bottle.bottle import static_file
+from bottle import request
+from bottle import response
+from bottle import static_file
 from api.score.score import Score
 from api.contest.entry import Entry as cEnt
 from api.contest import handler as cHandler
@@ -116,8 +127,8 @@ def menu():
 def select_contest():
     selector = cSelector()
     contests = selector.select()
-    return template("./template/root/base.tpl",
-        tpl_func_file="./template/root/contest/select.tpl",
+    return template("views/root/base.tpl",
+        tpl_func_file="views/root/contest/select.tpl",
         main_contents={"contests": contests},
         css_files=["/css/contest/selector.css"])
 
@@ -155,8 +166,8 @@ def judge_test():
         if judging.is_end():
             c_handler.delete_save_file(judge_no)
             __input_score(judging)
-            return template("./template/root/base",
-                tpl_func_file="./template/root/judge/result",
+            return template("views/root/base",
+                tpl_func_file="views/root/judge/result",
                 main_contents=None,
                 css_files=["/css/judge/judge.css"])
         judging.next()
@@ -168,8 +179,8 @@ def judge_test():
     player_no = judging.player_no
     game = {"url": judging.movie_url,
             "is_end": judging.is_end()}
-    return template("./template/root/base",
-        tpl_func_file="./template/root/judge/judge",
+    return template("views/root/base",
+        tpl_func_file="views/root/judge/judge",
         main_contents=game,
         css_files=["/css/judge/judge.css"])
 
@@ -178,14 +189,14 @@ def judge_test():
 def contest_register():
     requests = parse_request(request.forms)
     if not requests:
-        return template("./template/root/base",
-            tpl_func_file="./template/root/contest/register",
+        return template("views/root/base",
+            tpl_func_file="views/root/contest/register",
             main_contents=None,
             css_files=[])
     r = cRegister(requests)
     r.register()
-    return template("./template/root/base",
-        tpl_func_file="./template/root/contest/register",
+    return template("views/root/base",
+        tpl_func_file="views/root/contest/register",
         main_contents=None,
         css_files=[])
 
@@ -199,8 +210,8 @@ def edit_judge():
     judge_no = s.select_judge_no(cookie[0][1])
     editing = j_Editing(judge_no)
     profiles = editing.load_profile()
-    return template("./template/root/base.tpl",
-        tpl_func_file="./template/root/judge/editing.tpl",
+    return template("views/root/base.tpl",
+        tpl_func_file="views/root/judge/editing.tpl",
         main_contents={"profiles": profiles},
         css_files=["/css/contest/selector.css"])
 
@@ -249,8 +260,8 @@ def show_contest_result():
             }
         ]
     }
-    return template("./template/root/base.tpl",
-        tpl_func_file="./template/root/contest/result.tpl",
+    return template("views/root/base.tpl",
+        tpl_func_file="views/root/contest/result.tpl",
         main_contents=result,
         css_files=["/css/conteset/result.css"])
 
@@ -265,15 +276,15 @@ def logout():
 def management_main():
     if not has_valid_cookie():
         return login_menue()
-    return template("./template/root/base.tpl",
-        tpl_func_file="./template/root/management/main.tpl",
+    return template("views/root/base.tpl",
+        tpl_func_file="views/root/management/main.tpl",
         main_contents=None,
         css_files=[])
 
 @route("/management/entry/<func>")
 def test2(func):
-    return template("./template/root/base.tpl",
-        tpl_func_file="./template/root/management/%s_register/register.tpl" % (
+    return template("views/root/base.tpl",
+        tpl_func_file="views/root/management/%s_register/register.tpl" % (
             func),
         main_contents=None,
         css_files=[])
@@ -289,8 +300,8 @@ def result():
     if func == "player":
         entry_player(my_requests)
     tpl_func_file = "response_ok"
-    return template("./template/root/base.tpl",
-        tpl_func_file="./template/root/management/player_register/%s.tpl" % (
+    return template("views/root/base.tpl",
+        tpl_func_file="views/root/management/player_register/%s.tpl" % (
             tpl_func_file),
         main_contents=None,
         css_files=[])
@@ -363,14 +374,20 @@ def has_valid_cookie():
     return s.has(cookie[0][1])
 
 def __return_login_form():
-    return template("./template/root/base",
-        tpl_func_file="./template/root/login",
+    #import os 
+    #print os.getcwd()
+    #os.chdir("../")
+    #print os.getcwd()
+    #os.chdir("../")
+    #print os.getcwd()
+    return template("views/root/base.tpl",
+        tpl_func_file="views/root/login.tpl",
         main_contents=None,
         css_files=[])
 
 def __return_main():
-    return template("./template/root/base",
-        tpl_func_file="./template/root/menue",
+    return template("views/root/base.tpl",
+        tpl_func_file="views/root/menue.tpl",
         main_contents=None,
         css_files=[])
 
