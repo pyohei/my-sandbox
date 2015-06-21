@@ -10,3 +10,4 @@
 tmp/
 *.ini
 config.py
+src/wsgi/bottle/bottle/
