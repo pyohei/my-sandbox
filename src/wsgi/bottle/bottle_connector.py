@@ -15,9 +15,10 @@ sys.path.append(dirpath)
 os.chdir(dirpath)
 #os.chdir(os.path.dirname(__file__))
 
-from bottle import bottle
+from wsgi.bottle.bottle import bottle
 #import figureskate_main
 import main
+os.chdir("../../")
 # ... build or import your bottle application here ...
 # Do NOT use bottle.run() with mod_wsgi
 application = bottle.default_app()
