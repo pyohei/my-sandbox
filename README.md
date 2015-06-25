@@ -1,4 +1,2 @@
-#Skate SNS
-
-<https://travis-ci.org/pyohei/figureskate-judging.svg>
+#Skate SNS [image](https://travis-ci.org/pyohei/figureskate-judging.svg, "travis")
 
