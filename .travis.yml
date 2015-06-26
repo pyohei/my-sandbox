@@ -9,4 +9,4 @@ before_install:
 
 
 script: 
-  - test/test_exe.py
+  - test/test_exe.sh
