@@ -3,5 +3,10 @@ language: python
 python:
   - "2.7"
 
-before_install: git submodule update --init
-script: test/test_exe.py
+before_install:
+  - git submodule update --init
+  - pip install mysql-python
+
+
+script: 
+  - test/test_exe.py
