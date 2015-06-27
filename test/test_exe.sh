@@ -1,3 +1,6 @@
 #!/bin/bash
 
-python2.7 test_exe.py
+DIR=$(cd $(dirname $0); pwd)
+echo $DIR
+
+python $DIR/test_exe.py
