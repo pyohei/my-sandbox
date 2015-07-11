@@ -19,7 +19,10 @@
       yum: name=vim state=installed
 
     - name: iptables
-      lineinfile: dest=/etc/sysconfig/iptables line="-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT" insertafter="^:OUTPUT " 
+      lineinfile: >-
+          dest=/etc/sysconfig/iptables line="-A INPUT -m state 
+            --state NEW -m tcp -p tcp --dport 80 -j ACCEPT" 
+            insertafter="^:OUTPUT " 
 
     - name: restart iptables
       service: name=iptables state=restarted
