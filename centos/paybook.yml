@@ -33,6 +33,24 @@
     - name: restart iptables
       service: name=iptables state=restarted
 
+    - name: instal gcc(CHANGE)
+      yum: name=gcc state=installed
+
+    - name: install python-setuptools
+      yum: name=python-setuptools state=installed
+
+    - name: install python devel
+      yum: name=python-devel state=installed
+
+    - name: install python devel
+      yum: name=httpd-devel state=installed
+
+    - name: install pip
+      command: easy_install pip
+
+    - name: install mod_wsgi
+      pip: name=mod_wsgi
+
 - hosts: mysql 
   sudo: yes
   remote_user: root
