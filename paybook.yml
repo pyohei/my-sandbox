@@ -1,11 +1,18 @@
 ---
-- hosts: kfcserver
+- hosts: all
   sudo: yes
   remote_user: root
   tasks:
     - name: update all packages
       yum: name=* state=latest
 
+    - name: install vim
+      yum: name=vim state=installed
+
+- hosts: kfcserver
+  sudo: yes
+  remote_user: root
+  tasks:
     - name: be sure httpd is installed
       yum: name=httpd state=installed
 
