@@ -48,9 +48,21 @@
     - name: install pip
       command: easy_install pip
 
-    - name: install mod_wsgi
-      pip: name=mod_wsgi
+#    - name: install mod_wsgi
+#      pip: name=mod_wsgi
 
+    - name: setup wsgi for apache
+      shell: >-
+        cd /home/vagrant &&
+        mkdir tmp &&
+        cd tmp &&
+        wget https://github.com/GrahamDumpleton/mod_wsgi/archive/3.5.tar.gz &&
+        tar xzvf 3.5.tar.gz &&
+        cd mod_wsgi-3.5  &&
+        ./configure --with-apxs=/usr/sbin/apxs --with-python=/usr/bin/python &&
+        make &&
+        make install
+        
 - hosts: mysql 
   sudo: yes
   remote_user: root
