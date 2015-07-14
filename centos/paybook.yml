@@ -48,20 +48,26 @@
     - name: install pip
       command: easy_install pip
 
+# Temprary comment out 
 #    - name: install mod_wsgi
 #      pip: name=mod_wsgi
 
-    - name: setup wsgi for apache
-      shell: >-
-        cd /home/vagrant &&
-        mkdir tmp &&
-        cd tmp &&
-        wget https://github.com/GrahamDumpleton/mod_wsgi/archive/3.5.tar.gz &&
-        tar xzvf 3.5.tar.gz &&
-        cd mod_wsgi-3.5  &&
-        ./configure --with-apxs=/usr/sbin/apxs --with-python=/usr/bin/python &&
-        make &&
-        make install
+#    - name: setup wsgi for apache
+#      shell: >-
+#        cd /home/vagrant &&
+#        mkdir tmp &&
+#        cd tmp &&
+#        wget https://github.com/GrahamDumpleton/mod_wsgi/archive/3.5.tar.gz &&
+#        tar xzvf 3.5.tar.gz &&
+#        cd mod_wsgi-3.5  &&
+#        ./configure --with-apxs=/usr/sbin/apxs --with-python=/usr/bin/python &&
+#        make &&
+#        make install
+
+    - name: add mod_wsgi to httpd.conf
+      lineinfile:
+        dest='/etc/httpd/conf/httpd.conf'
+        line='LoadModule wsgi_module modules/mod_wsgi.so'
         
 - hosts: mysql 
   sudo: yes
