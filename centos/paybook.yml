@@ -64,10 +64,29 @@
 #        make &&
 #        make install
 
-    - name: add mod_wsgi to httpd.conf
-      lineinfile:
-        dest='/etc/httpd/conf/httpd.conf'
-        line='LoadModule wsgi_module modules/mod_wsgi.so'
+#    - name: add mod_wsgi to httpd.conf
+#      lineinfile:
+#        dest='/etc/httpd/conf/httpd.conf'
+#        line='LoadModule wsgi_module modules/mod_wsgi.so'
+
+#    - name: change Documetn Root
+#      replace: 
+#        dest='/etc/httpd/conf/httpd.conf'
+#        regexp='/var/www/html'
+#        replace='/var/www/web'
+
+#    - name: set kfc connecor
+#      lineinfile:
+#        dest='/etc/httpd/conf/httpd.conf'
+#        line='WSGIScriptAlias / /var/www/web/wsgi/base.py'
+
+    - name: make web directory
+      command: mkdir -p /var/www/web
+
+    - name: restart apache
+      service: name=httpd state=restarted
+      
+        
         
 - hosts: mysql 
   sudo: yes
