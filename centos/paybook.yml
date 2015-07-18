@@ -80,13 +80,20 @@
 #        dest='/etc/httpd/conf/httpd.conf'
 #        line='WSGIScriptAlias / /var/www/web/wsgi/base.py'
 
-    - name: make web directory
-      command: mkdir -p /var/www/web
+#    - name: make web directory
+#      command: mkdir -p /var/www/web
 
     - name: restart apache
       service: name=httpd state=restarted
-      
-        
+
+    - name: install mysql 
+      yum: name=mysql-server state=installed
+
+    - name: install python devel
+      yum: name=MySQL-python state=installed
+
+    - name: install bottle
+      pip: name=bottle
         
 - hosts: mysql 
   sudo: yes
