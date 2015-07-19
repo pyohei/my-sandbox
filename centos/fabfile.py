@@ -5,10 +5,14 @@
 Deproyment script.
 """
 
+import os
+from os import path
+
 from fabric.api import run
 from fabric.api import cd
 from fabric.api import env
 from fabric.api import sudo
+from fabric.api import local
 from fabric.contrib import files
 
 env.hosts = ['192.168.99.1:49122']
@@ -39,6 +43,16 @@ def deploy():
             run('git pull')
             sudo('rsync --delete -a -v -r ./ /var/www/web/')
     print '--- FINISH DEPLOY ---'
+
+def setup_devenv():
+    filepath = path.dirname(path.abspath(__file__))
+    devpath = path.join(filepath, 'devserver')
+    if path.exists(devpath):
+        raise OSError('You already have development directory!')
+    os.mkdir(devpath)
+
+    print devpath
+
 
 def __mkdir(path, force=False):
     command = 'mkdir '
