@@ -7,6 +7,7 @@ Deproyment script.
 
 import os
 from os import path
+import shutil
 
 from fabric.api import run
 from fabric.api import cd
@@ -50,6 +51,16 @@ def setup_devenv():
     if path.exists(devpath):
         raise OSError('You already have development directory!')
     os.mkdir(devpath)
+    # make server directory
+    webpath = path.join(devpath, 'web')
+    os.mkdir(webpath)
+    vagrantfile = path.join(filepath, 'vagrant', 'web', 'Vagrantfile')
+    shutil.copy(vagrantfile, webpath)
+
+    mysqlpath = path.join(devpath, 'mysql')
+    os.mkdir(mysqlpath)
+    vagrantfile = path.join(filepath, 'vagrant', 'mysql', 'Vagrantfile')
+    shutil.copy(vagrantfile, mysqlpath)
 
     print devpath
 
