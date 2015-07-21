@@ -45,28 +45,42 @@ def deploy():
             sudo('rsync --delete -a -v -r ./ /var/www/web/')
     print '--- FINISH DEPLOY ---'
 
+# Servers
+SERVERS = ['web', 'mysql']
+VM_NAME = 'devserver'
+
 def setup_devenv():
-    servers = ['web', 'mysql']
-    filepath = path.dirname(path.abspath(__file__))
-    devpath = path.join(filepath, 'devserver')
-    if path.exists(devpath):
-        raise OSError('You already have development directory!')
-    os.mkdir(devpath)
-
+    basepath = path.dirname(path.abspath(__file__))
+    vmpath = path.join(basepath, VM_NAME)
+    __make_base(vmpath)
+    # 
     try:
-        for s in servers:
-            make_directory(devpath, s)
-        for s in servers:
-            start_vagrant(devpath, s)
+        for s in SERVERS:
+            __init_vagrant(
+            __make_directory(devpath, s)
+    except:
+        shutil.rmtree(basepath)
+        raise OSError(
+                'Having Error in your directory')
+    try:
+        up_servers = []
+        for s in SERVERS:
+            __start_vagrant(devpath, s)
+            up_servers.append(s)
     except Exception as e:
-        print e
-        for s in servers:
-            rollback(s)
+        # vagrant destroy
+        print 'ERROR: %s' % e
+        for s in up_servers:
+            __rollback(s)
+        shutil.rmtree(basepath)
 
-def make_base():
-    pass
+def __make_base(vmpath):
+    if path.exists(vmpath):
+        raise OSError(
+                'You already have development directory!(%s)' % (VM_NAME))
+    os.mkdir(vmpath)
 
-def make_directory(devpath, dirname):
+def __make_directory(devpath, dirname):
     filepath = path.dirname(path.abspath(__file__))
     devpath = path.join(filepath, 'devserver')
     serverpath = path.join(devpath, dirname)
@@ -76,12 +90,23 @@ def make_directory(devpath, dirname):
         filepath, 'vagrant', dirname, 'Vagrantfile')
     shutil.copy(vagrantfilepath, serverpath)
 
-def init_vagrant(devpath, dirname):
-    serverpath = path.join(devpath, dirname)
-    os.chdir(serverpath)
+def __init_vagrant(basepath, vmpath, server):
+    try:
+        serverpath = path.join(vmpath, server)
+        os.mkdir(serverpath)
+
+        vagrantpath = path.join(
+            basepath, 'vagrant', server, 'Vagrantfile')
+        
+        shutil.copy(vagrantpath, serverpath)
+
+        os.chdir(serverpath)
+    except:
+        pass
+
     local('vagrant init')
 
-def start_vagrant(devpath, dirname):
+def __start_vagrant(devpath, dirname):
     """
     serverpath = path.join(devpath, dirname)
     os.chdir(serverpath)
@@ -89,7 +114,7 @@ def start_vagrant(devpath, dirname):
     """
     pass
 
-def rollback(dirname):
+def __rollback(dirname):
     print 'rollback %s' % dirname
 
 def __mkdir(path, force=False):
