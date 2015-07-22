@@ -56,12 +56,16 @@ def setup_devenv():
     # 
     try:
         for s in SERVERS:
-            __init_vagrant(
-            __make_directory(devpath, s)
+            __init_vagrant(basepath, vmpath, s)
+#            __make_directory(devpath, s)
     except:
-        shutil.rmtree(basepath)
+        print '[ERROR] setup vagrant'
+        shutil.rmtree(vmpath)
         raise OSError(
                 'Having Error in your directory')
+
+    u""" 動作確認OK """
+
     try:
         up_servers = []
         for s in SERVERS:
@@ -72,7 +76,8 @@ def setup_devenv():
         print 'ERROR: %s' % e
         for s in up_servers:
             __rollback(s)
-        shutil.rmtree(basepath)
+        u""" コメントアウトするときはくれぐれも注意!! """
+#        shutil.rmtree(vmpath)
 
 def __make_base(vmpath):
     if path.exists(vmpath):
@@ -80,36 +85,27 @@ def __make_base(vmpath):
                 'You already have development directory!(%s)' % (VM_NAME))
     os.mkdir(vmpath)
 
-def __make_directory(devpath, dirname):
-    filepath = path.dirname(path.abspath(__file__))
-    devpath = path.join(filepath, 'devserver')
-    serverpath = path.join(devpath, dirname)
-    os.mkdir(serverpath)
-    init_vagrant(devpath, dirname)
-    vagrantfilepath = path.join(
-        filepath, 'vagrant', dirname, 'Vagrantfile')
-    shutil.copy(vagrantfilepath, serverpath)
-
 def __init_vagrant(basepath, vmpath, server):
-    try:
-        serverpath = path.join(vmpath, server)
-        os.mkdir(serverpath)
+    serverpath = path.join(vmpath, server)
+    os.mkdir(serverpath)
+    os.chdir(serverpath)
 
+    try:
+        local('vagrant init')
         vagrantpath = path.join(
             basepath, 'vagrant', server, 'Vagrantfile')
-        
         shutil.copy(vagrantpath, serverpath)
-
-        os.chdir(serverpath)
     except:
-        pass
+        print '[ERROR] init vagrant'
+        local('vagrant destroy')
+        raise
 
-    local('vagrant init')
 
 def __start_vagrant(devpath, dirname):
-    """
     serverpath = path.join(devpath, dirname)
     os.chdir(serverpath)
+    print os.getcwd()
+    """
     local('vagrant up')
     """
     pass
