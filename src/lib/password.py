@@ -15,14 +15,16 @@ WORDS = ("abcdefghijkmnopqrstuvwxyz"
          "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789"
          "_$@#!%^*&:?;=_")
 
+
 def generator(num=8):
     if num < 4:
-        raise ValueError, "There are vulnerability in your argument."
+        raise ValueError("There are vulnerability in your argument.")
     passwd = ""
     for n in range(num):
-        pass_num = random.randint(0, int(len(WORDS)) -1)
+        pass_num = random.randint(0, int(len(WORDS))-1)
         passwd += WORDS[pass_num]
     return passwd
+
 
 def encrypt(passwd, encry_type="sha224"):
     _encrypt = eval("hashlib.%s()" % encry_type)
@@ -35,4 +37,3 @@ def encrypt(passwd, encry_type="sha224"):
 
 if __name__ == '__main__':
     pass
-
