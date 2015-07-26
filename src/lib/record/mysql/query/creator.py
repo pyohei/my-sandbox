@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """ Create SQL and execute
 
@@ -8,6 +8,7 @@
 from datetime import datetime
 from time import time
 import config
+
 
 class Creator:
 
@@ -29,7 +30,7 @@ class Creator:
         self.sql = ""
 
     def set_table(self, table):
-        for name,conn in self.conns.items():
+        for name, conn in self.conns.items():
             if table in conn["tables"]:
                 self.database = name
                 self.main_table = table
@@ -37,7 +38,7 @@ class Creator:
                 return
         raise ValueError(
             "No table detected. table name '%s' " % (
-            table))
+                table))
 
     def set_database(self, database):
         if self.database:
@@ -77,10 +78,10 @@ class Creator:
         else:
             self.insert_values.append(
                 "(" + ", ".join(
-                str(v) for v in values[0]) + ")")
+                    str(v) for v in values[0]) + ")")
         for vs in values[1:]:
             self.insert_values.append("("+", ".join(
-                str(self.__check_str(v)) for v in vs) +")")
+                str(self.__check_str(v)) for v in vs) + ")")
         print self.insert_values
 
     def __check_str(self, string):
@@ -128,7 +129,7 @@ class Creator:
         self.logging_sql(sql, time()-t)
 
     def update(self):
-        sql ="update %s " % (self.main_table)
+        sql = "update %s " % (self.main_table)
         sql += "set %s " % (", ".join(
             [k[0] + " = " + self.__check_str(k[1]) for k in self.sets]))
         if self.where:
@@ -144,7 +145,7 @@ class Creator:
         if not self.where:
             raise EOFError(
                 "You'll delete all table contents!"
-                "Reconfirm your sql! table: %s" %s (self.main_table))
+                "Reconfirm your sql! table: %s" % (self.main_table))
         if self.where:
             sql += "where "
             sql += "%s " % (" and ".join(self.where))
