@@ -1,6 +1,6 @@
 # coding: cp932
 
-""" KFC system deploy 
+""" KFC system deploy.
 
 Deproyment script.
 """
@@ -20,6 +20,7 @@ env.hosts = ['192.168.99.1:49122']
 env.user = 'vagrant'
 env.password = 'vagrant'
 
+
 def test():
     print '--- TEST RUN ---'
     try:
@@ -32,6 +33,7 @@ def test():
         pass
     print '--- TEST EXIT ---'
 
+
 def deploy():
     print '--- START DEPLOY ---'
     if not files.exists('deploy'):
@@ -39,7 +41,8 @@ def deploy():
     with cd('deploy'):
         if not files.exists('figureskate-judging'):
             __clone(
-                'https://github.com/pyohei/figureskate-judging.git', submodule=True)
+                'https://github.com/pyohei/figureskate-judging.git',
+                submodule=True)
         with cd('figureskate-judging/src'):
             run('git pull')
             sudo('rsync --delete -a -v -r ./ /var/www/web/')
@@ -49,20 +52,20 @@ def deploy():
 SERVERS = ['web', 'mysql']
 VM_NAME = 'devserver'
 
+
 def setup_devenv():
     basepath = path.dirname(path.abspath(__file__))
     vmpath = path.join(basepath, VM_NAME)
     __make_base(vmpath)
-    # 
     try:
         for s in SERVERS:
-            __init_vagrant(basepath, vmpath, s)
+            __copy_vagrantfile(basepath, vmpath, s)
 #            __make_directory(devpath, s)
     except:
         print '[ERROR] setup vagrant'
         shutil.rmtree(vmpath)
         raise OSError(
-                'Having Error in your directory')
+            'Having Error in your directory')
 
     u""" 動作確認OK """
 
@@ -79,19 +82,20 @@ def setup_devenv():
         u""" コメントアウトするときはくれぐれも注意!! """
 #        shutil.rmtree(vmpath)
 
+
 def __make_base(vmpath):
     if path.exists(vmpath):
         raise OSError(
-                'You already have development directory!(%s)' % (VM_NAME))
+            'You already have development directory!(%s)' % (VM_NAME))
     os.mkdir(vmpath)
 
-def __init_vagrant(basepath, vmpath, server):
+
+def __copy_vagrantfile(basepath, vmpath, server):
     serverpath = path.join(vmpath, server)
     os.mkdir(serverpath)
     os.chdir(serverpath)
 
     try:
-        local('vagrant init')
         vagrantpath = path.join(
             basepath, 'vagrant', server, 'Vagrantfile')
         shutil.copy(vagrantpath, serverpath)
@@ -110,8 +114,10 @@ def __start_vagrant(devpath, dirname):
     """
     pass
 
+
 def __rollback(dirname):
     print 'rollback %s' % dirname
+
 
 def __mkdir(path, force=False):
     command = 'mkdir '
@@ -119,6 +125,7 @@ def __mkdir(path, force=False):
         command += '-p '
     command += path
     run(command)
+
 
 def __clone(path, submodule=False):
     command = 'git clone '
