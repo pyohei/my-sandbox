@@ -1,4 +1,4 @@
-# coding: cp932
+# coding: utf-8
 
 """ KFC system deploy.
 
@@ -35,6 +35,7 @@ def test():
 
 
 def deploy():
+    """Script deploy."""
     print '--- START DEPLOY ---'
     if not files.exists('deploy'):
         __mkdir('deploy')
@@ -60,7 +61,6 @@ def setup_devenv():
     try:
         for s in SERVERS:
             __copy_vagrantfile(basepath, vmpath, s)
-#            __make_directory(devpath, s)
     except:
         print '[ERROR] setup vagrant'
         shutil.rmtree(vmpath)
@@ -72,7 +72,7 @@ def setup_devenv():
     try:
         up_servers = []
         for s in SERVERS:
-            __start_vagrant(devpath, s)
+            __start_vagrant(vmpath, s)
             up_servers.append(s)
     except Exception as e:
         # vagrant destroy
@@ -108,11 +108,7 @@ def __copy_vagrantfile(basepath, vmpath, server):
 def __start_vagrant(devpath, dirname):
     serverpath = path.join(devpath, dirname)
     os.chdir(serverpath)
-    print os.getcwd()
-    """
     local('vagrant up')
-    """
-    pass
 
 
 def __rollback(dirname):
