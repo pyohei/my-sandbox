@@ -17,7 +17,7 @@ from fabric.api import local
 from fabric.api import lcd
 from fabric.contrib import files
 
-env.hosts = ['10.10.0.1']
+env.hosts = ['10.10.0.1:51022']
 env.user = 'vagrant'
 env.password = 'vagrant'
 
@@ -119,7 +119,7 @@ def __start_vagrant(devpath, dirname):
 
 
 def __provision():
-    local('ansible-playbook -i hosts playbook.yml')
+    local('ansible-playbook -i hosts playbook.yml -k ')
 
 
 def simple_rollback():
