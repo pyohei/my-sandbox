@@ -17,7 +17,7 @@ from fabric.api import local
 from fabric.api import lcd
 from fabric.contrib import files
 
-env.hosts = ['192.168.99.1:49122']
+env.hosts = ['10.10.0.1']
 env.user = 'vagrant'
 env.password = 'vagrant'
 
