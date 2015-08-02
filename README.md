@@ -1,7 +1,8 @@
-#Skate SNS [![Build Status](https://travis-ci.org/pyohei/figureskate-judging.svg?branch=master)](https://travis-ci.org/pyohei/figureskate-judging)
+#Figureskate-judging system [![Build Status](https://travis-ci.org/pyohei/figureskate-judging.svg?branch=master)](https://travis-ci.org/pyohei/figureskate-judging)
 
 ##About
-SNS service for KFC.  
+
+
 This web service is for private.  
 There is no problem for reuse.
 
