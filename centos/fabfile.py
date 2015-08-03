@@ -16,6 +16,10 @@ from fabric.api import sudo
 from fabric.api import local
 from fabric.api import lcd
 from fabric.contrib import files
+#from fabric.colors import red
+from fabric.context_managers import settings
+from fabric.context_managers import hide
+
 
 env.hosts = ['10.10.0.1:51022']
 env.user = 'vagrant'
@@ -49,13 +53,24 @@ def deploy():
             run('git pull')
             sudo('rsync --delete -a -v -r ./ /var/www/web/')
     print '--- FINISH DEPLOY ---'
+    with cd('/var/www/web/config'):
+        run('cp config.py.dest config.py')
 
 # Servers
 SERVERS = ['web', 'mysql']
 VM_NAME = 'devserver'
 
+MUST_COMMAND = ['ansible', 'vagrant', 'hoge']
+
 
 def setup_devenv():
+    """Set up devployment environment.
+
+    This module supplies total setup tool.
+      - make server (vagrant)
+      - provisioning
+      - deployment
+    """
     uninstall = __chk_uninstall()
     if uninstall:
         raise OSError('You must install below command¥n %s' % (
@@ -84,10 +99,19 @@ def setup_devenv():
         for s in up_servers:
             __destroy_vagrant(vmpath, s)
         shutil.rmtree(vmpath)
+    deploy()
 
 
 def __chk_uninstall():
-    return []
+    """Check local tool for installing."""
+    err = []
+    for c in MUST_COMMAND:
+        with settings(
+            hide('stderr', 'warnings'), warn_only=True):
+            res = local('which %s' % c, capture=True)
+            if res:
+                err.append(res)
+    return err
 
 
 def __make_base(vmpath):
