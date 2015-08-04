@@ -1,1 +1,3 @@
 *.pyc
+centos/devserver/*
+ubuntu/devserver/*
