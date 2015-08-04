@@ -1,5 +1,5 @@
-Deploymet tools for KFSSSN
-===========================
+Deploymet tools for figureskate-judging-deployment
+===================================================
 
 ABOUT
 -----
@@ -8,3 +8,7 @@ This repository supplies below tools.
 * Provisioning
 * Deployment
 
+SERVER ENVIRONMENT
+-------------------
+* CentOS
+* Ubuntu
