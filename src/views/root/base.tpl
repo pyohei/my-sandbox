@@ -12,6 +12,7 @@
 <div id="wrapper">
   <div id="header">
     <h1>FigureSkatingJudge</h1>
+    <p>フィギュアスケート採点システム</p>
   </div>
   <div id="nav">
     <ul>

@@ -55,6 +55,11 @@ def init():
     os.chdir(dirpath)
 init()
 
+try:
+    import bottle
+except:
+    sys.path.append(os.path.join(os.path.dirname(__file__), 'framework/bottle/'))
+
 from datetime import datetime
 from datetime import timedelta
 
