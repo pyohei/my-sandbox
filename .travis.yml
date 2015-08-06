@@ -6,7 +6,8 @@ python:
 before_install:
   - git submodule update --init
   - pip install mysql-python
-
+  - pip install pep8
 
 script: 
   - test/test_exe.sh
+  - find src/ -name "*.py" | xargs pep8
