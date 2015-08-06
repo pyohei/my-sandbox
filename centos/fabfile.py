@@ -1,6 +1,6 @@
 # coding: utf-8
 
-""" KFC system deploy.
+"""KFC system deploy.
 
 Deproyment script.
 """
@@ -16,7 +16,8 @@ from fabric.api import sudo
 from fabric.api import local
 from fabric.api import lcd
 from fabric.contrib import files
-#from fabric.colors import red
+# from fabric.colors import red
+from fabric.colors import yellow
 from fabric.context_managers import settings
 from fabric.context_managers import hide
 
@@ -24,24 +25,30 @@ from fabric.context_managers import hide
 env.hosts = ['10.10.0.1:51022']
 env.user = 'vagrant'
 env.password = 'vagrant'
+# Servers
+SERVERS = ['web', 'mysql']
+VM_NAME = 'devserver'
+MUST_COMMAND = ['ansible', 'vagrant']
+env.warn_only = True
 
 
 def test():
-    print '--- TEST RUN ---'
+    """test"""
+    print yellow('--- TEST RUN ---')
     try:
-        run('cd /tmp')
-        run('touch test.txt')
-        run('ls -al')
-        run('pwd')
-        run('git --help')
-    except:
-        pass
+        with lcd('hogehoge') as e:
+            res = local('ls', capture=True)
+            print res
+        local('pwd')
+    except Exception as e:
+        print e
+        print 'error'
     print '--- TEST EXIT ---'
 
 
 def deploy():
     """Script deploy."""
-    print '--- START DEPLOY ---'
+    print yellow('--- START DEPLOY ---')
     if not files.exists('deploy'):
         __mkdir('deploy')
     with cd('deploy'):
@@ -55,12 +62,6 @@ def deploy():
     print '--- FINISH DEPLOY ---'
     with cd('/var/www/web/config'):
         run('cp config.py.dest config.py')
-
-# Servers
-SERVERS = ['web', 'mysql']
-VM_NAME = 'devserver'
-
-MUST_COMMAND = ['ansible', 'vagrant', 'hoge']
 
 
 def setup_devenv():
@@ -106,8 +107,7 @@ def __chk_uninstall():
     """Check local tool for installing."""
     err = []
     for c in MUST_COMMAND:
-        with settings(
-            hide('stderr', 'warnings'), warn_only=True):
+        with settings(hide('stderr', 'warnings'), warn_only=True):
             res = local('which %s' % c, capture=True)
             if res:
                 err.append(res)
