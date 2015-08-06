@@ -10,4 +10,4 @@ before_install:
 
 script: 
   - test/test_exe.sh
-  - find src/ -name "*.py" | xargs pep8
+  - find src/ -type d -name 'framework' -prune -o -type f -name '*.py' -print | xargs pep8
