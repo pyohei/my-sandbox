@@ -41,7 +41,7 @@ class Calculation(object):
             result["technical_merit"] = round(
                 tec_sum / judge_num * 0.1, 1)
             result["presentation"] = round(
-                pre_sum / judge_num*0.1, 1)
+                pre_sum / judge_num * 0.1, 1)
             result["total"] = round((result["technical_merit"] +
                                      result["presentation"]) / 2.0, 1)
             result["judge_num"] = judge_num
