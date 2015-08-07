@@ -12,12 +12,14 @@ JUDGE_DEF = {
     1: "obo",
     2: "cop"}
 
+
 def init():
     global __handler_instance
     if __handler_instance:
         return __handler_instance
     __handler_instance = Movie()
     return __handler_instance
+
 
 class Handler(object):
 
@@ -52,4 +54,3 @@ if __name__ == "__main__":
     ins = handle.get_instance()
     print ins.technicalmerit
     print ins.presentation
-

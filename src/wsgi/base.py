@@ -41,7 +41,6 @@ except:
 #os.chdir(dirpath)
 #os.chdir(os.path.dirname(__file__))
 
-import bottle
 import main
 
 # ... build or import your bottle application here ...

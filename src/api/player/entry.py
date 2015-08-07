@@ -4,9 +4,10 @@
 """ Entry player infomation
 
 """
-import MySQLdb
+
 import config as conf
 from lib.db.dbConnector import MySqlConnection
+
 
 class Entry(object):
 

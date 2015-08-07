@@ -10,6 +10,7 @@ Haveing blow property
 
 """
 
+
 class ScoreBase(object):
 
     def __init__(self):

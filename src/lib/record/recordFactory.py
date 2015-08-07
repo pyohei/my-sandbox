@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """ Record Factory
 
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     conn.set_table("obo_score")
     conn.set_columns(["contest_no", "technical_merit"])
     conn.set_equal("skating_no", 1)
-    conn.set_in("player_no", [1,2])
+    conn.set_in("player_no", [1, 2])
     conn.set_range("technical_merit", 11, 16)
     print conn.select()
     conn.clear()
@@ -69,7 +69,11 @@ if __name__ == '__main__':
     print "ok delete"
     conn.clear()
     conn.set_table("contest_movie")
-    conn.set_insert_values([("player_no", "contest_no", "url"),
-        (3, 0, "http://"), (4, 0, "http://")])
+    conn.set_insert_values(
+        [("player_no",
+          "contest_no",
+          "url"),
+         (3, 0, "http://"),
+         (4, 0, "http://")])
     conn.insert()
     print "ok_insert"
