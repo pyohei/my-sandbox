@@ -5,6 +5,7 @@
 
 """
 
+
 class Calculation(object):
 
     def __init__(self, score):

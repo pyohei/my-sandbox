@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """ MySQL connection Loader.
 
@@ -13,7 +13,6 @@ Load format:
         },
     }
 """
-
 
 import os
 import pickle
@@ -33,7 +32,7 @@ class Loader(object):
             f.close()
             return conn_map
         conn_maps = {}
-        for name,conn in self.connections.items():
+        for name, conn in self.connections.items():
             conn_map = {}
             searcher = Searcher(conn)
             searcher.search()

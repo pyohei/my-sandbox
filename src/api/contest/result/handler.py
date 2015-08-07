@@ -9,6 +9,7 @@ from lib.record import recordFactory
 
 IMP_MOD = "from %s.%s import %s"
 
+
 class Handler(object):
 
     def __init__(self, judge_no):
@@ -33,7 +34,6 @@ class Handler(object):
 
     def __extract_contest_cls(contest_no):
         """ must fix to load from database """
-        conn = self.conn
         return "OBO"
 
     def __make_imp_string(cls_name):

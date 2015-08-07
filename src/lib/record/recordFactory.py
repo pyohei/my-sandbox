@@ -18,6 +18,7 @@ in using way directory.
 __RECORD_FACTORY = None
 IMPORT_CODE = "from %s.connection import Connection as cls "
 
+
 def init(way=None):
     global __RECORD_FACTORY
     if __RECORD_FACTORY:
@@ -27,6 +28,7 @@ def init(way=None):
     else:
         __RECORD_FACTORY = RecordFactory()
     return __RECORD_FACTORY
+
 
 class RecordFactory(object):
 

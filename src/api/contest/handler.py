@@ -16,6 +16,8 @@ __handler_instance = None
 difinision 'init' may be bat.
 because, in this instance is variable of value
 """
+
+
 def init():
     global __handler_instance
     if __handler_instance:
@@ -23,6 +25,7 @@ def init():
         return __handler_instance
     __handler_instance = Handler()
     return __handler_instance
+
 
 class Handler(object):
 
@@ -51,8 +54,8 @@ class Handler(object):
         with open(file_path, "r") as f:
             self.ins = pickle.load(f)
         if self.ins is None:
-            raise ValueError, "no instance in file"
-        #return self.ins
+            raise ValueError("no instance in file")
+        # return self.ins
 
     def load_test(self, judge_no):
         file_name = "%s.pickle" % judge_no
@@ -60,7 +63,7 @@ class Handler(object):
         with open(file_path, "r") as f:
             self.ins = pickle.load(f)
         if self.ins is None:
-            raise ValueError, "no instance in file"
+            raise ValueError("no instance in file")
         return self.ins
 
     def save(self):

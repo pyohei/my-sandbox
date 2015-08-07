@@ -7,10 +7,10 @@ Update judge profile
 """
 
 from lib.record import recordFactory
-from datetime import datetime
 
 COMP_ITEMS = ["judge_first_name", "judge_last_name", "judge_nickname",
-    "judge_capacity", "email"]
+              "judge_capacity", "email"]
+
 
 class Update(object):
 

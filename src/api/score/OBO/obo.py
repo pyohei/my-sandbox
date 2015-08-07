@@ -4,9 +4,9 @@
 """ OBO score calculation.
 
 """
-import MySQLdb
 import config as conf
 from lib.db.dbConnector import MySqlConnection
+
 
 class Calculation(object):
 
@@ -17,6 +17,7 @@ class Calculation(object):
         score = self.score
         print score
         return score
+
 
 class Registration(object):
 

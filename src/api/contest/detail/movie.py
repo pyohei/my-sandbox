@@ -12,12 +12,14 @@ import config as conf
 
 __movie_instance = None
 
+
 def init():
     global __movie_instance
     if __movie_instance:
         return __movie_instance
     __movie_instance = Movie()
     return __movie_instance
+
 
 class Movie(object):
 

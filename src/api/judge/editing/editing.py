@@ -8,6 +8,7 @@ Edit judge profile
 
 from lib.record import recordFactory
 
+
 class Editing(object):
 
     def __init__(self, judge_no):

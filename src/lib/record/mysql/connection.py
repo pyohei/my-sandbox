@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """ MySql Connection
 
@@ -10,12 +10,11 @@ easilly.
 batch connection.)
 """
 
-import os
 from loader import Loader
-from searcher import Searcher
 from query.creator import Creator
 
 import config
+
 
 class Connection(object):
 
@@ -38,4 +37,3 @@ if __name__ == '__main__':
     c.connect()
     d = c.get_connections()
     print d
-

@@ -9,6 +9,7 @@ Register contest detail.
 
 from lib.record import recordFactory
 
+
 class Register(object):
 
     def __init__(self):
@@ -18,12 +19,11 @@ class Register(object):
 
     def register(self, form, contest_no):
         errs = []
-        errs =  Checker(form).check()
+        errs = Checker(form).check()
         if errs:
             raise ValueError(
                 "Input Value Error in contest register. %s" % (
-                ",".join(errs))
-                )
+                    ",".join(errs)))
         form = self.__set_contest_no(form, contest_no)
         self.__register(form)
 
@@ -57,6 +57,7 @@ class Register(object):
             f.append(form)
         return f
 
+
 class Checker(object):
 
     def __init__(self, form):
@@ -64,4 +65,3 @@ class Checker(object):
 
     def check(self):
         return []
-        pass

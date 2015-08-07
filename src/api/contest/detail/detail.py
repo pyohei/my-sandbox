@@ -11,12 +11,14 @@ Mainly, execute for detail loader.
 from lib.db.dbConnector import MySqlConnection
 import config as conf
 
+
 def init():
     global __detail_instance
     if __detail_instance:
         return __detail_instance
     __detail_instance = Movie()
     return __detail_instance
+
 
 class Detail(object):
 

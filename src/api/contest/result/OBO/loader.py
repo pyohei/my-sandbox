@@ -7,6 +7,7 @@
 
 from lib.record import recordFactory
 
+
 class Loader(object):
 
     def __init__(self, contest_no):
@@ -23,4 +24,3 @@ class Loader(object):
 if __name__ == "__main__":
     l = Loader(2)
     r = l.load()
-

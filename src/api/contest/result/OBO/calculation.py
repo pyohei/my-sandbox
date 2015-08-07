@@ -8,6 +8,7 @@ Return score ranking as below.
 
 """
 
+
 class Calculation(object):
 
     def __init__(self, contest_no):
@@ -22,15 +23,14 @@ class Calculation(object):
             user = score["judge_user"]
             _tec = score["technical_merit"]
             _pre = score["presentation"]
-            if not player in tec:
-                tec[player]= {user: _tec}
+            if player not in tec:
+                tec[player] = {user: _tec}
                 pre[player] = {user: _pre}
             else:
                 tec[player][user] = _tec
                 pre[player][user] = _pre
         s["technical_merit"] = tec
         s["presentation"] = pre
-        player_num = len(s["technical_merit"])
         scores = []
         for n in s["technical_merit"].keys():
             result = {}
@@ -43,12 +43,12 @@ class Calculation(object):
             result["presentation"] = round(
                 pre_sum/judge_num*0.1, 1)
             result["total"] = round((result["technical_merit"] +
-                                        result["presentation"])/2.0, 1)
+                                     result["presentation"])/2.0, 1)
             result["judge_num"] = judge_num
             scores.append(result)
         import pprint
         pp = pprint.PrettyPrinter(indent=2)
-        ranks = sorted(scores, key=lambda x:x["total"], reverse=True)
+        ranks = sorted(scores, key=lambda x: x["total"], reverse=True)
         pp.pprint(ranks)
         return s
 
@@ -58,7 +58,3 @@ if __name__ == "__main__":
     r = l.load()
     c = Calculation(1)
     s = c.calculate(r)
-
-
-
-

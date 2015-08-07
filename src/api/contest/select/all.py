@@ -6,6 +6,7 @@
 Select Contest from all valid contest
 """
 
+
 class Selector(object):
 
     def __init__(self, connection, sort=None):

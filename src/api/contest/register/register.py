@@ -32,6 +32,7 @@ CONTEST_DETAIL_OPTION = [
 MAX_PLAYER = 20
 LIMIT_PLAYER = 3
 
+
 class Register(object):
 
     def __init__(self, form):

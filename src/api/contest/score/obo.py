@@ -13,6 +13,7 @@ Haveing blow property
 from datetime import datetime
 from contest.score.base import ScoreBase
 
+
 class Obo(object):
 
     def __init__(self, player_no, scores):
@@ -25,7 +26,7 @@ class Obo(object):
         return self.instance
 
     def __set(self):
-        #self.__process()
+        # self.__process()
         self.now = datetime.now()
         self.instance.player_no = self.player_no
         self.instance.technicalmerit = self.scores["technicalmerit"]

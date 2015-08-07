@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """ Search connection and tables.
 
@@ -8,6 +8,7 @@ Get all tables from defined database(config).
 
 from controller import Controller
 from connector import Connectotr
+
 
 class Searcher(object):
 

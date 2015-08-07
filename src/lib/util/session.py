@@ -8,7 +8,6 @@ This module give about session.
 
 import random
 import password
-import MySQLdb
 from config import config as conf
 from datetime import datetime
 from datetime import timedelta
@@ -16,12 +15,14 @@ from lib.db.dbConnector import MySqlConnection
 
 __session_instance = None
 
+
 def init():
     global __session_instance
     if __session_instance:
         return __session_instance
     __session_instance = Session()
     return __session_instance
+
 
 class Session(object):
 
@@ -50,21 +51,19 @@ class Session(object):
         session_length = int(random.uniform(40, 50))
         session_id = password.generator(session_length)
         sql = ("insert into session( "
-            "session_id, "
-            "limit_datetime, "
-            "judge_no "
-            ") "
-            "values ( "
-            "'%s', "
-            "'%s', "
-            " %s "
-            " ); " % (
-                session_id,
-                datetime.now() + timedelta(days=1),
-                user["user_id"],
-                )
-            )
-        print sql
+               "session_id, "
+               "limit_datetime, "
+               "judge_no "
+               ") "
+               "values ( "
+               "'%s', "
+               "'%s', "
+               " %s "
+               " ); " % (
+                   session_id,
+                   datetime.now() + timedelta(days=1),
+                   user["user_id"],
+                   ))
         self.conn.insertRecord(sql)
         cookie = {}
         cookie["session_id"] = session_id
@@ -111,6 +110,4 @@ class Session(object):
             db["HOST"], db["DB"], db["USER"], db["PASSWD"])
 
 if __name__ == "__main__":
-    s = Session("a", Db)
-    s.has()
-    s.new_setting()
+    pass

@@ -4,10 +4,10 @@
 """ Entry player infomation
 
 """
-import MySQLdb
 import config as conf
 from lib.db.dbConnector import MySqlConnection
 from lib.util import password
+
 
 class Entry(object):
 
@@ -88,4 +88,3 @@ class Entry(object):
             )
         print sql
         return self.conn.fetchRecords(sql)[0]["judge_no"]
-
