@@ -21,7 +21,7 @@ def generator(num=8):
         raise ValueError("There are vulnerability in your argument.")
     passwd = ""
     for n in range(num):
-        pass_num = random.randint(0, int(len(WORDS))-1)
+        pass_num = random.randint(0, int(len(WORDS)) - 1)
         passwd += WORDS[pass_num]
     return passwd
 

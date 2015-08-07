@@ -39,11 +39,11 @@ class Calculation(object):
             pre_sum = sum(s["presentation"][n].values())
             result["player_no"] = n
             result["technical_merit"] = round(
-                tec_sum/judge_num*0.1, 1)
+                tec_sum / judge_num * 0.1, 1)
             result["presentation"] = round(
-                pre_sum/judge_num*0.1, 1)
+                pre_sum / judge_num*0.1, 1)
             result["total"] = round((result["technical_merit"] +
-                                     result["presentation"])/2.0, 1)
+                                     result["presentation"]) / 2.0, 1)
             result["judge_num"] = judge_num
             scores.append(result)
         import pprint

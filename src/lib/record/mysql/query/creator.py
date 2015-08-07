@@ -80,7 +80,7 @@ class Creator:
                 "(" + ", ".join(
                     str(v) for v in values[0]) + ")")
         for vs in values[1:]:
-            self.insert_values.append("("+", ".join(
+            self.insert_values.append("(" + ", ".join(
                 str(self.__check_str(v)) for v in vs) + ")")
         print self.insert_values
 
@@ -115,7 +115,7 @@ class Creator:
         sql += ";"
         t = time()
         recs = self.connection.fetch(sql)
-        self.logging_sql(sql, time()-t)
+        self.logging_sql(sql, time() - t)
         return recs
 
     def insert(self):
@@ -126,7 +126,7 @@ class Creator:
         sql += ";"
         t = time()
         self.connection.insert(sql)
-        self.logging_sql(sql, time()-t)
+        self.logging_sql(sql, time() - t)
 
     def update(self):
         sql = "update %s " % (self.main_table)
@@ -138,7 +138,7 @@ class Creator:
         sql += ";"
         t = time()
         self.connection.update(sql)
-        self.logging_sql(sql, time()-t)
+        self.logging_sql(sql, time() - t)
 
     def delete(self):
         sql = "delete from %s " % (self.main_table)
@@ -152,7 +152,7 @@ class Creator:
         sql += ";"
         t = time()
         self.connection.delete(sql)
-        self.logging_sql(sql, time()-t)
+        self.logging_sql(sql, time() - t)
 
     # direct sql is for unsupport sql
     # and for transition period
