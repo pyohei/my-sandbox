@@ -45,7 +45,7 @@ class Register(object):
             }
         v_sets.append(tuple(keys.keys()))
         for num, form in enumerate(forms):
-            values = tuple([form[v+str(num+1)] for v in keys.values()])
+            values = tuple([form[v + str(num + 1)] for v in keys.values()])
             v_sets.append(values)
         return v_sets
 
