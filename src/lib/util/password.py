@@ -17,6 +17,7 @@ WORDS = ("abcdefghijkmnopqrstuvwxyz"
 
 
 def generator(num=8):
+    """Generate password."""
     if num < 4:
         raise ValueError("There are vulnerability in your argument.")
     passwd = ""
@@ -27,10 +28,11 @@ def generator(num=8):
 
 
 def encrypt(passwd, encry_type="sha224"):
+    """Encrypt password."""
     _encrypt = eval("hashlib.%s()" % encry_type)
     try:
         encry = _encrypt
-    except:
+    except ImportError:
         encry = hashlib.sha224()
     encry.update(passwd)
     return encry.hexdigest()
