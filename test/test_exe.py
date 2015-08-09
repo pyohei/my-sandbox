@@ -9,7 +9,7 @@ project_path = main_path + "/src"
 sys.path.append(project_path)
 
 import unittest
-from lib import password
+from lib.util import password
 
 class PasswordTest(unittest.TestCase):
 
