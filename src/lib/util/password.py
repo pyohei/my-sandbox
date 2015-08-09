@@ -4,12 +4,16 @@
 """Password operator.
 
 This module give the function about password.
-  generator -- generate password
+
+Attributes:
+    generator (int): Generate password.
+
+    encrypt (str): Encrypt string. You can use to encrypt password.
+        If you use `generator()`, you should this module'
 """
 
 import hashlib
 import random
-
 
 WORDS = ("abcdefghijkmnopqrstuvwxyz"
          "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789"
@@ -17,7 +21,11 @@ WORDS = ("abcdefghijkmnopqrstuvwxyz"
 
 
 def generator(num=8):
-    """Generate password."""
+    """Generate password.
+
+    >>> generator(8) == generator(8)
+    False
+    """
     if num < 4:
         raise ValueError("There are vulnerability in your argument.")
     passwd = ""
@@ -28,7 +36,11 @@ def generator(num=8):
 
 
 def encrypt(passwd, encry_type="sha224"):
-    """Encrypt password."""
+    """Encrypt password.
+
+    >>> encrypt('hogehoge') == encrypt('hogehoge')
+    True
+    """
     _encrypt = eval("hashlib.%s()" % encry_type)
     try:
         encry = _encrypt
@@ -38,4 +50,5 @@ def encrypt(passwd, encry_type="sha224"):
     return encry.hexdigest()
 
 if __name__ == '__main__':
-    pass
+    import doctest
+    doctest.testmod()
