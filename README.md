@@ -9,4 +9,4 @@ There is no problem for reuse.
 
 ##Licence
 * MIT
-  * see [LICENSE](https://github.com/pyohei/vim-hipchat/blob/master/LICENSE)
+  * see [LICENSE](https://github.com/pyohei/figureskate-judging/blob/master/LICENSE)
