@@ -47,3 +47,9 @@
 
     - name: be sure httpd is running and enabled
       service: name=apache2 state=restarted
+
+    - name: Change Documet Root
+      replace:
+        dest='/etc/apache2/sites-enabled/000-default.conf'
+        regexp='/var/www/html'
+        replace='/var/www/web'
