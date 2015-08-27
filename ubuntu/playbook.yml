@@ -36,3 +36,14 @@
 
     - name: install pip
       apt: pkg=python-pip state=installed
+
+    - name: Install mod_wsgi
+      apt: pkg=libapache2-mod-wsgi state=installed
+
+    - name: Set mod_wsgi
+      shell: >-
+          touch /etc/apache2/mods-available/mod_wsgi.load &&
+          echo 'LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi.so'> /etc/apache2/mods-available/mod_wsgi.load
+
+    - name: be sure httpd is running and enabled
+      service: name=apache2 state=restarted
