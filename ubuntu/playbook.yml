@@ -26,13 +26,23 @@
       apt: pkg=ufw state=installed
       tags: ufw
 
+    - name: enable ufw
+      ufw: state=reset
+
     - name: set ufw deny from access
       ufw: policy=deny direction=incoming
+      tags: ufw
+
+    - name: allow from ssh
+      ufw: policy=allow port=22
       tags: ufw
 
     - name: allow from http request
       ufw: policy=allow port=80
       tags: ufw
+
+    - name: enable ufw
+      ufw: state=enabled
 
     - name: install pip
       apt: pkg=python-pip state=installed
@@ -82,3 +92,60 @@
 
     - name: install bottle
       pip: name=bottle
+
+- hosts: mysql 
+  sudo: yes
+  remote_user: root
+  tasks:
+    - name: Install MySQL 
+      apt: name=mysql-server state=installed
+
+    - name: start mysql
+      service: name=mysql state=started
+
+    - name: install ufw
+      apt: pkg=ufw state=installed
+      tags: ufw
+
+    - name: enable ufw
+      ufw: state=reset
+
+    - name: set ufw deny from access
+      ufw: policy=deny direction=incoming
+      tags: ufw
+
+    - name: allow from ssh
+      ufw: policy=allow port=22
+      tags: ufw
+
+    - name: allow from http request
+      ufw: policy=allow port=3306
+      tags: ufw
+
+    - name: enable ufw
+      ufw: state=enabled
+
+    - name: install libmysqlclient-dev
+      apt: name=libmysqlclient-dev state=installed
+
+    - name: install python-dev
+      apt: name=python-dev state=installed
+
+    - name: install pip
+      apt: pkg=python-pip state=installed
+
+    - name: install MySQL-python
+      pip: name=MySQL-python
+
+    - name: mysql root setting
+      mysql_user: name=developer password=developer host="%" priv=*.*:ALL,GRANT state=present
+
+    - name: Set to recive all ip address
+      replace:
+        dest: /etc/mysql/my.cnf
+        regexp: '^bind-address'
+        replace: '#bind-address'
+        backup: yes
+
+    - name: start mysql
+      service: name=mysql state=restarted
