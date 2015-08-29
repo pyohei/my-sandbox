@@ -53,3 +53,32 @@
         dest='/etc/apache2/sites-enabled/000-default.conf'
         regexp='/var/www/html'
         replace='/var/www/web'
+
+    - name: Set figure judging connector
+      lineinfile:
+        state: present
+        dest: /etc/apache2/sites-enabled/000-default.conf
+        line: '        WSGIScriptAlias / /var/www/web/wsgi/base.py\n</VirtualHost>'
+        insertbefore: '</VirtualHost>'
+        regexp: '^</VirtualHost>'
+
+    - name: make web directory
+      command: mkdir -p /var/www/web
+
+    - name: be sure httpd is running and enabled
+      service: name=apache2 state=restarted
+
+    - name: install mysql 
+      apt: name=mysql-server state=installed
+
+    - name: install libmysqlclient-dev
+      apt: name=libmysqlclient-dev state=installed
+
+    - name: install python-dev
+      apt: name=python-dev state=installed
+
+    - name: install MySQL-python
+      pip: name=MySQL-python
+
+    - name: install bottle
+      pip: name=bottle
