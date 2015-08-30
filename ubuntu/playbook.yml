@@ -3,59 +3,59 @@
   sudo: yes
   remote_user: root
   tasks:
-    - name: update all packages
+    - name: Update all packages
       apt: update_cache=yes
 
-    - name: install vim
+    - name: Install vim
       apt: name=vim state=present
 
 - hosts: web
   sudo: yes
   remote_user: root
   tasks:
-    - name: be sure httpd is installed
+    - name: Install Apache2
       apt: pkg=apache2 state=installed
 
-    - name: be sure httpd is running and enabled
+    - name: Start Apache2
       service: name=apache2 state=running enabled=yes
 
-    - name: install git
+    - name: Install Git
       apt: pkg=git state=installed
       
-    - name: install ufw
+    - name: Install urw
       apt: pkg=ufw state=installed
       tags: ufw
 
-    - name: enable ufw
+    - name: Enable ufw
       ufw: state=reset
 
-    - name: set ufw deny from access
+    - name: Deny ufw from  all access
       ufw: policy=deny direction=incoming
       tags: ufw
 
-    - name: allow from ssh
+    - name: Allow from ssh connection
       ufw: policy=allow port=22
       tags: ufw
 
-    - name: allow from http request
+    - name: Allow from HTTP request
       ufw: policy=allow port=80
       tags: ufw
 
-    - name: enable ufw
+    - name: Enable ufw
       ufw: state=enabled
 
-    - name: install pip
+    - name: Install pip
       apt: pkg=python-pip state=installed
 
     - name: Install mod_wsgi
       apt: pkg=libapache2-mod-wsgi state=installed
 
-    - name: Set mod_wsgi
+    - name: Set mod_wsgi module to Apache
       shell: >-
           touch /etc/apache2/mods-available/mod_wsgi.load &&
           echo 'LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi.so'> /etc/apache2/mods-available/mod_wsgi.load
 
-    - name: be sure httpd is running and enabled
+    - name: Restart Apache2
       service: name=apache2 state=restarted
 
     - name: Change Documet Root
@@ -72,25 +72,25 @@
         insertbefore: '</VirtualHost>'
         regexp: '^</VirtualHost>'
 
-    - name: make web directory
+    - name: Make web directory
       command: mkdir -p /var/www/web
 
-    - name: be sure httpd is running and enabled
+    - name: Restart Apache2
       service: name=apache2 state=restarted
 
-    - name: install mysql 
+    - name: Install MySQL 
       apt: name=mysql-server state=installed
 
-    - name: install libmysqlclient-dev
+    - name: Install libmysqlclient-dev
       apt: name=libmysqlclient-dev state=installed
 
-    - name: install python-dev
+    - name: Install python-dev
       apt: name=python-dev state=installed
 
-    - name: install MySQL-python
+    - name: Install MySQL-python
       pip: name=MySQL-python
 
-    - name: install bottle
+    - name: Install bottle
       pip: name=bottle
 
 - hosts: mysql 
@@ -100,52 +100,52 @@
     - name: Install MySQL 
       apt: name=mysql-server state=installed
 
-    - name: start mysql
+    - name: Start mysql
       service: name=mysql state=started
 
-    - name: install ufw
+    - name: Install ufw
       apt: pkg=ufw state=installed
       tags: ufw
 
-    - name: enable ufw
+    - name: Enable ufw
       ufw: state=reset
 
-    - name: set ufw deny from access
+    - name: Deny ufw from all access
       ufw: policy=deny direction=incoming
       tags: ufw
 
-    - name: allow from ssh
+    - name: Allow from ssh
       ufw: policy=allow port=22
       tags: ufw
 
-    - name: allow from http request
+    - name: Allow from http request
       ufw: policy=allow port=3306
       tags: ufw
 
-    - name: enable ufw
+    - name: Enable ufw
       ufw: state=enabled
 
-    - name: install libmysqlclient-dev
+    - name: Install libmysqlclient-dev
       apt: name=libmysqlclient-dev state=installed
 
-    - name: install python-dev
+    - name: Install python-dev
       apt: name=python-dev state=installed
 
-    - name: install pip
+    - name: Install pip
       apt: pkg=python-pip state=installed
 
-    - name: install MySQL-python
+    - name: Install MySQL-python
       pip: name=MySQL-python
 
-    - name: mysql root setting
+    - name: Set MySQL root
       mysql_user: name=developer password=developer host="%" priv=*.*:ALL,GRANT state=present
 
-    - name: Set to recive all ip address
+    - name: Set to recive all ip address in MySQL
       replace:
         dest: /etc/mysql/my.cnf
         regexp: '^bind-address'
         replace: '#bind-address'
         backup: yes
 
-    - name: start mysql
+    - name: Start mysql
       service: name=mysql state=restarted
