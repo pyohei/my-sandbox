@@ -12,3 +12,13 @@ SERVER ENVIRONMENT
 -------------------
 * CentOS
 * Ubuntu
+
+USAGE
+-----
+```bash
+cd ubuntu(or centos)
+# Provisioning and Deploymet
+fab setup_devenv
+# Deployment
+fab deploy
+```
