@@ -1,4 +1,4 @@
-# pyconf-tool
+# pydummy
 
 ## ABOUT
 This repo supplies config operation tools. 
