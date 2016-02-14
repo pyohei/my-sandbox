@@ -12,3 +12,10 @@ else:
 
 print "a"
 print "d"
+print "c"
+
+print "end"
+
+import os
+
+print os.path
