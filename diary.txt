@@ -1,1 +1,4 @@
-今日は(＝_＝)
+Test diary
+==========
+
+This is a test diary.
