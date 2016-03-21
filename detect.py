@@ -13,12 +13,15 @@ IGNORE_FILE = ['__init__.py']
 
 class Detection(object):
 
-    def __init__(self):
-        self.dir_name = os.path.join(os.path.abspath(
-            os.path.dirname(__file__)), "demo")
+    def __init__(self, target_dirs=None):
+        if not target_dirs:
+            self.target_dir = os.path.join(os.path.abspath(
+                os.path.dirname(__file__)), "demo")
+        else:
+            self.target_dirs = target_dirs
 
     def execute(self):
-        for (root, _dirs, walk_files) in os.walk(self.dir_name):
+        for (root, _dirs, walk_files) in os.walk(self.target_dir):
             for walk_file in walk_files:
                 print "-----"
                 print walk_file
