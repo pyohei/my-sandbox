@@ -2,8 +2,8 @@
 
 # Input your base directory.
 BASE_DIR=~/Programing/dev/ 
-CACHE_DIR=`pwd`/.cache
-CACHE_FILE=`pwd`/.cache/projects.txt
+CACHE_DIR=`dirname $0`/.cache
+CACHE_FILE=`dirname $0`/.cache/projects.txt
 
 # Backup cache.
 if [ ! -e $CACHE_DIR ]; then

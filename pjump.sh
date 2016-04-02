@@ -2,8 +2,9 @@
 
 # Input your base directory.
 BASE_DIR=~/Programing/dev/ 
-CACHE_DIR=`pwd`/.cache
-CACHE_FILE=`pwd`/.cache/projects.txt
+CACHE_DIR=`dirname $0`/.cache
+CACHE_FILE=`dirname $0`/.cache/projects.txt
+MOVING_FILE=`dirname $0`/.cache/projects.log
 
 # Echo help
 echo_help() {
@@ -41,7 +42,7 @@ go_project() {
         echo_help
         exit 1
     else
-        cd $BASE_DIR$GO_DIR
+        echo $BASE_DIR$GO_DIR >> $MOVING_FILE
     fi
 }
 
