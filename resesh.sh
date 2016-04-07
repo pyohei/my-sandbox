@@ -1,24 +1,47 @@
 #!/bin/bash
 
 PROGRAM_DIR=~/Programing
-BACKUP_DIR=~/.vim/bk
+BACKUP_DIR=./.vim/bk
+#BACKUP_DIR=~/.vim/bk
 
 UNDO_DIR_NAME=undo
 UNDO_PATTERN='*~'
 
 TILDA_DIR_NAME=tilda
 
-
 SWAP_DIR_NAME=swap
 
 
-#mkdir -p $BACKUP_DIR/$UNDO_DIR_NAME
-#mkdir -p $BACKUP_DIR/$TILDA_DIR_NAME
-#mkdir -p $BACKUP_DIR/$SWAP_DIR_NAME
+if [ ! -e $BACKUP_DIR ]
+then
+    mkdir -p $BACKUP_DIR
+fi
 
-FILES=$(find $PROGRAM_DIR/ -type f -name "$UNDO_PATTERN")
+# Backup vim file.
+backup() {
+    FILES=$(find $1/ -type f -name "$2")
+    for f in $FILES
+    do
+        FILE_PATH=`echo "$f" | sed -e "s/\/\// /g" | cut -d" " -f2`
+        BK_DIR=${FILE_PATH%/*}
+        BK_FILE=${FILE_PATH##*/}
 
-for f in $FILES
-do
-    FILE_PATH=`$f | sed -e "s/\/\// /g" | cut -d" " -f2`
-done
+        mkdir -p $3/$BK_DIR
+
+        FROM_PATH=$1/$FILE_PATH
+        TO_PATH=$3/$FILE_PATH
+
+        if [ -e $TO_PATH ]
+        then
+            # Only run in Mac(Darwin).
+            UPDATE_TIME=`ls -lUT resesh.sh | \
+                sed -e 's/  */ /g' | \
+                awk '{printf "%04d%02d%02d%s",$9,$6,$7,$8}' | \
+                sed -e 's/://g'`
+            mv $TO_PATH $TO_PATH.$UPDATE_TIME
+        fi
+        mv $FROM_PATH $TO_PATH
+    done
+}
+
+backup $PROGRAM_DIR "$UNDO_PATTERN" $BACKUP_DIR
