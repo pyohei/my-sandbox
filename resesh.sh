@@ -4,13 +4,9 @@ PROGRAM_DIR=~/Programing
 BACKUP_DIR=./.vim/bk
 #BACKUP_DIR=~/.vim/bk
 
-UNDO_DIR_NAME=undo
-UNDO_PATTERN='*~'
-
-TILDA_DIR_NAME=tilda
-
-SWAP_DIR_NAME=swap
-
+UNDO_PATTERN='*un~'
+TILDA_PATTERN='*~'
+SWAP_PATTERN='*.sw*'
 
 if [ ! -e $BACKUP_DIR ]
 then
@@ -45,3 +41,5 @@ backup() {
 }
 
 backup $PROGRAM_DIR "$UNDO_PATTERN" $BACKUP_DIR
+backup $PROGRAM_DIR "$TILDA_PATTERN" $BACKUP_DIR
+backup $PROGRAM_DIR "$SWAP_PATTERN" $BACKUP_DIR
