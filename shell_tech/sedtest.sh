@@ -1,3 +1,3 @@
 #!/bin/bash
 
-find ./sample -type f -print0 | xargs -0 sed -e -i "s|./hoge.html|./foo_hoge.html|g"
+find ./sample -type f | xargs sed -i.org -e "s|./hoge.html|./foo_hoge.html|g"
