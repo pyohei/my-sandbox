@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+    <!--
+      table,td,th { font-size:32px;
+          border:1px solid;
+          width:400;
+          border-collapse:collapse;
+          text-align: center;}
+      
+      .hate {background-color: red}
+
+    -->
+    </style>
+    <title>display handler</title>
+  </head>
+  <body>
+<script type="text/javascript" src="./displayHandler.js"></script>
+<form action="#" method=post>
+    <table id="animal">
+        <tr>
+            <th>
+                check
+            </th>
+            <th>
+                name
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <div id="bird" name="amimal"><input type="checkbox"></div>
+            </td>
+            <td>
+                bird
+            </td>
+        </tr>
+        <tr>
+            <td class="hate">
+                <div id="monkey" name="animal"><input type="checkbox" 
+                    style="background-color:blue"></div>
+            </td>
+            <td class="hate">
+                monkey
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="dog" name="animal"><input type="checkbox"></div>
+            </td>
+            <td>
+                dog
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- div で分けなくても input 内に書けばok -->
+                <div name="animal"><input type="checkbox" id="cat"></div>
+            </td>
+            <td>
+                cat
+            </td>
+        </tr>
+    </table>
+    <select id="selecter" onchange="changeRow()">
+        <option value="like">好き</option>
+        <option value="hate">嫌い</option>
+        <option value="normal">普通</option>
+    </select>
+</form>
+    </body>
+    </html>
