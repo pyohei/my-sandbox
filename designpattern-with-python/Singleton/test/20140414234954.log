@@ -1,0 +1,29 @@
+#####start####
+
+---non-singleton---
+1 time: 22.9756360054 sec.
+2 time: 20.0352160931 sec.
+3 time: 17.0215580463 sec.
+4 time: 19.1443779469 sec.
+5 time: 18.0666878223 sec.
+---singleton---
+1 time: 15.1589710712 sec.
+2 time: 6.00814819336e-05 sec.
+3 time: 1.09672546387e-05 sec.
+4 time: 1.90734863281e-06 sec.
+5 time: 1.90734863281e-06 sec.
+---singleton---
+1 time: 1.19209289551e-06 sec.
+2 time: 2.14576721191e-06 sec.
+3 time: 9.53674316406e-07 sec.
+4 time: 1.90734863281e-06 sec.
+5 time: 1.90734863281e-06 sec.
+
+---non-singleton---
+1 time: 17.0281989574 sec.
+2 time: 15.5391829014 sec.
+3 time: 14.4826071262 sec.
+4 time: 18.2099881172 sec.
+5 time: 20.8730640411 sec.
+
+####end####
