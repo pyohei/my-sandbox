@@ -1,0 +1,136 @@
+Gitではタイムスタンプを管理しないので（チェックアウト==タイムスタンプ）、
+こちらで、最終更新時間のlsの結果を表示。  
+
+なぜこんなことをしたのかというと、おそらく、ほぼ半永久的にこのディレクトリを触ることはないため、自分がいつ、このディレクトリを触ったかを忘れないようにしておくため。  
+
+おそらく、本当は2012に作ったものと思う。  
+（エンジニアになる前にNetBeansを使って練習をしたので、それを会社に入ってから、何かしらの理由で移したと思われる。）  
+
+とりあえず、これはこれで記憶と記録に残すために置いておく。
+
+2016-08-07
+----------------------------------------------------------------------------------
+
+total 1656
+drwxr-xr-x  211 shohei  staff   7174  8  7 12:15 .
+drwxr-xr-x    6 shohei  staff    204  8  7 12:10 ..
+-rw-r--r--@   1 shohei  staff  20484  8  7 11:58 .DS_Store
+-rw-r--r--@   1 shohei  staff    147  4  3  2013 Aisatsu.java
+-rw-r--r--@   1 shohei  staff    463  6 22  2013 ArrayListTest2.java
+-rw-r--r--    1 shohei  staff    334  6 20  2013 AverageAge-nomf.jar
+-rw-r--r--@   1 shohei  staff    850  5 21  2013 AverageAge.java
+-rw-r--r--@   1 shohei  staff    602  6 12  2013 BadBank.java
+-rw-r--r--@   1 shohei  staff    411  6 11  2013 BadBankTest.java
+-rw-r--r--@   1 shohei  staff   2160  4  7  2013 Canvas_test.java
+-rw-r--r--@   1 shohei  staff    692  4 14  2013 Copy1.java
+-rw-r--r--@   1 shohei  staff    402  6 14  2013 CountTen3.java
+-rw-r--r--@   1 shohei  staff    333  6 11  2013 CountTenA.java
+-rw-r--r--@   1 shohei  staff    845  7  7  2013 CountTenC.java
+-rw-r--r--@   1 shohei  staff    204  5 20  2013 Daikei2.java
+-rw-r--r--@   1 shohei  staff   1031  5 23  2013 DayReader.java
+-rw-r--r--@   1 shohei  staff     63  7  1  2013 DebugPrintable.java
+-rw-r--r--@   1 shohei  staff    494  6 16  2013 DeleteFile1.java
+-rw-r--r--@   1 shohei  staff    820  7 24  2013 DisplayFile1.java
+-rw-r--r--@   1 shohei  staff    937  7 25  2013 DisplayURL2.java
+-rw-r--r--@   1 shohei  staff    951  5 22  2013 Drink1.java
+-rw-r--r--@   1 shohei  staff    788  4 20  2013 Drink2.java
+-rw-r--r--@   1 shohei  staff   1118  5 22  2013 DrinkIf.java
+-rw-r--r--@   1 shohei  staff    555  7 28  2013 ExInterface1.java
+-rw-r--r--@   1 shohei  staff    208  6 17  2013 ExPackage1.java
+-rw-r--r--@   1 shohei  staff    601  6  6  2013 ExceptionTest3a.java
+-rw-r--r--@   1 shohei  staff    543  6  6  2013 ExceptionTest5a.java
+-rw-r--r--@   1 shohei  staff    260  6  6  2013 FactorialTest.java
+-rw-r--r--@   1 shohei  staff   1484  6 16  2013 FileDump1.java
+-rw-r--r--@   1 shohei  staff    918  4 16  2013 Find1.java
+-rw-r--r--@   1 shohei  staff    485  6 24  2013 GamePlayer.java
+-rw-r--r--@   1 shohei  staff    488  6 24  2013 GamePlayer2.java
+-rw-r--r--@   1 shohei  staff    347  6 10  2013 GcArray2.java
+-rw-r--r--@   1 shohei  staff    241  4 27  2013 GcTest1.java
+-rw-r--r--@   1 shohei  staff    501  7  7  2013 GoodBank.java
+-rw-r--r--@   1 shohei  staff    990  7  7  2013 GoodBankTest.java
+-rw-r--r--@   1 shohei  staff     40  7 28  2013 Greeting.java
+-rw-r--r--@   1 shohei  staff    225  4 27  2013 GxTest1.java
+-rw-r--r--@   1 shohei  staff    260  4  7  2013 Heikin1.java
+-rw-r--r--@   1 shohei  staff    336  4  7  2013 Heikin2.java
+-rw-r--r--@   1 shohei  staff    911  4  7  2013 Heikin3.java
+-rw-r--r--@   1 shohei  admin    102  4  3  2013 Hello.java
+-rw-r--r--@   1 shohei  staff    235  4 17  2013 HelloApplet.java
+-rw-r--r--@   1 shohei  staff    141  5 21  2013 Hikari
+-rw-r--r--@   1 shohei  staff    141  5 21  2013 Hikari.java
+-rw-r--r--@   1 shohei  staff    460  6 14  2013 Hyoji.java
+-rw-r--r--@   1 shohei  staff    498  6 14  2013 Hyoji2.java
+-rw-r--r--@   1 shohei  staff    320  6 15  2013 Job.java
+-rw-r--r--@   1 shohei  staff    134  5 19  2013 Kantan.java
+-rw-r--r--@   1 shohei  staff   1813  4 24  2013 Kuku.java
+-rw-r--r--@   1 shohei  staff    286  5 23  2013 Kuku1.java
+-rw-r--r--@   1 shohei  staff    338  6 20  2013 LinkedListTest1.java
+-rw-r--r--@   1 shohei  staff    380  7 22  2013 ListDir1
+-rw-r--r--@   1 shohei  staff    451  6 16  2013 ListDir1.java
+-rw-r--r--@   1 shohei  staff    381  7 22  2013 ListDir2.java
+-rw-r--r--@   1 shohei  staff    554  6 16  2013 MakeDir1.java
+-rw-r--r--@   1 shohei  staff    992  5 26  2013 MakeHtml.java
+-rw-r--r--@   1 shohei  staff    282  7 16  2013 Max2.java
+-rw-r--r--@   1 shohei  staff    958  7 10  2013 MaxFactor.java
+-rw-r--r--@   1 shohei  staff    146  4  4  2013 Mugen.java
+-rw-r--r--@   1 shohei  staff    403  6 15  2013 MultiThreadProgram1.java
+-rw-r--r--@   1 shohei  staff    211  7  1  2013 MyNumber.java
+-rw-r--r--@   1 shohei  staff    793  5 22  2013 NowTime.java
+-rw-r--r--@   1 shohei  staff    630  6 15  2013 OneBank.java
+-rw-r--r--@   1 shohei  staff    246  6 15  2013 OneBankTest.java
+-rw-r--r--@   1 shohei  staff    155  6 17  2013 Package1301.java
+drwxr-xr-x    5 shohei  staff    170  6 17  2013 PackageA
+-rw-r--r--@   1 shohei  staff    107  6 17  2013 PackageTest1.txt
+-rw-r--r--@   1 shohei  staff    102  6 17  2013 PackageTest2.java
+-rw-r--r--@   1 shohei  staff    292  6 12  2013 Periodic.java
+-rw-r--r--@   1 shohei  staff    908  6  6  2013 PlacedRectangle.java
+-rw-r--r--@   1 shohei  staff    135  6 29  2013 Player.java
+-rw-r--r--@   1 shohei  staff    818  4  7  2013 PowerGraph.java
+-rw-r--r--@   1 shohei  staff    865  6 18  2013 Prime1.java
+-rw-r--r--    1 shohei  staff    643  6 18  2013 Prime1.txt
+-rw-r--r--@   1 shohei  staff    908  6 22  2013 Prime2.java
+-rw-r--r--    1 shohei  staff      0  6 22  2013 Prime2.txt
+-rw-r--r--@   1 shohei  staff    575  7  9  2013 PrintHello2.java
+-rw-r--r--@   1 shohei  staff   2127  6 12  2013 ProducerConsumer.java
+-rw-r--r--@   1 shohei  staff    149  6 15  2013 RandomCal.java
+-rw-r--r--@   1 shohei  staff   1884  6  2  2013 Rectangle.java
+-rw-r--r--@   1 shohei  staff    331  6  6  2013 Rectangle2.java
+-rw-r--r--@   1 shohei  staff   1914  6 25  2013 Rectangle3.java
+-rw-r--r--@   1 shohei  staff    250  5 23  2013 Ricing.java
+-rw-r--r--@   1 shohei  staff    324  6 17  2013 Sample1301.java
+-rw-r--r--@   1 shohei  staff    340  6 17  2013 Sample1302.java
+-rw-r--r--@   1 shohei  staff    844  6 18  2013 SearchString.java
+-rw-r--r--@   1 shohei  staff     46  7 28  2013 ShowingDate.java
+-rw-r--r--@   1 shohei  staff    982  6 10  2013 SimpleTweet.java
+-rw-r--r--@   1 shohei  staff    405  6  8  2013 SosuInput.java
+-rw-r--r--@   1 shohei  staff    710  6  5  2013 Sosufind.java
+-rw-r--r--@   1 shohei  staff    521  5 30  2013 Student.java
+-rw-r--r--@   1 shohei  staff    385  5 30  2013 StudentTest.java
+-rw-r--r--@   1 shohei  staff    528  4  4  2013 Sum_n.java
+-rw-r--r--@   1 shohei  staff   1086  4  7  2013 TestCanvas.java
+-rw-r--r--@   1 shohei  staff     45  7 28  2013 Testable.java
+-rw-r--r--@   1 shohei  staff    430  6 29  2013 TextPlayer.java
+-rw-r--r--@   1 shohei  staff    568  5 22  2013 UnicodeRepresent.java
+-rw-r--r--@   1 shohei  staff    204  4  4  2013 While1.java
+-rw-r--r--@   1 shohei  staff    141  4  3  2013 Yo.java
+-rw-r--r--@   1 shohei  staff    319  7  9  2013 astPrint.java
+drwxr-xr-x    2 shohei  staff     68  7 22  2013 doc
+-rw-r--r--@   1 shohei  staff   1035  7  9  2013 dotPrint.java
+-rw-r--r--@   1 shohei  staff    326  7  9  2013 equPrint.java
+-rw-r--r--    1 shohei  staff    334  6 20  2013 hello-nomf.jar
+-rw-r--r--@   1 shohei  staff    192  4 17  2013 hello.html
+-rw-r--r--@   1 shohei  staff      8  4 15  2013 input.txt
+-rw-r--r--@   1 shohei  staff    163  5 26  2013 intTest.java
+-rw-r--r--    1 shohei  staff    186  5 26  2013 intTest.txt
+-rw-r--r--    1 shohei  staff      0  8  7 12:15 lastupdate.txt
+-rw-r--r--    1 shohei  staff      0  4 17  2013 output.html
+-rw-r--r--@   1 shohei  staff     32  4 17  2013 output.txt
+-rw-r--r--@   1 shohei  staff    610  5 26  2013 paraboraString.java
+drwxr-xr-x    4 shohei  staff    136  6 17  2013 test
+-rw-r--r--@   1 shohei  staff    116  5 27  2013 test0527.java
+drwxr-xr-x    5 shohei  staff    170  6 17  2013 test1
+-rw-r--r--    1 shohei  staff    334  6 20  2013 test1.jar
+-rw-r--r--@   1 shohei  staff    230  7 28  2013 testPlay.java
+-rw-r--r--@   1 shohei  staff    202  5 26  2013 testhtml.txt
+-rw-r--r--    1 shohei  staff      2  6 22  2013 z.txt
+-rw-r--r--    1 shohei  staff    643  6 22  2013 zz.txt
+-rw-r--r--    1 shohei  staff      0  6 22  2013 zzz.txt
