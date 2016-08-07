@@ -3,3 +3,8 @@
 *.jar
 *.war
 *.ear
+
+
+.DS_Store
+
+*.pyc
