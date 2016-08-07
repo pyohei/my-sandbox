@@ -1,3 +1,5 @@
 diskVolume.txt
 task/list/*
 task/log/*
+
+*.pyc
