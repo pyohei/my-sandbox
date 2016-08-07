@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>javascript_test</title>
+</head>
+<body>
+<script type="text/javascript" src="comment.js"></script>
+<script type="text/javascript" src="submit.js"></script>
+
+<form name="main" action="#" method="post">
+  <input type="hidden" name="func" value="">
+
+  <input type="button" onclick="change_comment('comment_table')"
+    value="表示切り替え">
+  <table id="comment_table" width="300" height="200">
+    <tr >
+      <td>
+        名前:<input type="text" name="my_name"><br>
+        <textarea name="my_comment">
+          これはテストです。
+        </textarea>
+      </td>
+    </tr>
+  </table>
+  <input type="button" value="削除" onclick="submit_comment('delete')">
+  <input type="button" value="更新" onclick="submit_comment('update')">
+  <input type="button" value="投稿" onclick="submit_comment('insert')">
+
+</form>
+
