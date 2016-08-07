@@ -2,6 +2,9 @@
 
 This module supplies module files which is same name with python's starndard
 libraries.
+
+.. Created:
+    2016-03-21
 """
 
 import importlib
@@ -46,7 +49,7 @@ class Detection(object):
         try:
             importlib.import_module(module)
             return True
-        except:
+        except ImportError as e:
             return False
 
 if __name__ == '__main__':
