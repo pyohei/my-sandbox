@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Input your base directory.
-BASE_DIR=~/Programing/dev/ 
+BASE_DIR=${HOME}/Programing 
 CACHE_DIR=`dirname $0`/.cache
 CACHE_FILE=`dirname $0`/.cache/projects.txt
 
@@ -15,7 +15,7 @@ else
 fi
 
 # Find project directoiesl.
-for n in `find $BASE_DIR -type d -name '.git'`
+for n in `find $BASE_DIR -type d -follow -name '.git'`
 do  
     PROJECT_DIR=`echo $n | sed -e "s/\/\//!!!!!/g" \
         | sed -E "s/^.*!!!!!//g" | sed -e "s/\/.git//g"`

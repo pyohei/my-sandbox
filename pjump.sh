@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Input your base directory.
-BASE_DIR=~/Programing/dev/ 
+BASE_DIR=~/Programing/
 CACHE_DIR=`dirname $0`/.cache
 CACHE_FILE=`dirname $0`/.cache/projects.txt
 MOVING_FILE=`dirname $0`/.cache/projects.log
