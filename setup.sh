@@ -12,7 +12,7 @@
 
 # Usage:
 #   if you have wget in your terminal,
-#      $ wget -O /tmp/setup.sh https://github.com/pyohe/linux-devenv/setup.sh
+#      $ wget -O /tmp/setup.sh https://raw.githubusercontent.com/pyohei/linux-devenv/master/setup.sh
 #      $ /tmp/setup.sh    
 
 sudo apt-get install software-properties-common
