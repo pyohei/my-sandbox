@@ -15,7 +15,7 @@
 #      $ wget -O /tmp/setup.sh https://raw.githubusercontent.com/pyohei/linux-devenv/master/setup.sh
 #      $ /tmp/setup.sh    
 
-sudo apt-get install software-properties-common
+sudo apt-get -y install software-properties-common
 sudo apt-add-repository ppa:ansible/ansible
-sudo apt-get update
-sudo apt-get install ansible
+sudo apt-get -y update
+sudo apt-get -y install ansible
