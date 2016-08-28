@@ -14,6 +14,9 @@
 #   if you have wget in your terminal,
 #      $ wget -O /tmp/setup.sh https://raw.githubusercontent.com/pyohei/linux-devenv/master/setup.sh
 #      $ /tmp/setup.sh    
+#   After you finish install, you can use `git` command, and you command below command.
+#      $ git clone https://github.com/pyohei/linux-devenv.git
+#   And you can set up your linux(ubunt mate) environment from README.md
 
 sudo apt-get -y install software-properties-common
 sudo apt-add-repository ppa:ansible/ansible
