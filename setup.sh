@@ -1,15 +1,12 @@
 #!/bin/sh
-
-# Initial setup for linux environ.
-
-# This script must run with root user.
-# And I'm thinking wheather change user to root in this script or not.
-
-# 2016-08-26 I'm creating simple path
-
-# This scripts is setting up only ansible.
-# And you can install other packages from ansible.
-
+#
+# Initial setup for linux(ubuntu mate) environ.
+# You can initial set up from this script.
+# This scripts is setting up only ansible and git.
+# You can use from `Usage`, and you enter your sudo password.
+# After you setup your command, you can install from `ansible` command.
+# Please detail from README.
+#
 # Usage:
 #   if you have wget in your terminal,
 #      $ wget -O /tmp/setup.sh https://raw.githubusercontent.com/pyohei/linux-devenv/master/setup.sh
@@ -17,6 +14,9 @@
 #   After you finish install, you can use `git` command, and you command below command.
 #      $ git clone https://github.com/pyohei/linux-devenv.git
 #   And you can set up your linux(ubunt mate) environment from README.md
+#
+# Note:
+#   2016-08-26 I'm creating simple path
 
 sudo apt-get -y install software-properties-common
 sudo apt-add-repository ppa:ansible/ansible
