@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: yes
+  connection: local
+  tasks:
+    - name: install simple command
+      command: apt-get install tree
