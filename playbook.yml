@@ -31,3 +31,8 @@
       command: pip install --upgrade pip 
     - name: python library
       pip: requirements={{ansible_env.PWD}}/reuirements.txt
+    - name: create vim dir
+      file: path={{ansible_env.PWD}}/vim-settings state=directory
+    - name: clone git settings
+      git: repo=https://github.com/pyohei/linux-devenv.git
+           dest={{ansible_env.PWD}}/vim-settings 
