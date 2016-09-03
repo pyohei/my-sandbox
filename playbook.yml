@@ -3,6 +3,8 @@
   become: yes
   connection: local
   tasks:
+    - name: Initialize directory
+      command: if [ -e {{ansible_env.PWD}}/vim-settings; then rm -rf vim-settings
     - name: install simple aptitude
       command: apt-get install -y aptitude python-apt
     - name: pip
@@ -34,5 +36,5 @@
     - name: create vim dir
       file: path={{ansible_env.PWD}}/vim-settings state=directory
     - name: clone git settings
-      git: repo=https://github.com/pyohei/linux-devenv.git
+      git: repo=https://github.com/pyohei/vim-setting.git
            dest={{ansible_env.PWD}}/vim-settings 
