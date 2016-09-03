@@ -4,7 +4,7 @@
   connection: local
   tasks:
     - name: Initialize directory
-      command: if [ -e {{ansible_env.PWD}}/vim-settings; then rm -rf vim-settings
+      file: path={{ansible_env.PWD}}/vim-settings state=absent
     - name: install simple aptitude
       command: apt-get install -y aptitude python-apt
     - name: pip
