@@ -27,14 +27,28 @@
       apt: name=ufw state=latest
     - name: sqlite3
       apt: name=sqlite3 state=latest
+    - name: cvs
+      apt: name=cvs state=latest
     - name: python-dev
       apt: name=python-dev state=latest
+    - name: python-mysqldb
+      apt: name=python-mysqldb state=latest
     - name: upgrade pip
       command: pip install --upgrade pip 
     - name: python library
       pip: requirements={{ansible_env.PWD}}/reuirements.txt
     - name: create vim dir
+      become: no
       file: path={{ansible_env.PWD}}/vim-settings state=directory
     - name: clone git settings
+      become: no
       git: repo=https://github.com/pyohei/vim-setting.git
            dest={{ansible_env.PWD}}/vim-settings 
+    - name: change permission of release.sh
+      file: path={{ansible_env.PWD}}/vim-settings/release.sh mode="u=rwx"
+    - name: deploy vim settings
+      become: no
+      script: vim-settings/release.sh
+      register: vim-deploy
+
+    - debug: var=vim-deploy.stdout_lines
