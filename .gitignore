@@ -3,3 +3,5 @@ task/list/*
 task/log/*
 
 *.pyc
+
+.DS_Store
