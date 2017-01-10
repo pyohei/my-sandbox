@@ -5,6 +5,7 @@ from datetime import timedelta
 import os
 import re
 
+
 IGNORE_CASE = ['MAILTO', '#']
 CRON_FROM = datetime(2017, 1, 14, 23, 59, 59)
 CRON_TO = datetime(2017, 1, 15, 6, 0, 0)
@@ -39,7 +40,7 @@ def main():
                 continue
 
             # Maybe the below script is not good and has to fix.
-            result = re.sub(r'  +', '\t',li) 
+            result = re.sub(r'  +', '\t', li)
             result_list = result.split('\t')
             cron_time = ' '.join(result_list[0:5])
             cron_script = result_list[-1]
@@ -53,11 +54,10 @@ def main():
 
             while current_time <= CRON_TO:
                 interval_second = c.next(current_time)
-                current_time = current_time + timedelta(seconds=interval_second)
+                current_time = current_time + \
+                    timedelta(seconds=interval_second)
                 if current_time > CRON_TO:
-                    print('FINISH,{0},{1}'.format(cron_script, cron_time))
                     break
-                print('{0},{1}'.format(current_time, cron_script))
                 if current_time not in targets:
                     targets[current_time] = [cron_script]
                 else:
@@ -65,13 +65,13 @@ def main():
 
     with open('result.csv', 'w') as f:
         header = 'date, hour, miniute, second, scrip, server\n'
+        f.write(header)
         for t, scripts in sorted(targets.items()):
-            f.write(header)
             for s in scripts:
-                server_name = ' or '.join(script_to_server[s])
+                server_name = ' or '.join(list(set(script_to_server[s])))
                 result = '{0},{1},{2}\n'.format(t.strftime('%Y-%m-%d,%H,%M,%S'),
-                                             s,
-                                             server_name)
+                                                s,
+                                                server_name)
                 f.write(result)
 
 if __name__ == '__main__':
