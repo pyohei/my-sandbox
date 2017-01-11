@@ -42,28 +42,22 @@ def main():
 
     for sv, lines in __create_file_object_by_server().items():
         for li in lines:
-            is_ignore = False
             li = li.replace('\n', '')
-            for c in IGNORE_CASE:
-                if c in li or li == '':
-                    is_ignore = True
-                    break
-            if is_ignore:
+            if not is_cron_script(li):
                 continue
 
-            # Maybe the below script is not good and has to fix.
-            result = re.sub(r'  +', '\t', li)
-            result_list = result.split('\t')
-            cron_time = ' '.join(result_list[0:5])
-            cron_script = result_list[-1]
+            nz_crnon = normalize_cron_script(li)
+            cron_time = nz_crnon[0]
+            cron_script = nz_crnon[1]
 
             if cron_script in script_to_server:
                 script_to_server[cron_script].append(sv)
             else:
                 script_to_server[cron_script] = [sv]
+            # TODO: has to handle error occuring missed cron script.
             c = CronTab(cron_time)
-            current_time = CRON_FROM
 
+            current_time = CRON_FROM
             while current_time <= CRON_TO:
                 interval_second = c.next(current_time)
                 current_time = current_time + \
@@ -75,6 +69,17 @@ def main():
                 else:
                     targets[current_time].append(cron_script)
     export(targets, script_to_server)
+
+def is_cron_script(cron_script):
+    for c in IGNORE_CASE:
+        if c in cron_script or cron_script == '':
+            return False
+    return True
+
+def normalize_cron_script(cron_script):
+    result = re.sub(r'  +', '\t', cron_script)
+    result_list = result.split('\t')
+    return (' '.join(result_list[0:5]), result_list[-1])
 
 def export(targets, servers):
     with open('result.csv', 'w') as f:
