@@ -4,12 +4,23 @@ from datetime import datetime
 from datetime import timedelta
 import os
 import re
+import warnings
 
 
 IGNORE_CASE = ['MAILTO', '#']
 CRON_FROM = datetime(2017, 1, 14, 23, 59, 59)
 CRON_TO = datetime(2017, 1, 15, 6, 0, 0)
 CRON_DIRECTORY_NAME = 'crontab'
+
+
+def stop_future_warning(func):
+    import functools
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore', FutureWarning)
+            func(*args, **kwargs)
+    return wrapper
 
 
 def __create_file_object_by_server():
@@ -24,6 +35,7 @@ def __create_file_object_by_server():
     return server_list
 
 
+@stop_future_warning
 def main():
     script_to_server = {}
     targets = {}
@@ -62,13 +74,15 @@ def main():
                     targets[current_time] = [cron_script]
                 else:
                     targets[current_time].append(cron_script)
+    export(targets, script_to_server)
 
+def export(targets, servers):
     with open('result.csv', 'w') as f:
         header = 'date, hour, miniute, second, scrip, server\n'
         f.write(header)
         for t, scripts in sorted(targets.items()):
             for s in scripts:
-                server_name = ' or '.join(list(set(script_to_server[s])))
+                server_name = ' or '.join(list(set(servers[s])))
                 result = '{0},{1},{2}\n'.format(t.strftime('%Y-%m-%d,%H,%M,%S'),
                                                 s,
                                                 server_name)
