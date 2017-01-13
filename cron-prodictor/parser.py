@@ -19,7 +19,7 @@ def stop_future_warning(func):
     def wrapper(*args, **kwargs):
         with warnings.catch_warnings():
             warnings.simplefilter('ignore', FutureWarning)
-            func(*args, **kwargs)
+            return func(*args, **kwargs)
     return wrapper
 
 
@@ -63,7 +63,7 @@ def main():
                     targets[current_time] = [cron_combo]
                 else:
                     targets[current_time].append(cron_combo)
-    export(targets)
+    return targets
 
 def is_cron_script(cron_script):
     for ic in IGNORE_CASE:
@@ -77,16 +77,17 @@ def normalize_cron_script(cron_script):
     return (' '.join(result_list[0:5]), result_list[-1])
 
 def export(targets):
-    # TODO: separate sort from expot.
+    header = 'date, hour, miniute, second, scrip, server\n'
     with open('result.csv', 'w') as f:
-        header = 'date, hour, miniute, second, scrip, server\n'
         f.write(header)
         for t, scripts in sorted(targets.items()):
             for s in scripts:
-                result = '{0},{1},{2}\n'.format(t.strftime('%Y-%m-%d,%H,%M,%S'),
-                                                s[1],
-                                                s[0])
+                result = '{0},{1},{2}\n'.format(
+                        t.strftime('%Y-%m-%d,%H,%M,%S'),
+                        s[1],
+                        s[0])
                 f.write(result)
 
 if __name__ == '__main__':
-    main()
+    t = main()
+    export(t)
