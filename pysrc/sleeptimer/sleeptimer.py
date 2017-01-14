@@ -4,7 +4,7 @@ from time import sleep
 from datetime import datetime
 import random
 
-class SleepScheduler(object):
+class SleepTimer(object):
 
     def __init__(self, wakeup_count=1):
         self.wakeup_count = wakeup_count
@@ -16,11 +16,12 @@ class SleepScheduler(object):
     def sleep(self):
         wakeup_second = self.wakeup_seconds.pop(0)
         second = datetime.now().second
-        print wakeup_second, second
+        # print wakeup_second, second
         if wakeup_second > second:
             sleep(wakeup_second-second)
 
     def simple_sleep(self, min_sleep, max_sleep):
+        return
         sleep(random.choice(range(min_sleep, max_sleep)))
 
     def __schedule(self):
@@ -28,13 +29,5 @@ class SleepScheduler(object):
         sleep_seconds = random.sample(
             xrange(self.start_second, self.end_second, self.interval), 
             self.wakeup_count)
-        print '----'
         sleep_seconds.sort()
-        print sleep_seconds
         return sleep_seconds
-
-s = SleepScheduler(4)
-s.sleep()
-s.sleep()
-s.sleep()
-s.sleep()
