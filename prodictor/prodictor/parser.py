@@ -6,7 +6,7 @@ import re
 import warnings
 
 
-IGNORE_CASE = ['MAILTO', '#']
+IGNORE_CASES = ['MAILTO', '#']
 CRON_DIRECTORY_NAME = 'crontab'
 
 
@@ -63,7 +63,7 @@ def main(start, end):
     return targets
 
 def is_cron_script(cron_script):
-    for ic in IGNORE_CASE:
+    for ic in IGNORE_CASES:
         if ic in cron_script or cron_script == '':
             return False
     return True
