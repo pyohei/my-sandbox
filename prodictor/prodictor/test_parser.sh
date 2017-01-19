@@ -3,7 +3,7 @@
 # Black Box test for cron parser.
 rm result.csv
 
-python parser.py
+python parser.py --start 20170114235959 --end 20170115060000
 
 RESULT=`diff result.csv test/test_result.csv`
 

@@ -1,6 +1,5 @@
 """Create cron schedule from exported data from `crontab -l` ."""
 from crontab import CronTab
-from datetime import datetime
 from datetime import timedelta
 import os
 import re
@@ -8,8 +7,6 @@ import warnings
 
 
 IGNORE_CASE = ['MAILTO', '#']
-CRON_FROM = datetime(2017, 1, 14, 23, 59, 59)
-CRON_TO = datetime(2017, 1, 15, 6, 0, 0)
 CRON_DIRECTORY_NAME = 'crontab'
 
 
@@ -35,7 +32,7 @@ def __create_file_object_by_server():
 
 
 @stop_future_warning
-def main():
+def main(start, end):
     targets = {}
 
     for sv, lines in __create_file_object_by_server().items():
@@ -51,12 +48,12 @@ def main():
             # TODO: has to handle error occuring missed cron script.
             c = CronTab(cron_time)
 
-            current_time = CRON_FROM
-            while current_time <= CRON_TO:
+            current_time = start
+            while current_time <= end:
                 interval_second = c.next(current_time)
                 current_time = current_time + \
                     timedelta(seconds=interval_second)
-                if current_time > CRON_TO:
+                if current_time > end:
                     break
                 cron_combo = (sv, cron_script)
                 if current_time not in targets:
@@ -89,5 +86,22 @@ def export(targets):
                 f.write(result)
 
 if __name__ == '__main__':
-    t = main()
-    export(t)
+    def _main():
+        import argparse
+        from datetime import datetime
+        p = argparse.ArgumentParser(description="Download sites.")
+        p.add_argument('-s', '--start', type=str,
+                       default=datetime.now().strftime('%Y%m%d000000'),
+                       help='Cron start datetime.',
+                       dest='start_datetime' )
+        p.add_argument('-e', '--end', type=str,
+                       help='Cron end datetime',
+                       default=datetime.now().strftime('%Y%m%d235959'),
+                       dest='end_datetime')
+        args = p.parse_args()
+        start = datetime.strptime(args.start_datetime, '%Y%m%d%H%M%S')
+        end = datetime.strptime(args.end_datetime, '%Y%m%d%H%M%S')
+        
+        t = main(start, end)
+        export(t)
+    _main()
