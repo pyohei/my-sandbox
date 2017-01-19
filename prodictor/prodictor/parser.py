@@ -7,10 +7,10 @@ import warnings
 
 
 IGNORE_CASES = ['MAILTO', '#']
-CRON_DIRECTORY_NAME = 'crontab'
 
 
 def stop_future_warning(func):
+    """Stop printing warning."""
     import functools
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -20,10 +20,11 @@ def stop_future_warning(func):
     return wrapper
 
 
-def __create_file_object_by_server():
+def __create_file_object_by_server(directory):
+    """Read cronfile and create file object."""
     server_list = {}
-    for server_file in os.listdir(CRON_DIRECTORY_NAME):
-        file_path = os.path.join(CRON_DIRECTORY_NAME, server_file)
+    for server_file in os.listdir(directory):
+        file_path = os.path.join(directory, server_file)
         with open(file_path, 'r') as f:
             lines = f.readlines()
             name, __ext = os.path.splitext(server_file)
@@ -32,10 +33,11 @@ def __create_file_object_by_server():
 
 
 @stop_future_warning
-def main(start, end):
+def main(directory, start, end):
+    """Main process."""
     targets = {}
 
-    for sv, lines in __create_file_object_by_server().items():
+    for sv, lines in __create_file_object_by_server(directory).items():
         for li in lines:
             li = li.rstrip()
             if not is_cron_script(li):
@@ -98,10 +100,15 @@ if __name__ == '__main__':
                        help='Cron end datetime',
                        default=datetime.now().strftime('%Y%m%d235959'),
                        dest='end_datetime')
+        p.add_argument('-d', '--directory', type=str,
+                       help='Directory name excluding cron files.',
+                       default='crontab',
+                       dest='directory')
         args = p.parse_args()
         start = datetime.strptime(args.start_datetime, '%Y%m%d%H%M%S')
         end = datetime.strptime(args.end_datetime, '%Y%m%d%H%M%S')
+        directory = args.directory
         
-        t = main(start, end)
+        t = main(directory, start, end)
         export(t)
     _main()
