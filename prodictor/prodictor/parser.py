@@ -94,10 +94,10 @@ if __name__ == '__main__':
         p = argparse.ArgumentParser(description="Download sites.")
         p.add_argument('-s', '--start', type=str,
                        default=datetime.now().strftime('%Y%m%d000000'),
-                       help='Cron start datetime.',
+                       help='Cron start datetime.(YYYYmmddHHMMSS)',
                        dest='start_datetime' )
         p.add_argument('-e', '--end', type=str,
-                       help='Cron end datetime',
+                       help='Cron end datetime.(YYYYmmddHHMMSS)',
                        default=datetime.now().strftime('%Y%m%d235959'),
                        dest='end_datetime')
         p.add_argument('-d', '--directory', type=str,
