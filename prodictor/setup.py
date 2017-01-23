@@ -4,5 +4,6 @@ setup(name='prodictor',
       description='Cron scheduler.',
       author='Shohei Mukai',
       author_email='xxxx@mail.mail',
-      url='http://www.www'
+      url='http://www.www',
+      install_requires=['crontab']
       )
