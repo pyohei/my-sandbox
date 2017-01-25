@@ -7,7 +7,7 @@ with open('README.md') as f:
 setup(name='prodictor',
       version='0.0.1',
       description='Cron scheduler.',
-      logn_description=long_desc,
+      long_description=long_desc,
       classifiers=[
           'Programming Language :: Python',
           'Programming Language :: Python :: 2.7',
@@ -20,5 +20,9 @@ setup(name='prodictor',
       url='http://www.www',
       license='MIT',
       # packages=find_packages,
+      entry_points={
+          'console_scripts': [
+              'cronschedule = prodictor.parser:main'],
+          },
       install_requires=['crontab']
       )
