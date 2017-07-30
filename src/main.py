@@ -1,12 +1,12 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
-""" Figure skating judging main
+""" Figureskate-judging-system main.
 
-Figure skating judging main system.
-All programu pass this module.
+Figureskate-judging main script.
+HTTP requests thorough this module to parse url and execute modules.
 
-*CONSTITUSION OF URL*
+URL Lists:
     /login ... Display login screen.
                Doing login though not having session, always use this
                screen.
