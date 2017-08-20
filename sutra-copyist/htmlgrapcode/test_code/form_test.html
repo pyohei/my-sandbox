@@ -1,0 +1,92 @@
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+<!--
+div.fieldset 
+  { background:url(form_frame_st.png);
+    /* background-color: #000000; */
+    padding:10px; 
+    width: 600px;
+    height: 400px;
+    -moz-border-radius: 20px; 
+    -webkit-border-radius: 20px;
+  }
+div.form_zone
+  { background-color: white;
+    padding: 10px;
+    width: 580px;
+    height: 380px;
+    border-radius: 20px;
+  }
+div.input-box{
+  width: 150px;
+  height: 40px;
+}
+input[type=text]{
+   background-color: red;
+   border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px;
+   -ms-border-radius: 5px;
+   border:#a9a9a9 1px solid;
+   -moz-box-shadow: inset 0 0 5px rgba(0,0,0,0.2),0 0 2px rgba(0,0,0,0.3);
+   -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2),0 0 2px rgba(0,0,0,0.3);
+   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2),0 0 2px rgba(0,0,0,0.3);
+   width:200px;
+   height:25px;
+   padding:0 3px;
+}
+ 
+input[type=text]:focus {
+   border:solid 1px #20b2aa;
+}
+-->
+</style>
+</head>
+<body>
+    <div class="fieldset">
+      <div class="form_zone">
+  <ul class="form-list">
+      <li class="fields">
+    <label for="name" class="required"><em>*</em>Name</label>
+    <div class="input-box">
+        <input name="name" id="name" title="Name" value="" class="input-text required-entry" type="text" />
+    </div>
+      </li>
+    <li class="fields">
+    <label for="company">Company Name</label>
+    <div class="input-box">
+        <input name="company" id="company" title="Company" class="input-text" type="text" />
+    </div>
+      </li>
+      <li>
+    <div class="field">
+        <label for="email" class="required"><em>*</em>Email</label>
+        <div class="input-box">
+      <input name="email" id="email" title="Email" value="" class="input-text required-entry validate-email" type="text" />
+        </div>
+    </div>
+    <div class="field">
+        <label for="telephone">Telephone</label>
+        <div class="input-box">
+      <input name="telephone" id="telephone" title="Telephone" value="" class="input-text" type="text" />
+        </div>
+    </div>
+    
+      </li>
+      <li class="wide">
+    <label for="comment" class="required"><em>*</em>Comment</label>
+    <div class="input-box">
+        <textarea name="comment" id="comment" title="Comment" class="required-entry input-text" cols="5" rows="3"></textarea>
+    </div>
+      </li>
+  </ul>
+    <div class="buttons-set">
+      <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+      <button type="submit" title="Submit" class="button"><span><span>Submit</span></span></button>
+    </div>
+  </div>
+  </div>
+</body>

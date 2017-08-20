@@ -1,0 +1,68 @@
+#headerArea {
+  margin: 0 auto;
+  height: 140px;
+  position: relative;
+  width: 1000px;
+}
+
+#headerArea .localNavi ul {
+  letter-spacing: -.40em;
+  text-align: right;
+  width: 500px;
+}
+
+.img_size {
+  height: 104;
+  width: 318;
+}
+
+header nav {
+  display: block;
+}
+nav a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+  font-size: 100%;
+  vertical-align: baseline;
+  display: block;
+}
+
+.localNavi {
+  position: absolute;
+  right: 0;
+  top: 60px;
+}
+
+ul li {
+  display: inline-block;
+}
+
+body {
+  font: 13px/1.231 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  line-height: 1.5;
+  color: #2d2828;
+}
+
+#globalNavi {
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  width: 1000px;
+}
+
+#globalNavi ul li a {
+ /*  text-indent: -9999px;*/
+  overflow: hidden;
+  display: block;
+  height: 32px;
+  width: 200px;
+}
+
+#globalNavi ul li {
+  display: inline-block;
+  letter-spacing: normal;
+  vertical-align: top;
+  text-align: center;
+}

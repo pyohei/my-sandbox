@@ -1,0 +1,21 @@
+#####start####
+
+---non-singleton---
+0 time: 2.31266021729e-05 sec.
+1 time: 1.59740447998e-05 sec.
+2 time: 1.4066696167e-05 sec.
+---singleton---
+0 time: 2.40802764893e-05 sec.
+1 time: 3.09944152832e-06 sec.
+2 time: 2.14576721191e-06 sec.
+---singleton---
+0 time: 1.90734863281e-06 sec.
+1 time: 1.90734863281e-06 sec.
+2 time: 9.53674316406e-07 sec.
+
+---non-singleton---
+0 time: 1.4066696167e-05 sec.
+1 time: 1.4066696167e-05 sec.
+2 time: 1.38282775879e-05 sec.
+
+####end####

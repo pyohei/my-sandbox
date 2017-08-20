@@ -1,0 +1,12 @@
+#####start####
+---singleton---
+2.59876251221e-05 time: $s sec.
+1.90734863281e-06 time: $s sec.
+9.53674316406e-07 time: $s sec.
+
+
+---non-singleton---1.81198120117e-05 time: $s sec.
+1.31130218506e-05 time: $s sec.
+1.21593475342e-05 time: $s sec.
+
+####end####
