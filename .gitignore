@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 *.py[co]
-=======
+
 # Java
 *.class
 *.jar
@@ -11,4 +10,3 @@
 .DS_Store
 
 *.pyc
->>>>>>> sutra-copyist/master
