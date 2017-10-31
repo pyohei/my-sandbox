@@ -1,6 +1,9 @@
-# project-jumper
+# Terminal Hopper
+
+Move directory easily as hopper.
 
 ## Usages
+
 You write below codes in your .bash*.  
 
 ```
