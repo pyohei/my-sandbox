@@ -1,12 +1,24 @@
 #!/bin/bash
 
 # Input your base directory.
+# 
+
+# TODO: Check peco command
+
 BASE_DIR=~/Project/
 CACHE_DIR=`dirname $0`/.cache
 CACHE_FILE=`dirname $0`/.cache/projects.txt
 MOVING_FILE=`dirname $0`/.cache/projects.log
 
 # Echo help
+add_project() {
+    exit 0
+}
+
+delete_project() {
+    exit 0
+}
+
 echo_help() {
     echo "Usage: command [-p ProjectNo] [-l]" 2>&1
     exit 1
@@ -49,9 +61,13 @@ go_project() {
 # Parse Options.
 # You need to ":" when argments is needed.
 OPT=
-while getopts "p:hl" OPT
+while getopts "p:hlad" OPT
 do
     case $OPT in
+        a) add_project
+            ;;
+        d) delete_project
+            ;;
         l) echo_projects
             ;;
         p) go_project $OPTARG
