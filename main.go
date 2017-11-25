@@ -11,6 +11,8 @@ import (
 	"fmt"
 	"github.com/peco/peco"
 	"io/ioutil"
+	"os"
+	"os/exec"
 	"reflect"
 	"strings"
 )
@@ -39,8 +41,33 @@ func main() {
 	v, _ := p.LineAt(cli.Location().LineNumber())
 	fmt.Println(reflect.TypeOf(v))
 	// Get selected row
-	fmt.Println(v.Output())
+	nd := v.Output()
 	fmt.Println(p.Size())
+	fmt.Println(nd)
+	eee := os.Chdir("/")
+	if eee != nil {
+		println("Errordayo----jj-")
+		fmt.Println(eee)
+	}
+	mydir, rr := os.Getwd()
+	if rr == nil {
+		fmt.Println(mydir)
+	}
+	cmd := exec.Command("cd")
+	cmd.Dir = "/tmp" // or whatever directory it's in
+	out, err := cmd.Output()
+	if err != nil {
+		panic(err)
+	} else {
+		fmt.Printf("%s", out)
+	}
+
+	er := exec.Command("cd /tmp").Run()
+	if er != nil {
+		panic(er)
+	} else {
+		fmt.Printf("%s", out)
+	}
 
 	if err2 != nil {
 		println("Errordayo-")
