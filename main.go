@@ -36,7 +36,7 @@ func main() {
 	fmt.Println(s)
 	fmt.Println(cli.Stdout)
 	p := cli.CurrentLineBuffer()
-	v, _ := p.LineAt(0)
+	v, _ := p.LineAt(cli.Location().LineNumber())
 	fmt.Println(reflect.TypeOf(v))
 	// Get selected row
 	fmt.Println(v.Output())
