@@ -1,16 +1,8 @@
-# 個人用のツール群
+# My imcomplete tools
 
-個人用のツールを集めたリポジトリ。そのため、READMEも日本語で記載。  
+This repository comtains imcomplete project which I tried to make.  
+Fist directories imply former repositoryt name. I converted them from single repository.  
 
-## フォルダ構成
+# Licence 
 
-各ファイルはaliasに登録するようにする。
-
-- task
-  - README...このファイル
-  - display...必要な項目を表示する
-  - open...ファイルをコマンドからオープンする。
-  - task...タスク管理ツール
-  - myThink...ローカルTwitterをめざした
-
-ライセンスはMITです。
+MIT(although all project imcomplete and useless ;()
