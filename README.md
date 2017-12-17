@@ -1,3 +1,6 @@
+This project is WIP status.  
+But I can't guarantee about this re-open.  
+
 # Terminal Hopper
 
 Move directory easily as hopper.
