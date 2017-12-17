@@ -1,6 +1,6 @@
 # My imcomplete tools
 
-This repository comtains imcomplete project which I tried to make.  
+This repository comtains incomplete project which I tried to make.  
 Fist directories imply former repositoryt name. I converted them from single repository.  
 
 # Licence 
