@@ -1,0 +1,12 @@
+# python virtualenv
+bin/*
+include/*
+lib/*
+.Python*
+
+# python
+*.pyc
+*.pyo
+
+# project original
+test_site/log/*
