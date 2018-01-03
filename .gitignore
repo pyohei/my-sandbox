@@ -3,3 +3,4 @@ centos/devserver/*
 ubuntu/devserver/*
 
 .DS*
+.vagrant
