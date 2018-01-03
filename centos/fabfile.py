@@ -2,7 +2,9 @@
 
 """KFC system deploy.
 
-Deproyment script.
+Deproyment script. You can use this module for provisioning and deployment.
+Futhermore, you use in development env and release env.
+
 """
 
 import os
@@ -30,20 +32,6 @@ SERVERS = ['web', 'mysql']
 VM_NAME = 'devserver'
 MUST_COMMAND = ['ansible', 'vagrant']
 env.warn_only = True
-
-
-def test():
-    """test"""
-    print yellow('--- TEST RUN ---')
-    try:
-        with lcd('hogehoge') as e:
-            res = local('ls', capture=True)
-            print res
-        local('pwd')
-    except Exception as e:
-        print e
-        print 'error'
-    print '--- TEST EXIT ---'
 
 
 def deploy():
@@ -101,6 +89,10 @@ def setup_devenv():
             __destroy_vagrant(vmpath, s)
         shutil.rmtree(vmpath)
     deploy()
+
+
+def exec_sql(sample_insert=False):
+    pass
 
 
 def __chk_uninstall():
@@ -176,3 +168,17 @@ def __clone(path, submodule=False):
         command += '--recursive '
     command += path
     run(command)
+
+
+def test():
+    """test"""
+    print yellow('--- TEST RUN ---')
+    try:
+        with lcd('hogehoge') as e:
+            res = local('ls', capture=True)
+            print res
+        local('pwd')
+    except Exception as e:
+        print e
+        print 'error'
+    print '--- TEST EXIT ---'
