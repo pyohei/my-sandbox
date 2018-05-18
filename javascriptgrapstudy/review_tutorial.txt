@@ -1,0 +1,109 @@
+
+Python再復習
+チュートリアル編
+
+下から攻める
+
+14. 浮動小数点演算、その問題と制限
+
+Pyhonのfloatの正確な値を見るためにはdecimalモジュールを使う
+>>> Decimal(2.675)
+Decimal('2.67499999999999982236431605997495353221893310546875')
+>>> Decimal(1/10.0)
+Decimal('0.1000000000000000055511151231257827021181583404541015625')
+>>>
+
+上記のようになる理由
+  10進数で表現される小数点では、厳密に2進数で表現できないため。
+  できるだけ近い値を表現しようとはする。
+
+
+
+13. 対話入力編集とヒストリ置換
+特記すべきことなし
+
+
+12. さあ何を？
+特記すべきことなし
+
+11. 標準ライブラリミニツアー – その 2
+- repr
+    結果の文字列の大きさを制限したオブジェクト表現を作る。
+    例）
+    >>> str(set('supercalifragilisticexpialidocious'))
+    "set(['a', 'c', 'e', 'd', 'g', 'f', 'i', 'l', 'o', 'p', 's', 'r', 'u', 't', 'x'])"
+    >>> repr.repr(set('supercalifragilisticexpialidocious'))
+    "set(['a', 'c', 'd', 'e', 'f', 'g', ...])"
+
+- pprint
+    入れ子のシーケンスを表示する際に便利
+    >>> import pprint
+    >>> pp = pprint.PrettyPrinter(width=20)
+    >>> a = ("a", ("b",("c",("d",{"e":"dd"},({"f":"r"},{"t":("g",("h",("i")),"j")}),"k"))))
+    >>> pp.pprint(a)('a',
+     ('b',
+       ('c',
+          ('d',
+              {'e': 'dd'},
+                  ({'f': 'r'},
+                       {'t': ('g',
+                                   ('h',
+                                                'i'),
+                                                            'j')}),
+                                                                'k'))))
+    >>>
+
+- textwrap
+    一段落内に収まるように調整をする。
+    >>> import textwrap
+    >>> a = "a" * 100 + "b" * 100
+    >>> a
+    'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+    >>> print textwrap.fill(a, width=20)
+    aaaaaaaaaaaaaaaaaaaa
+    aaaaaaaaaaaaaaaaaaaa
+    aaaaaaaaaaaaaaaaaaaa
+    aaaaaaaaaaaaaaaaaaaa
+    aaaaaaaaaaaaaaaaaaaa
+    bbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbb
+    >>>
+
+- locale
+    文化ごとに適合したフォーマットに変える
+
+
+
+
+- array
+    同じ型のデータをまとめることが可能
+
+- collection.deque
+    リストに似たオブジェクトを提供する。
+    データの追加と左端からの取り出しが高速。
+    ただし、検索は遅い。
+
+- bisect
+    リストをソートしてくれる。
+    追加すると、ソートして適する場所に埋め込む
+
+
+10.1. OSへのインタフェース
+    from os import * は避ける
+    （os.open()と組み込み関数のopen()の混同を防ぐため。）
+
+    ファイルやディレクトリ管理で、より簡単に使えるshutilモジュールがある。
+
+-glob
+    ディレクトリのワイルドカードの検索からファイルのリストを生成する。
+
+10.9. データ圧縮
+-zlib
+    データの圧縮をする（文字列とか）
+- gzip
+    ファイルをgzipフォーマットとして読み書きをする。
+
+
