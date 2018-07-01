@@ -1,0 +1,13 @@
+language: python
+
+python:
+  - "2.7"
+
+before_install:
+  - git submodule update --init
+  - pip install mysql-python
+  - pip install pep8
+
+script: 
+  - test/test_exe.sh
+  - find src/ -type d -name 'framework' -prune -o -type d -name 'wsgi' -prune -o -type f -name '*.py' -print | xargs pep8 --ignore=E402,E123

@@ -1,0 +1,12 @@
+.DS_Store
+*~
+*.wqp
+*.pyc
+*.html
+*.conf
+*.txt
+*.log
+*.pickle
+tmp/
+*.ini
+config.py

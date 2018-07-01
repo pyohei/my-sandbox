@@ -1,0 +1,3 @@
+[submodule "src/framework/bottle"]
+	path = src/framework/bottle
+	url = https://github.com/bottlepy/bottle.git

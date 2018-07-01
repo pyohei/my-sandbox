@@ -1,0 +1,38 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
+""" Configuration
+
+
+"""
+
+LOCAL_MYSQL_CONNECTION_MASTER = {
+    "OBO": {
+        "HOST": "10.10.1.1",
+        "DB": "figurejudge",
+        "USER": "developer",
+        "PASSWD": "developer"
+        }
+    }
+
+# Home Directory
+MY_BASE_DIR = "/var/www/web"
+
+JUDGING_TYPE = {
+    1: "OBO",
+    2: "CoP"
+    }
+
+
+CONNECTIONS = LOCAL_MYSQL_CONNECTION_MASTER
+CONNECTIONS["DB"] = "figurejudge"
+CONNECTION = LOCAL_MYSQL_CONNECTION_MASTER
+CONNECTION["DB"] = "figurejudge"
+
+COOKIE_EXPIRES_DAYS = 7
+
+JUDGING_FILE_DIR = "/var/www/web/tmp/judging"
+
+RECORD_CACHE = "/var/www/web/tmp/test_cache.pickle"
+
+LOG_FILE = "/var/www/web/tmp/sql_log.log"

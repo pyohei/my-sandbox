@@ -1,0 +1,327 @@
+@charset "utf-8";
+
+
+/* ------- Base ----------- */
+body {
+  margin: 0;
+  font-family:'Lucida Grande',
+              'Hiragino Kaku Gothic ProN',
+               Meiryo,
+               sans-serif;
+  color: #5E5E5E;
+}
+
+h1 {
+  color: #517573;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 1);
+}
+
+p {
+  line-height: 1.5;
+}
+
+ol li {
+  margin-bottom: 1.5em;
+}
+
+/* -------- Frame ---------- */
+#footer,
+#wrapper {
+  position: relative;
+  width: 800px;
+  margin: 0 auto;
+}
+
+#header {
+  height: 120px;
+}
+
+#nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#nav ul li {
+  display: inline;
+  margin: 0 1em;
+  list-style: none;
+}
+
+#user-sign-up {
+  margin: 2em auto;
+  margin-right: 15em;
+  margin-left: 15em;
+  padding-top: 0.5em;
+  background-color: #F2F2F2;
+}
+
+.category-group {
+  margin: 0;
+  padding: 2em 1.5em 0.5em;
+  border: none;
+  border-bottom: 0.5em solid #FFF;
+}
+
+.category-group legend {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.category-group table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.category-group th,
+.category-group td {
+  vertical-align: top;
+  vertical-bottom: 1em;
+}
+
+.category-group th {
+  padding-top: 0.5em;
+  padding-right: 0.5em;
+  width: 13em;
+  text-align: right;
+}
+
+.active {
+  color: #999;
+}
+
+#explain {
+  height: 100px;
+}
+
+#explain h2 {
+  text-align: center;
+}
+
+input[type=text],
+input[type=password] {
+  width: 8em; /* input box size rate */
+  padding: 0.375em 0.5em;
+  border: 1px solid #CCC;
+  border-top-width: 2px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 100%;
+}
+
+input:focus {
+  background-color: #FFF8F0;
+}
+
+a.register-button,
+input.button-primary {
+  padding: 0.1em 1.5em;
+  border: none;
+  border-bottom: 3px solid #165373;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 100%;
+  background-color: #1E6F9A;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#new_register,
+#login_button {
+  text-align: center;
+}
+
+input.button-primary:active {
+  border: none;
+  border-top: 3px solid #165373;
+}
+
+#forget_login {
+  text-align: right;
+  font-size: 80%;
+}
+
+/* ----- Menue ------ */
+#menue {
+  width: 100%;
+}
+
+/*
+.menue_box {
+  float: left;
+  width: 200px;
+  text-align: center;
+  border: 3px solid #165373;
+  margin: 10px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+*/
+
+#footer {
+  overflow: hidden; /* return float settin */
+}
+
+/*
+#menue_selecter {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 800px;
+  text-align: center;
+  margin-left: 30px;
+}
+
+#menue_selecter div a:hover {
+  background: #000000;
+  text-decoration: none;
+}
+
+.menue_box:hover{
+  background-color: #0080FF;
+}
+
+.menue_string {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+*/
+
+#menue_selecter a {
+  color: #000;
+  text-decoration: none;
+}
+
+#menue_selecter ul {
+  margin: 0;
+  padding: 0;
+}
+
+#menue_selecter ul {
+  overflow: hidden;
+}
+
+#menue_selecter li {
+  width: 33%;
+  float: left;
+  text-align: center;
+  list-style: none;
+}
+
+#menue_selecter li a {
+  display: block;
+  margin: 0 auto 10px;
+  width: 80%;
+  height: 44px;
+  line-height: 44px;
+  background: #D8D8D8;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+  color: #957255;
+}
+
+#menue_selecter li a:active{
+  background: #585858;
+}
+
+
+/* contest registration */
+#contest_header,
+#contest_detail {
+  margin-left: 30px;
+  width: 700px;
+  text-align:center;
+  overflow: hidden;
+  background-color: #F2F2F2;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#contest_header table,
+#contest_detail table {
+  width: 650px;
+}
+
+#contest_header th,
+#contest_detail th {
+  width: 25%;
+  text-align:right;
+}
+
+#contest_header td,
+#contest_detail td {
+  width: 25%;
+  text-align: left;
+}
+
+#contest_header select {
+  width: 8em; /* input box size rate */
+  padding: 0.375em 0.5em;
+  border: 1px solid #CCC;
+  border-top-width: 2px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 100%;
+}
+
+/*
+input:focus {
+  background-color: #FFF8F0;
+}
+
+a.register-button,
+input.button-primary {
+  padding: 0.1em 1.5em;
+  border: none;
+  border-bottom: 3px solid #165373;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 100%;
+  background-color: #1E6F9A;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+*/
+
+.must {
+  position: relative;
+  top: -0.25em;
+  left: 0;
+  margin-left: 0.25em;
+  line-height: 1;
+  padding: 0.25em 0.375em;
+  border-radius: 2px;
+  color: #FFF;
+  font-weight: normal;
+  font-size: 62.5%;
+  background-color: #C00;
+}
+
+.option {
+  position: relative;
+  top: -0.25em;
+  left: 0;
+  margin-left: 0.25em;
+  line-height: 1;
+  padding: 0.25em 0.375em;
+  border-radius: 2px;
+  color: #FFF;
+  font-weight: normal;
+  font-size: 62.5%;
+  background-color: #0000CD;
+}
+
+#contest_detail #title {
+  text-align: left;
+  margin: 0.5em 0.5em 0.5em 0.5em;
+  padding: 0;
+}
+
+#contest_detail .movie_link {
+  width: 450px;
+}
