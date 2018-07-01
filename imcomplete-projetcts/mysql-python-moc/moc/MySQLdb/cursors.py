@@ -1,0 +1,2 @@
+class DictCursor(object):
+    pass
