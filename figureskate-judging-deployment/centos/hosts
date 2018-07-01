@@ -1,0 +1,5 @@
+[web]
+10.10.0.1:51022 ansible_ssh_user=vagrant
+
+[mysql]
+10.10.1.1:52022 ansible_ssh_user=vagrant

@@ -1,0 +1,151 @@
+---
+- hosts: all
+  sudo: yes
+  remote_user: root
+  tasks:
+    - name: Update all packages
+      apt: update_cache=yes
+
+    - name: Install vim
+      apt: name=vim state=present
+
+- hosts: web
+  sudo: yes
+  remote_user: root
+  tasks:
+    - name: Install Apache2
+      apt: pkg=apache2 state=installed
+
+    - name: Start Apache2
+      service: name=apache2 state=running enabled=yes
+
+    - name: Install Git
+      apt: pkg=git state=installed
+      
+    - name: Install urw
+      apt: pkg=ufw state=installed
+      tags: ufw
+
+    - name: Enable ufw
+      ufw: state=reset
+
+    - name: Deny ufw from  all access
+      ufw: policy=deny direction=incoming
+      tags: ufw
+
+    - name: Allow from ssh connection
+      ufw: policy=allow port=22
+      tags: ufw
+
+    - name: Allow from HTTP request
+      ufw: policy=allow port=80
+      tags: ufw
+
+    - name: Enable ufw
+      ufw: state=enabled
+
+    - name: Install pip
+      apt: pkg=python-pip state=installed
+
+    - name: Install mod_wsgi
+      apt: pkg=libapache2-mod-wsgi state=installed
+
+    - name: Set mod_wsgi module to Apache
+      shell: >-
+          touch /etc/apache2/mods-available/mod_wsgi.load &&
+          echo 'LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi.so'> /etc/apache2/mods-available/mod_wsgi.load
+
+    - name: Restart Apache2
+      service: name=apache2 state=restarted
+
+    - name: Change Documet Root
+      replace:
+        dest='/etc/apache2/sites-enabled/000-default.conf'
+        regexp='/var/www/html'
+        replace='/var/www/web'
+
+    - name: Set figure judging connector
+      lineinfile:
+        state: present
+        dest: /etc/apache2/sites-enabled/000-default.conf
+        line: '        WSGIScriptAlias / /var/www/web/wsgi/base.py\n</VirtualHost>'
+        insertbefore: '</VirtualHost>'
+        regexp: '^</VirtualHost>'
+
+    - name: Make web directory
+      command: mkdir -p /var/www/web
+
+    - name: Restart Apache2
+      service: name=apache2 state=restarted
+
+    - name: Install MySQL 
+      apt: name=mysql-server state=installed
+
+    - name: Install libmysqlclient-dev
+      apt: name=libmysqlclient-dev state=installed
+
+    - name: Install python-dev
+      apt: name=python-dev state=installed
+
+    - name: Install MySQL-python
+      pip: name=MySQL-python
+
+    - name: Install bottle
+      pip: name=bottle
+
+- hosts: mysql 
+  sudo: yes
+  remote_user: root
+  tasks:
+    - name: Install MySQL 
+      apt: name=mysql-server state=installed
+
+    - name: Start mysql
+      service: name=mysql state=started
+
+    - name: Install ufw
+      apt: pkg=ufw state=installed
+      tags: ufw
+
+    - name: Enable ufw
+      ufw: state=reset
+
+    - name: Deny ufw from all access
+      ufw: policy=deny direction=incoming
+      tags: ufw
+
+    - name: Allow from ssh
+      ufw: policy=allow port=22
+      tags: ufw
+
+    - name: Allow from http request
+      ufw: policy=allow port=3306
+      tags: ufw
+
+    - name: Enable ufw
+      ufw: state=enabled
+
+    - name: Install libmysqlclient-dev
+      apt: name=libmysqlclient-dev state=installed
+
+    - name: Install python-dev
+      apt: name=python-dev state=installed
+
+    - name: Install pip
+      apt: pkg=python-pip state=installed
+
+    - name: Install MySQL-python
+      pip: name=MySQL-python
+
+    - name: Set MySQL root
+      mysql_user: name=developer password=developer host="%" priv=*.*:ALL,GRANT state=present
+
+    - name: Set to recive all ip address in MySQL
+      replace:
+        dest: /etc/mysql/my.cnf
+        regexp: '^bind-address'
+        replace: '#bind-address'
+        backup: yes
+
+    - name: Start mysql
+      service: name=mysql state=restarted

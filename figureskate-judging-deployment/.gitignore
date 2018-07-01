@@ -1,0 +1,6 @@
+*.pyc
+centos/devserver/*
+ubuntu/devserver/*
+
+.DS*
+.vagrant

@@ -1,0 +1,137 @@
+---
+- hosts: all
+  sudo: yes
+  remote_user: root
+  tasks:
+    - name: update all packages
+      yum: name=* state=latest
+
+    - name: install vim
+      yum: name=vim state=installed
+
+- hosts: web
+  sudo: yes
+  remote_user: root
+  tasks:
+    - name: be sure httpd is installed
+      yum: name=httpd state=installed
+
+    - name: be sure httpd is running and enabled
+      service: name=httpd state=running enabled=yes
+
+    - name: install git
+      yum: name=git state=installed
+      
+    - name: install vim
+      yum: name=vim state=installed
+
+    - name: iptables
+      lineinfile: >-
+          dest=/etc/sysconfig/iptables line="-A INPUT -m state  --state NEW -m tcp -p tcp --dport 80 -j ACCEPT" 
+            insertafter="^:OUTPUT " 
+
+    - name: restart iptables
+      service: name=iptables state=restarted
+
+    - name: instal gcc(CHANGE)
+      yum: name=gcc state=installed
+
+    - name: install python-setuptools
+      yum: name=python-setuptools state=installed
+
+    - name: install python devel
+      yum: name=python-devel state=installed
+
+    - name: install python devel
+      yum: name=httpd-devel state=installed
+
+    - name: install pip
+      command: easy_install pip
+
+    - name: install mod_wsgi
+      pip: name=mod_wsgi
+
+    - name: setup wsgi for apache
+      shell: >-
+        cd /home/vagrant &&
+        mkdir tmp &&
+        cd tmp &&
+        wget https://github.com/GrahamDumpleton/mod_wsgi/archive/3.5.tar.gz &&
+        tar xzvf 3.5.tar.gz &&
+        cd mod_wsgi-3.5  &&
+        ./configure --with-apxs=/usr/sbin/apxs --with-python=/usr/bin/python &&
+        make &&
+        make install
+
+    - name: add mod_wsgi to httpd.conf
+      lineinfile:
+        dest='/etc/httpd/conf/httpd.conf'
+        line='LoadModule wsgi_module modules/mod_wsgi.so'
+
+    - name: change Documetn Root
+      replace: 
+        dest='/etc/httpd/conf/httpd.conf'
+        regexp='/var/www/html'
+        replace='/var/www/web'
+
+    - name: set kfc connecor
+      lineinfile:
+        dest='/etc/httpd/conf/httpd.conf'
+        line='WSGIScriptAlias / /var/www/web/wsgi/base.py'
+
+    - name: make web directory
+      command: mkdir -p /var/www/web
+
+    - name: restart apache
+      service: name=httpd state=restarted
+
+    - name: install mysql 
+      yum: name=mysql-server state=installed
+
+    - name: install python devel
+      yum: name=MySQL-python state=installed
+
+    - name: install bottle
+      pip: name=bottle
+        
+- hosts: mysql 
+  sudo: yes
+  remote_user: root
+  tasks:
+    - name: install mysql
+      yum: name=mysql-server state=installed
+
+    - name: start mysql
+      service: name=mysqld state=running enabled=yes
+
+    - name: myswl iptables
+      lineinfile: >-
+          dest=/etc/sysconfig/iptables line="-A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT" 
+            insertafter="^:OUTPUT " 
+
+    - name: restart iptables
+      service: name=iptables state=restarted
+
+    - name: instal gcc(CHANGE)
+      yum: name=gcc state=installed
+
+    - name: install python-setuptools
+      yum: name=python-setuptools state=installed
+
+    - name: install python devel
+      yum: name=python-devel state=installed
+    
+#    - name: unablerepo
+#      command: yum --enablerepo=remi,epel install mysql-devel
+
+    - name: install pip
+      command: easy_install pip
+
+#    - name: insall mysql db
+#      command: easy_install mysql-python
+
+    - name: install python devel
+      yum: name=MySQL-python state=installed
+
+    - name: mysql root setting
+      mysql_user: name=developer password=developer host="%" priv=*.*:ALL,GRANT state=present
